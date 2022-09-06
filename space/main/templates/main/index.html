@@ -1,5 +1,56 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block body %}
-    <h1>MainApp Index page</h1>
+    <!-- ----- Header Start ----- -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="{% url "index" %}">SPACE</a></h1>
+            <!-- Uncomment below to use an image logo -->
+            <!-- <a href="{% url "index" %}" class="logo"><img src="{% static "main/graphics/..." %}" alt="" class="img-fluid"></a> -->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto " href="#link4">Link #4</a></li>
+                    <li><a class="nav-link scrollto" href="#link5">Link #5</a></li>
+                    <li><a class="nav-link scrollto" href="#link6">Link #6</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+
+        </div>
+    </header>
+    <!-- -----  Header End  ----- -->
+
+    <!-- -----  Hero Start  ----- -->
+    <section id="hero">
+        <div class="bg-vid-container">
+            <video autoplay muted loop id="background_video" class="cover">
+                <source src="{% static "main/graphics/background.mp4" %}" type="video/mp4"/>
+            </video>
+        </div>
+        <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
+            <h1>Powerful tools <br> for your creativity</h1>
+            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+            <div class="d-flex">
+                <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            </div>
+        </div>
+    </section>
+    <!-- -----   Hero End   ----- -->
+
+    <!-- -----  Main Start  ----- -->
+    <main id="main">
+        <section id="about" style="min-height: 100vh; border: 10px solid red;"> about block</section>
+        <section id="services" style="min-height: 100vh; border: 10px solid yellow;"> services block</section>
+        <section id="link4" style="min-height: 100vh; border: 10px solid green;"> link4 block</section>
+        <section id="link5" style="min-height: 100vh; border: 10px solid blue;"> link5 block</section>
+        <section id="link6" style="min-height: 100vh; border: 10px solid purple;"> link6 block</section>
+
+    </main>
+    <!-- -----   Main End   ----- -->
 {% endblock %}
