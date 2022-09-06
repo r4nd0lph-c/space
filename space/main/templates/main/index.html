@@ -34,7 +34,22 @@
             </video>
         </div>
         <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
-            <h1>Powerful tools <br> for your creativity</h1>
+            <h1 id="main_text"></h1>
+            <script>
+                new TypeIt("#main_text", {
+                    strings: ["Powerful tools", "for your creativity"],
+                    startDelay: 150,
+                    speed: 100,
+                    nextStringDelay: 300,
+                    cursor: true,
+                    cursorChar: "<span style='color: #0d6efd'>|</span>",
+                    loop: false,
+                    afterComplete: function (instance) {
+                        instance.destroy();
+                    }
+                }).go();
+            </script>
+
             <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
             <div class="d-flex">
                 <a href="#about" class="btn-get-started scrollto">Get Started</a>

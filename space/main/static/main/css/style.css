@@ -417,7 +417,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero:before {
     content: "";
-    background: rgba(13, 20, 26, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     position: absolute;
     bottom: 0;
     top: 0;
@@ -449,7 +449,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero video.cover {
     width: 100%;
-    min-width: 240vh;
+    min-width: 180vh;
     height: auto;
 }
 
@@ -458,6 +458,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 64px;
     font-weight: 700;
     line-height: 70px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #fff;
 }
