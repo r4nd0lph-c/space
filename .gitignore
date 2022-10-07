@@ -4,8 +4,6 @@
 # virtual environment
 venv/
 
-# config
-space/.env
 
 # database
 space/db.sqlite3
