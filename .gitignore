@@ -1,9 +1,17 @@
 # IDE settings
 .idea/
 
+# additional files
+additional/
+
+# media files
+space/media/*
+
 # virtual environment
 venv/
 
-
 # database
 space/db.sqlite3
+
+# config
+space/.env

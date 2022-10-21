@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block body %}
+    <!-- -----  Main Start  ----- -->
+    <main id="main">
+        <h1> {{ article.title }} </h1>
+        {{ article.content|safe }}
+    </main>
+    <!-- -----   Main End   ----- -->
+{% endblock %}

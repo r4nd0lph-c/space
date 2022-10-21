@@ -37,8 +37,31 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
     'main.apps.MainConfig',
 ]
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            [
+                'Undo', 'Redo',
+                '-', 'Format', 'FontSize', 'TextColor',
+                '-', 'Bold', 'Italic', 'Underline',
+                '-', 'Link', 'Unlink', 'Anchor',
+                '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+                '-', 'Blockquote', 'NumberedList', 'BulletedList', 'Outdent', 'Indent',
+                '-', 'HorizontalRule', 'Image', 'Table', 'Iframe',
+                '-', 'Source', 'Maximize',
+            ]
+        ],
+        'height': 256,
+        'width': '100%',
+        'toolbarCanCollapse': False,
+        'forcePasteAsPlainText': True
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -118,6 +141,8 @@ STATICFILES_DIRS = []
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
