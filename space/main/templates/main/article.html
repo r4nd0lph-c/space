@@ -4,8 +4,17 @@
 {% block body %}
     <!-- -----  Main Start  ----- -->
     <main id="main">
+        {{ article.created }}
+        <b> {{ article.reading }} </b>
         <h1> {{ article.title }} </h1>
         {{ article.content|safe }}
+        <p>
+            Tags:
+            {% for tag in article.tags.all %}
+                {{ tag.name }}
+            {% endfor %}
+        </p>
+        <b> {{ article.rating }} </b>
     </main>
     <!-- -----   Main End   ----- -->
 {% endblock %}
