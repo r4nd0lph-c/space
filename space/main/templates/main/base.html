@@ -7,13 +7,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta content="" name="description"> -->
+    <!-- <meta content="" name="keywords"> -->
 
     <title>{{ title }}</title>
 
+    <!-- Favicons -->
+    <!-- ... -->
+    <!-- ... -->
+    <!-- ... -->
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
           rel="stylesheet">
+    <!-- Inter Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
     <!-- Vendor CSS Files -->
@@ -43,8 +50,47 @@
     <i class="bi bi-arrow-up-short"></i>
 </a>
 
+<footer>
+    <div class="footer-container">
+        <div>
+            <h2>SPACE</h2>
+            <p class="footer-slogan">A great artist can come from anywhere</p>
+            <img class="footer-icon" draggable="false" src="{% static 'main/graphics/main_page/twitter.png' %}" />
+            <img class="footer-icon" draggable="false" src="{% static 'main/graphics/main_page/facebook.png' %}" />
+            <img class="footer-icon" draggable="false" src="{% static 'main/graphics/main_page/pinterest.png' %}" />
+            <img class="footer-icon" draggable="false" src="{% static 'main/graphics/main_page/instagram.png' %}" />
+            <img class="footer-icon" draggable="false" src="{% static 'main/graphics/main_page/behance.png' %}" />
+        </div>
+        <div>
+            <h4>Services</h4>
+            <a href="#"><p>Palette generator</p></a>
+            <a href="{% url 'gradient_generator' %}"><p>Gradient generator</p></a>
+            <a href="{% url 'color_picker' %}"><p>Color picker</p></a>
+            <a href="{% url 'contrast_checker' %}"><p>Contrast checker</p></a>
+        </div>
+        <div>
+            <h4>Other</h4>
+            <a href="#"><p>Blog</p></a>
+            <a href="#"><p>Contact us</p></a>
+        </div>
+        <div>
+            <h4>Something</h4>
+            <a href="#"><p>I remember</p></a>
+            <a href="#"><p>A wonderful moment</p></a>
+            <a href="#"><p>As before my</p></a>
+            <a href="#"><p>Eyes you appeared</p></a>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <img class="underline" draggable="false" src="{% static 'main/graphics/main_page/footer_underline.png' %}" />
+        <p>Copyright © 2022. All Rights Reserved.</p>
+    </div>
+</footer>
+
 <!-- Main JS File -->
-<script src="{% static "main/js/script.js" %}"></script>
+<script src="{% static 'main/js/script.js' %}"></script>
+{% block script %}
+{% endblock %}
 </body>
 
 </html>

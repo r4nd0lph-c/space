@@ -2,5 +2,91 @@
 {% load static %}
 
 {% block body %}
-    Gradient Generator Page
+    <!-- ----- Header Start ----- -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="{% url 'index' %}">SPACE</a></h1>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto " href="#recent-posts">Recent Posts</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+
+        </div>
+    </header>
+    <!-- -----  Header End  ----- -->
+    
+    <!-- -----  Main Start  ----- -->
+    <main>
+        <div class="tool-description">
+            <h3>GRADIENT GENERATOR</h3>
+            <img class="underline" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
+            <p>Make your own art of soft and fluffy colors fluently flowing into each other. Be certain, everything will go smoothly.</p>
+        </div>
+        <div id="gradient-gen-card">
+            <div id="gradient-gen-card-settings">
+<!--                <h4>Choose colors</h4> -->
+                <div style="display:flex; justify-content: space-between; flex-flow: row wrap; margin-bottom: 16px; gap: 16px 16px;">
+                <div>
+                <p>First color</p>
+                <div class="gradient-gen-card-color-picker">
+                    <input id="gradient-gen-first-color-text" type="text" size="7" maxlength="7" />
+                    <input id="gradient-gen-first-color" type="color" />
+                </div>
+                </div>
+                                <div>
+                <p>Second color</p>
+                <div class="gradient-gen-card-color-picker">
+                    <input id="gradient-gen-second-color-text" type="text" size="7" maxlength="7" />
+                    <input id="gradient-gen-second-color" type="color" />
+                </div>
+                </div>
+                </div>
+<!--                                                    <button style="border: 0; background: transparent; width: 24px; height: 24px">
+                        <img draggable="false" src="{% static 'main/graphics/gradient_generator/arrow_left_right.png' %}" />
+                    </button> -->
+        <div style="display:flex; justify-content: flext-start; margin:auto; flex-flow: row wrap; margin-bottom: 64px; gap: 0px 236px;">
+                <div>
+                    <h4>Gradient type</h4>
+                    <div>
+                        <input class="form-check-input" type="radio" name="gradient-type" id="gradient-type-linear" value="linear" checked>
+                        <label class="form-check-label" for="gradient-type-linear">Linear gradient</label>
+                    </div>
+                    <div>
+                        <input class="form-check-input" type="radio" name="gradient-type" id="gradient-type-radial" value="radial">
+                        <label class="form-check-label" for="gradient-type-radial">Radial gradient</label>
+                    </div>
+                </div>
+                <div>
+                    <h4>Direction</h4>
+                    <select id="gradient-direction" class="form-select">
+                        <option value="1" selected>Top to Bottom</option>
+                        <option value="2">Bottom to Top</option>
+                        <option value="3">Left to Right</option>
+                        <option value="4">Right to Left</option>
+                    </select>
+                </div>
+                </div>
+                
+                <div id="gradient-gen-card-settings-buttons">
+                    <button id="gradient-gen-random-button" type="button" class="btn btn-light">RANDOM</button>
+                    <button id="gradient-gen-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
+                </div>
+            </div>
+
+            <div id="gradient-gen-card-result">
+            </div>
+        </div>
+    </main>
+    <!-- -----   Main End   ----- -->
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'main/js/gradient-generator.js' %}"></script>
 {% endblock %}

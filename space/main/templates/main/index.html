@@ -2,22 +2,19 @@
 {% load static %}
 
 {% block body %}
-    <!-- ----- Header Start ----- -->
+
+        <!-- ----- Header Start ----- -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="{% url "index" %}">SPACE</a></h1>
-            <!-- Uncomment below to use an image logo -->
-            <!-- <a href="{% url "index" %}" class="logo"><img src="{% static "main/graphics/..." %}" alt="" class="img-fluid"></a> -->
+            <h1 class="logo"><a href="{% url 'index' %}">SPACE</a></h1>
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto " href="#link4">Link #4</a></li>
-                    <li><a class="nav-link scrollto" href="#link5">Link #5</a></li>
-                    <li><a class="nav-link scrollto" href="#link6">Link #6</a></li>
+                    <li><a class="nav-link scrollto " href="#recent-posts">Recent Posts</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -30,7 +27,7 @@
     <section id="hero">
         <div class="bg-vid-container parallax">
             <video autoplay muted loop id="background_video" class="cover">
-                <source src="{% static "main/graphics/background.mp4" %}" type="video/mp4"/>
+                <source src="{% static 'main/graphics/main_page/background.mp4' %}" type="video/mp4"/>
             </video>
         </div>
         <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
@@ -50,124 +47,158 @@
                 }).go();
             </script>
 
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+            <h2>Limitless space for your ideas</h2>
             <div class="d-flex">
                 <a href="#about" class="btn-get-started scrollto">Get Started</a>
             </div>
-            <img style="margin-top: 64px;" src="{% static "main/graphics/scroll_icon.svg" %}"/>
+            <img draggable="false" src="{% static 'main/graphics/main_page/scroll_icon.png' %}" />
         </div>
     </section>
     <!-- -----   Hero End   ----- -->
 
     <!-- -----  Main Start  ----- -->
     <main id="main">
+        <!-- -----  About Start  ----- -->
         <section id="about">
             <div id="about-container">
-                <h3 data-aos="fade-down">ABOUT</h3>
-                <img data-aos="fade-down" style="margin-top: 32px;" draggable="false"
-                     src="{% static 'main/graphics/white_underline.svg' %}"/>
-                <p data-aos="fade-down">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tortor tortor,
-                    pharetra ac nulla ac, pretium rutrum augue. Aenean lobortis orci quis ante sagittis, sed feugiat
-                    orci volutpat. Nulla lacus odio, iaculis in luctus non, porta in erat. Donec hendrerit molestie
-                    arcu, in dapibus quam eleifend et. Praesent quis accumsan augue. Aenean et lectus auctor, dictum est
-                    non, aliquet felis. Pellentesque sit amet libero vel elit commodo cursus id varius tortor. Mauris
-                    pulvinar dui sit amet orcisless elementum.</p>
+                <h3 data-aos="fade-down" data-aos-duration="1000">ABOUT</h3>
+                <img class="underline" data-aos="fade-down" data-aos-duration="1000" draggable="false" src="{% static 'main/graphics/main_page/white_underline.png' %}" />
+                <p data-aos="fade-down" data-aos-duration="1000">SPACE is our bold attempt to create an aggregator of tools that may be handy for wed-designers or just people who have a sudden need of working with graphical content. We collected all the different tools you will need in one place, so everything is set up for you to work. There is no limit to what you can do, as there is no limit to space above your head!</p>
             </div>
         </section>
-        <section id="services" class="container-fluid">
-            <h3 data-aos="fade-down">SERVICES</h3>
-            <img data-aos="fade-down" style="margin-top: 32px;" draggable="false"
-                 src="{% static 'main/graphics/black_underline.svg' %}"/>
-            <p data-aos="fade-down">Phasellus a tellus sed nisl ultrices bibendum. Nunc ornare, nulla nec egestas
-                vestibulum, lacus mauris facilisis metus, a cursus ligula quam vulputate ipsum. Maecenas ullamcorper
-                maximus feugiat. Maecenas eget felis ac tellus pulvinar tempor ac quis tortor. Aenean tincidunt bibendum
-                turpis eget efficitur. Cras molestie, enim eu tempus auctor, libero urna blandit lacus, sit amet aliquet
-                ante nibh ac.</p>
-            <div style="margin-top: 64px;" data-aos="fade-down" class="row g-4">
+        <!-- -----  About End  ----- -->
+        <!-- -----  Services Start  ----- -->
+        <section id="services" class="p-5">
+            <h3 data-aos="fade-down" data-aos-duration="1000">SERVICES</h3>
+            <img class="underline" data-aos="fade-down" data-aos-duration="1000" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
+            <p data-aos="fade-down" data-aos-duration="1000">We have a bunch of tools for working with colors and graphics, including color generators with multiple settings, contrast checker to see if your content adheres to WCAG 2.1 and more. Hover at an icon to get more information about each service. We also develop and implement new tools, so stay tuned!</p>
+            <div data-aos="fade-down" data-aos-duration="1000" class="d-flex justify-content-center row row-cols-auto g-5">
                 <div class="col">
-                    <a href="www.google.com">
-                        <div class="service-card mx-auto">
-                            <img style="margin-top: 32px;" draggable="false"
-                                 src="{% static 'main/graphics/palette_generator_icon.svg' %}"/>
-                            <h4 style="margin-top: 24px; color: var(--dark)">Palletes</h4>
-                            <img style="margin-top: 21px;" draggable="false"
-                                 src="{% static 'main/graphics/chevron_up.svg' %}"/>
-                            <p style="color: var(--secondary)">hover</p>
-                            <div>
-                                <h4 style="margin-top: 32px; color: white;">Palletes</h4>
-                                <p style="margin-top: 16px; color: white;">Create your own color palette in just one
-                                    click! Use flexible settings to express all spectrum of your ideas.</p>
-                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="www.google.com">
-                        <div class="service-card mx-auto">
-                            <img style="margin-top: 32px;" draggable="false"
-                                 src="{% static 'main/graphics/gradient_generator_icon.svg' %}"/>
-                            <h4 style="margin-top: 24px; color: var(--dark)">Gradients</h4>
-                            <img style="margin-top: 21px;" draggable="false"
-                                 src="{% static 'main/graphics/chevron_up.svg' %}"/>
-                            <p style="color: var(--secondary)">hover</p>
-                            <div>
-                                <h4 style="margin-top: 32px; color: white;">Gradients</h4>
-                                <p style="margin-top: 16px; color: white;">Make your own art of soft and fluffy colors
-                                    fluently flowing into each other. Be certain, everything will go smoothly.</p>
-                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="www.google.com">
-                        <div class="service-card mx-auto">
-                            <img style="margin-top: 32px;" draggable="false"
-                                 src="{% static 'main/graphics/color_picker_icon.svg' %}"/>
-                            <h4 style="margin-top: 24px; color: var(--dark)">Color Pick</h4>
-                            <img style="margin-top: 21px;" draggable="false"
-                                 src="{% static 'main/graphics/chevron_up.svg' %}"/>
-                            <p style="color: var(--secondary)">hover</p>
-                            <div>
-                                <h4 style="margin-top: 32px; color: white;">Color Pick</h4>
-                                <p style="margin-top: 16px; color: white;">Life is filled with colors. You’ve always
-                                    been wondering what color your life’s in? Upload your photo and learn in a sec.</p>
-                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="www.google.com">
-                        <div class="service-card mx-auto">
-                            <img style="margin-top: 32px;" draggable="false"
-                                 src="{% static 'main/graphics/contrast_check_icon.svg' %}"/>
-                            <h4 style="margin-top: 24px; color: var(--dark)">Contrast Check</h4>
-                            <img style="margin-top: 21px;" draggable="false"
-                                 src="{% static 'main/graphics/chevron_up.svg' %}"/>
-                            <p style="color: var(--secondary)">hover</p>
-                            <div>
-                                <h4 style="margin-top: 32px; color: white;">Contrast Check</h4>
-                                <p style="margin-top: 16px; color: white;">Check the contrast between the colors of the
-                                    background and the text. Let your graphical content be in-SIGHT-ful.</p>
-                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <section id="link4">
-            link4 block
-        </section>
-        <section id="link5">
-            link5 block
-        </section>
-        <section id="link6">
-            link6 block
-        </section>
+                    <a href="{% url 'palette_generator' %}">
+                    <div class="service-card">
+                                <img class="service-card-icon" draggable="false" src="{% static 'main/graphics/main_page/palette_generator_icon.png' %}" />
+                                <h4 class="service-card-heading">Palletes</h4>
+                                <span class="service-card-bottom">
+                                    <img draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                                    <p>hover</p>
+                                </span>
 
+<!--                                <span class="service-card-hint">
+                                <p class="service-card-text">Create your own color palette in just one click! Use flexible settings to express all spectrum of your ideas.</p>
+                                <p class="service-card-text-action">try it</p> -->
+                        </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'gradient_generator' %}">
+                        <div class="service-card">
+                            <img style="margin-top: 32px;" draggable="false" src="{% static 'main/graphics/main_page/gradient_generator_icon.png' %}" />
+                            <h4 style="margin-top: 24px; color: var(--dark)">Gradients</h4>
+                            <img style="margin-top: 21px;" draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                            <p style="color: var(--secondary)">hover</p>
+<!--                            <div>
+                                <h4 style="margin-top: 32px; color: white;">Gradients</h4>
+                                <p style="margin-top: 16px; color: white;">Make your own art of soft and fluffy colors fluently flowing into each other. Be certain, everything will go smoothly.</p>
+                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
+                            </div> -->
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'color_picker' %}">
+                        <div class="service-card">
+                            <img style="margin-top: 32px;" draggable="false" src="{% static 'main/graphics/main_page/color_picker_icon.png' %}" />
+                            <h4 style="margin-top: 24px; color: var(--dark)">Color Picker</h4>
+                            <img style="margin-top: 21px;" draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                            <p style="color: var(--secondary)">hover</p>
+<!--                            <div>
+                                <h4 style="margin-top: 32px; color: white;">Color Pick</h4>
+                                <p style="margin-top: 16px; color: white;">Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and learn in a sec.</p>
+                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
+                            </div> -->
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'contrast_checker' %}">
+                        <div class="service-card">
+                            <img style="margin-top: 32px;" draggable="false" src="{% static 'main/graphics/main_page/contrast_check_icon.png' %}" />
+                            <h4 style="margin-top: 24px; color: var(--dark)">Contrast Check</h4>
+                            <img style="margin-top: 21px;" draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                            <p style="color: var(--secondary)">hover</p>
+<!--                            <div>
+                                <h4 style="margin-top: 32px; color: white;">Contrast Check</h4>
+                                <p style="margin-top: 16px; color: white;">Check the contrast between the colors of the background and the text. Let your graphical content be in-SIGHT-ful.</p>
+                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
+                            </div> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- -----  Services End  ----- -->
+        <!-- -----  Recent Posts Start  ----- -->
+        <section id="recent-posts">
+            <h4 data-aos="fade-down" data-aos-duration="1000" style="padding-top: 64px;">Recent Posts</h4>
+            <img class="underline" data-aos="fade-down" data-aos-duration="1000" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
+            <a href=""><p data-aos="fade-down" data-aos-duration="1000" style="margin-top: 16px;">View all</p></a>
+            <div data-aos="fade-down" data-aos-duration="1000" id="recent-posts-row">
+                <div class="recent-post">
+                    <div class="recent-post-top">
+                        <p>02.10.2022</p>
+                        <p>Reading time ~ 10 min.</p>
+                    </div>
+                    <a href="#">
+                        <h4 style="margin: 0px; margin-top: 48px;">How to create a gradient background for your website</h4>
+                        <p style="margin: 0px; margin-top: 16px;">If you’ve been reading our blog at all, you know that we’re pretty gradient crazy. Backgrounds have a massive impact on a website’s design. So big, in fact, it’s probably the most important aspect...</p>
+                        <img src="{% static 'main/graphics/main_page/recent_post_img1.png' %}" />
+                    </a>
+                    <div class="recent-post-bottom">
+                        <span>
+                            <img src="{% static 'main/graphics/main_page/comment_icon.png' %}" />
+                            <p>1337</p>
+                        </span>
+                        <span>
+                            <img src="{% static 'main/graphics/main_page/bookmark_icon.png' %}" />
+                        </span>
+                        <span style="margin-left: auto;">
+                            <img src="{% static 'main/graphics/main_page/chevron_down.png' %}" />
+                            <strong>150</strong>
+                            <img src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                        </span>
+                    </div>
+                </div>
+                <div class="recent-post">
+                    <div class="recent-post-top">
+                        <p>02.10.2022</p>
+                        <p>Reading time ~ 15 min.</p>
+                    </div>
+                    <a href="#">
+                        <h4 style="margin: 0px; margin-top: 48px;">Digging into color temperature: the difference between "cool" and "warm" colors</h4>
+                        <p style="margin: 0px; margin-top: 16px;">As an object heats up, it begins to emit light. In very simple terms, a hotter object emits more high frequency radiation than a less hot one. For the sake of this explanation, a "hot" object will have...</p>
+                        <img src="{% static 'main/graphics/main_page/recent_post_img2.png' %}" />
+                    </a>
+                    <div class="recent-post-bottom">
+                        <span>
+                            <img src="{% static 'main/graphics/main_page/comment_icon.png' %}" />
+                            <p>1337</p>
+                        </span>
+                        <span>
+                            <img src="{% static 'main/graphics/main_page/bookmark_icon.png' %}" />
+                        </span>
+                        <span style="margin-left: auto;">
+                            <img src="{% static 'main/graphics/main_page/chevron_down.png' %}" />
+                            <strong>124</strong>
+                            <img src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- -----  Recent Posts End  ----- -->
+        <footer>
+        </footer>
     </main>
     <!-- -----   Main End   ----- -->
 {% endblock %}

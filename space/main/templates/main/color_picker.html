@@ -2,5 +2,86 @@
 {% load static %}
 
 {% block body %}
-    Color Picker Page
+    <!-- ----- Header Start ----- -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="{% url 'index' %}">SPACE</a></h1>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto " href="#recent-posts">Recent Posts</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+
+        </div>
+    </header>
+    <!-- -----  Header End  ----- -->
+    
+    <!-- -----  Main Start  ----- -->
+    <main>
+        <div class="tool-description">
+            <h3>COLOR PICKER</h3>
+            <img class="underline" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
+            <p>Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and learn in a sec.</p>
+        </div>
+        <div id="color-picker-card">
+            <div id="color-picker-card-settings">
+            <h4 style="margin-top: 32px;">Most common colors</h4>
+            <input style="margin-top: 32px; padding-left: 32px; padding-right: 32px;" type="range" class="form-range" min="2" max="10" step="1" value="5" id="">
+            <ul style="list-style-type: none; width: 100%; padding: 0px; margin-top: 32px;">
+            <li style="width: 100%;">
+                <div style="background-color:#A2C6CB; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
+                    <h3 style="margin: 16px 0px 16px 0px;">#A2C6CB</h3>
+                    <p style="margin: 0px;">Opai</p>
+                    <p style="margin: 0px;">63.4%</p>
+                </div>
+            </li>
+            <li style="width: 100%;">
+                <div style="background-color:#CFE1D0; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
+                    <h3 style="margin: 16px 0px 16px 0px;">#CFE1D0</h3>
+                    <p style="margin: 0px;">Honeydew</p>
+                    <p style="margin: 0px;">27.5%</p>
+                </div>
+            </li>
+            <li style="width: 100%;">
+                <div style="background-color:#EFF0CF; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
+                    <h3 style="margin: 16px 0px 16px 0px;">#EFF0CF</h3>
+                    <p style="margin: 0px;">Light Goldenrod Yellow</p>
+                    <p style="margin: 0px;">11.9%</p>
+                </div>
+            </li>
+            <li style="width: 100%;">
+                <div style="background-color:#D8C9AD; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
+                    <h3 style="margin: 16px 0px 16px 0px;">#D8C9AD</h3>
+                    <p style="margin: 0px;">Dutch White</p>
+                    <p style="margin: 0px;">4.3%</p>
+                </div>
+            </li>
+            <li style="width: 100%;">
+                <div style="background-color:#4C3345; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
+                    <h3 style="margin: 16px 0px 16px 0px;">#CFE1D0</h3>
+                    <p style="margin: 0px;">Dark Byzantium</p>
+                    <p style="margin: 0px;">2.5%</p>
+                </div>
+            </li>
+            </ul>
+            <button id="gradient-gen-random-button" type="button" class="btn btn-light">UPLOAD IMAGE</button>
+            <button id="gradient-gen-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
+            </div>
+
+            <div id="color-picker-card-result">
+                <img style="width: 100%;" src="{% static 'main/graphics/color_picker/image_example.png' %}" />
+            </div>
+        </div>
+    </main>
+    <!-- -----   Main End   ----- -->
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'main/js/gradient-generator.js' %}"></script>
 {% endblock %}
