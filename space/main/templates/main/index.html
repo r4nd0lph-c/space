@@ -15,6 +15,7 @@
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto " href="#recent-posts">Recent Posts</a></li>
+                    <li><a class="nav-link" href="#">English</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -142,7 +143,7 @@
         <section id="recent-posts">
             <h4 data-aos="fade-down" data-aos-duration="1000" style="padding-top: 64px;">Recent Posts</h4>
             <img class="underline" data-aos="fade-down" data-aos-duration="1000" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
-            <a href=""><p data-aos="fade-down" data-aos-duration="1000" style="margin-top: 16px;">View all</p></a>
+            <a href="{% url 'blog' %}"><p data-aos="fade-down" data-aos-duration="1000" style="margin-top: 16px;">View all</p></a>
             <div data-aos="fade-down" data-aos-duration="1000" id="recent-posts-row">
                 <div class="recent-post">
                     <div class="recent-post-top">

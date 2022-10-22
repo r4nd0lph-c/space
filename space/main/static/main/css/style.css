@@ -859,55 +859,32 @@ footer .footer-copyright img {
     margin: 32px 0px 64px 0px;
 }
 
-/*--------------------------------------------------------------
-# Palette Generator Section
---------------------------------------------------------------*/
 
+/* Input color with text field */
 
-/*--------------------------------------------------------------
-# Gradient Generator Section
---------------------------------------------------------------*/
-
-#gradient-gen-card {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    gap: 0px;
-    height: 400px;
-    max-width: 1120px;
-    margin: auto;
-    margin-top: 0px;
-    margin-bottom: 64px;
-    background-color: white;
-
-}
-
-
-#gradient-gen-card-settings {
-    border: 1px solid var(--secondary);
-    border-radius: 16px 0px 0px 16px;
-    width: 900px;
-    padding: 32px 64px 32px 64px;
-}
-
-
-.gradient-gen-card-color-picker {
+.color-input {
     display: flex;
     padding: 16px;
     width: 100%;
     height: 64px;
     border: 1px solid var(--secondary);
     border-radius: 8px;
+    
+    /*Animations*/
+    transition-property: border-color;
+    transition-duration: 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out;
+    transition-delay: 0s, 0s;
 }
 
-.gradient-gen-card-color-picker input,
-.gradient-gen-card-color-picker input:focus {
+.color-input input,
+.color-input input:focus {
     outline: none;
     border: none;
 }
 
 
-.gradient-gen-card-color-picker input[type=text] {
+.color-input input[type=text] {
     font-family: "Inter";
     font-size: 24px;
     font-weight: 300;
@@ -915,7 +892,7 @@ footer .footer-copyright img {
     text-transform:uppercase;
 }
 
-.gradient-gen-card-color-picker input[type=color] {
+.color-input input[type=color] {
     box-sizing: content-box;
     width: 32px;
     height: 32px;
@@ -928,44 +905,126 @@ footer .footer-copyright img {
 
 ::-moz-color-swatch {
     border: none;
-    border-radius: 4px;
+    border-radius: 1px;
+}
+
+.color-input-swap-button {
+    border: 0;
+    background: transparent;
+}
+
+.color-input-swap-button-span {
+    text-align: center; 
+    width: 64px; 
+    height: 64px;
+    line-height: 64px; 
+    align-self: flex-end;
+}
+
+.color-input-flexbox {
+     display: flex; 
+     flex-flow: row wrap; 
+     justify-content: space-between; 
+     align-items: center; 
+     margin: 0px 0px 32px 0px;
+}
+
+/*--------------------------------------------------------------
+# Palette Generator Section
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Gradient Generator Section
+--------------------------------------------------------------*/
+
+#gradient-gen-card {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 64px;
+    flex-direction: row;
+    height: 430px;
+    max-width: 1120px;
+    background-color: white;
 }
 
 
-#gradient-gen-card-settings-buttons {
+#gradient-gen-card-settings {
     display: flex;
-    margin: auto;
-    margin-bottom: 0px;
-    justify-content: center;
-    gap: 16px;
+    flex-flow: column wrap;
+    border: 1px solid var(--secondary);
+    border-radius: 16px 0px 0px 16px;
+    padding: 32px 64px 32px 64px;
+    min-width: 723px;
+    max-width: 723px;
+    /** Оптимальные значения. Работаю в Гугл Хроме, но в Мозилле Фаерфкс вся верстка съезжает  */
+/*  min-width: 658px;
+    max-width: 658px; */
+    height: 100%;
+}
+
+
+#gradient-direction {
+    color:var(--secondary);
+    min-width: 232px;
+    height: 64px;
+}
+
+#gradient-direction option {
+    font-size: 1.25em;
+}
+
+#gradient-gen-card-settings-buttons button{
+    border: 1px solid var(--secondary);
+    min-width: 162px;
+    min-height: 50px
 }
 
 
 #gradient-gen-card-result {
+    width: 100%;
     border: 1px solid var(--secondary);
-    height: 100%;
-    width: 40%;
     border-radius: 0px 16px 16px 0px;
     background: linear-gradient(90deg, rgba(239,240,207,1) 0%, rgba(207,225,208,1) 100%);
 }
 
-/* Adapted for mobile devices  */
-@media (max-width: 768px) {
+/* Adaptation for mobile devices  */
+@media (max-width: 930px) {
     #gradient-gen-card {
         flex-direction: column-reverse;
-        gap: 16px 16px;
         height: auto;
-        width: 350px;
+        width: 90vw;
     }
     
     #gradient-gen-card-settings,
     #gradient-gen-card-result {
-        border-radius: 16px 16px 16px 16px;
         width: 100%;
     }
     
     #gradient-gen-card-result {
-        height: 250px;
+        border-radius: 16px 16px 0px 0px;
+    }
+    
+    #gradient-gen-card-settings {
+        border-radius: 0px 0px 16px 16px;
+        min-width: unset;
+        max-width: unset;
+    }
+    
+    #gradient-gen-card-result {
+        height: 200px
+    }
+    
+    .color-input-flexbox {
+        display: flex; 
+        flex-flow: column wrap; 
+        align-items: center;
+    }
+    
+    .color-input-swap-button-span {
+        margin: 0px;
+        align-self: center;
     }
 }
 
@@ -1010,7 +1069,7 @@ footer .footer-copyright img {
     border-radius: 0px 16px 16px 0px;
 }
 
-/* Adapted for mobile devices  */
+/* Adaptation for mobile devices  */
 @media (max-width: 768px) {
     #color-picker-card {
         flex-direction: column-reverse;
@@ -1026,7 +1085,7 @@ footer .footer-copyright img {
     }
     
     #color-picker-card-result {
-        height: 250px;
+        /* height: 250px; */
     }
 }
 
@@ -1039,54 +1098,77 @@ footer .footer-copyright img {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    gap: 0px;
-    width: 1120px;
+    max-width: 1120px;
     height: 400px;
     margin: auto;
     margin-top: 0px;
     margin-bottom: 64px;
     background-color: white;
-
 }
 
 
-#contrast-checker-card-settings {
+#contrast-checker-card-settings {   
     display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    padding: 32px;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    padding: 32px 64px 32px 64px;
     border: 1px solid var(--secondary);
     border-radius: 16px 0px 0px 16px;
-    width: 900px;
+    min-width: 723px;
+    max-width: 723px;
+    height: 100%;
 }
-
 
 
 #contrast-checker-card-result {
-    text-align: center;
-    width: 40%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
     border: 1px solid var(--secondary);
     border-radius: 0px 16px 16px 0px;
+    padding: 32px;
+    text-align: center;
     color: #4C3345;
     background-color: #CFE1D0;
 }
 
-/* Adapted for mobile devices  */
-@media (max-width: 768px) {
+/* Adaptation for mobile devices  */
+@media (max-width: 1020px) {
     #contrast-checker-card {
         flex-direction: column-reverse;
-        gap: 16px 16px;
         height: auto;
-        width: 350px;
+        width: 90vw;
     }
     
     #contrast-checker-card-settings,
     #contrast-checker-card-result {
-        border-radius: 16px 16px 16px 16px;
         width: 100%;
     }
     
     #contrast-checker-card-result {
-        height: 400px;
+        border-radius: 16px 16px 0px 0px;
+    }
+    
+    #contrast-checker-card-settings {
+        border-radius: 0px 0px 16px 16px;
+        min-width: unset;
+        max-width: unset;
+    }
+    
+    #contrast-checker-card-result {
+        height: 100%;
+    }
+    
+    .color-input-flexbox {
+        display: flex; 
+        flex-flow: column wrap; 
+        align-items: center;
+    }
+    
+    .color-input-swap-button-span {
+        margin: 0px;
+        align-self: center;
     }
 }

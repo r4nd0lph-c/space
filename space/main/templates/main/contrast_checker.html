@@ -31,42 +31,62 @@
         </div>
         <div id="contrast-checker-card">
             <div id="contrast-checker-card-settings">
-                <div style="display:flex; justify-content: center;">
-                <h4>Contrast Ratio</h4>
-                </div>
-                <div style="display:flex; justify-content: space-between; flex-wrap: wrap;">
-                <div>
-                <p>First color</p>
-                <div class="gradient-gen-card-color-picker">
-                    <input id="gradient-gen-second-color-text" type="text" size="7" maxlength="7" value="#4C3345"/>
-                    <input id="gradient-gen-second-color" type="color" value="#4C3345"/>
-                </div>
+                
+                <div style="display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; margin: 0px 0px 32px 0px; gap: 0px 16px;">
+                    <h4 style="margin: 0;">Contrast Ratio</h4>
+                    <img style="width: 24px; height: 24px "src="{% static 'main/graphics/contrast_checker/info_circle.png' %}" />
                 </div>
                 
-                <div>
-                <p>Second color</p>
-                <div class="gradient-gen-card-color-picker">
-                    <input id="gradient-gen-second-color-text" type="text" size="7" maxlength="7" value="#CFE1D0"/>
-                    <input id="gradient-gen-second-color" type="color" value="#CFE1D0"/>
-                </div>
-                </div>
-                </div>
-                
-                <div style="margin: 32px 0px 16px 0px; display:flex; justify-content: center; align-items: center; gap: 16px 16px">
+                <div class="color-input-flexbox">
                     <div>
-                        <h2 >4.48</h2>
+                        <p>Text color</p>
+                        <div class="color-input">
+                            <input class="color-input-first-color-text" type="text" size="7" maxlength="7" />
+                            <input class="color-input-first-color" type="color" />
+                        </div>
                     </div>
-                    <div style="border-left: 2px solid var(--secondary); padding-left: 16px; display:flex; flex-direction: column; justify-content: center; align-items: flext-start;">
-                        <span style="margin: 0px 0px 16px 0px;"><img style="margin: 0px 8px 0px 0px;" src="{% static 'main/graphics/contrast_checker/x-circle.png' %}" /><p style="display: inline;">for 17pt and below</p></span>
-                        <span style="margin: 0px 0px 16px 0px;"><img style="margin: 0px 8px 0px 0px;" src="{% static 'main/graphics/contrast_checker/check-circle.png' %}" /><p style="display: inline;">for 18pt and above / 14pt bold and above</p></span>
-                        <span style="margin: 0px 0px 16px 0px;"><img style="margin: 0px 8px 0px 0px;" src="{% static 'main/graphics/contrast_checker/check-circle.png' %}" /><p style="display: inline;">for icons and actionable graphics</p></span>
+                    <span class="color-input-swap-button-span">
+                        <button class="color-input-swap-button">
+                            <img draggable="false" src="{% static 'main/graphics/contrast_checker/arrow_left_right.png' %}" />
+                        </button>
+                    </span>
+                    <div>
+                        <p>Background color</p>
+                        <div class="color-input">
+                            <input class="color-input-second-color-text" type="text" size="7" maxlength="7" />
+                            <input class="color-input-second-color" type="color" />
+                        </div>
                     </div>
                 </div>
-            </div>
                 
+                <div style="display: flex; flex-flow: row nowrap; justify-content: center; gap: 0px 16px;">
+                    <div style="padding-right: 16px; border-right: 1px solid var(--secondary); display: flex; flex-flow: row nowrap; justify-content: center; align-items: center">
+                        <h2 id="contrast-checker-ratio"style="margin: 0;">4.48</h2>
+                    </div>
+                    <div id="contrast-checker-rules" style="display: flex; flex-flow: column nowrap; align-items: flex-start; gap: 16px 0px;">
+                        <div style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center;">
+                            <img src="{% static 'main/graphics/contrast_checker/x-circle.png' %}" />
+                            <p style="margin: 0px 0px 0px 16px;">for 17pt and below</p>
+                        </div>
+                        <div style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center;">
+                            <img src="{% static 'main/graphics/contrast_checker/check-circle.png' %}" />
+                            <p style="margin: 0px 0px 0px 16px;">for 18pt and above / 14pt bold and above</p>
+                        </div>
+                        <div style="display: flex; flex-flow: row nowrap; justify-content: flex-start; align-items: center;">
+                            <img src="{% static 'main/graphics/contrast_checker/check-circle.png' %}" />
+                            <p style="margin: 0px 0px 0px 16px;">for icons and actionable graphics</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
             <div id="contrast-checker-card-result">
-                <h4 style="margin: 100px 0px 0px 0px;">Lorem Ipsum</h4>
-                <p style="margin: 16px 0px 0px 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisi lacus, hendrerit ac metus at, iaculis laoreet nisl. Vestibulum sed erat diam. Nunc ex tellus, eleifend quis rutrum at, volutpat a enim. Integer efficitur neque nec dui fermentum convallis.</p>
+                <h4 style="margin: 0px 0px 16px 0px;">Lorem Ipsum</h4>
+                <p style="margin: 0 0 16px 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisi lacus, hendrerit ac metus at, iaculis laoreet nisl. Vestibulum sed erat diam. Nunc ex tellus, eleifend quis rutrum at, volutpat a enim. Integer efficitur neque nec dui fermentum convallis.</p>
+                <div style="text-align: right; align-self: flex-end;">
+                    <b>— Duis Aliquam</b>
+                </div>
             </div>
         </div>
     </main>
@@ -74,5 +94,5 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'main/js/gradient-generator.js' %}"></script>
+<script src="{% static 'main/js/contrast-checker.js' %}"></script>
 {% endblock %}

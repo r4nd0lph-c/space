@@ -29,6 +29,16 @@
 //Generates random hex-color
 const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
+//Convertes from HEX to RGB
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
 
 function startup() {
     
@@ -37,47 +47,98 @@ function startup() {
     const secondColor = select(".color-input-second-color");
     const firstColorText = select(".color-input-first-color-text");
     const secondColorText = select(".color-input-second-color-text");
-    let gradientType = select("input[name='gradient-type']:checked").value;
-    const gradientTypeRadioButtons = select("#gradient-gen-card input[type='radio']", true);
-    const gradientDirection = select("#gradient-direction");
-    const result = select("#gradient-gen-card-result");
-    const randomButton = select("#gradient-gen-random-button");
-    const exportButton = select("#gradient-gen-export-button");
+    const result = select("#contrast-checker-card-result");
+    const contrastCheckerRatio = select("#contrast-checker-ratio");
+    const contrastCheckerRules = select("#contrast-checker-rules").children;
     const swapColorsButton = select(".color-input-swap-button");
     
+
     //Update the background of the result div
     function update() {
-        let sentence = "";
-        switch(gradientType) {
-            case 'linear':
-                sentence = "linear-gradient(";
-                switch(gradientDirection.value) {
-                    case '1':
-                    sentence += "to bottom, ";
-                    break;
-                    
-                    case '2':
-                    sentence += "to top, ";
-                    break;
-                    
-                    case '3':
-                    sentence += "to right, ";
-                    break;
-                    
-                    case '4':
-                    sentence += "to left, ";
-                    break;
-                }
-            break;
-            
-            case 'radial':
-                sentence += "radial-gradient(";
-            break;
-        }
-        
-        sentence += firstColorText.value + "," + secondColorText.value;
-        result.style.background = sentence;
+        result.style.color = firstColor.value;
+        result.style.backgroundColor = secondColor.value;
+        calculateContrastRatio();
     }
+    
+    
+    //Calculates contrast ratio
+    function calculateContrastRatio(){
+        let rgb1 = hexToRgb(firstColor.value);
+        let rgb1_rs = rgb1.r/255.0;
+        let rgb1_gs = rgb1.g/255.0;
+        let rgb1_bs = rgb1.b/255.0;
+        let rgb1_r, rgb1_g, rgb1_b;
+        if(rgb1_rs <= 0.03928)
+            rgb1_r = rgb1_rs/12.92;
+        else
+            rgb1_r = Math.pow((rgb1_rs+0.055)/1.055, 2.4);
+        if(rgb1_gs <= 0.03928)
+            rgb1_g = rgb1_gs/12.92;
+        else
+            rgb1_g = Math.pow((rgb1_gs+0.055)/1.055, 2.4);
+        if(rgb1_bs <= 0.03928)
+            rgb1_b = rgb1_bs/12.92;
+        else
+            rgb1_b = Math.pow((rgb1_bs+0.055)/1.055, 2.4);
+        
+        let textLuminance = 0.2126 * rgb1_r + 0.7152 * rgb1_g + 0.0722 * rgb1_b;
+        
+        
+        
+        let rgb2 = hexToRgb(secondColor.value);
+        let rgb2_rs = rgb2.r/255.0;
+        let rgb2_gs = rgb2.g/255.0;
+        let rgb2_bs = rgb2.b/255.0;
+        let rgb2_r, rgb2_g, rgb2_b;
+        if(rgb2_rs <= 0.03928)
+            rgb2_r = rgb2_rs/12.92;
+        else
+            rgb2_r = Math.pow((rgb2_rs+0.055)/1.055, 2.4);
+        if(rgb2_gs <= 0.03928)
+            rgb2_g = rgb2_gs/12.92;
+        else
+            rgb2_g = Math.pow((rgb2_gs+0.055)/1.055, 2.4);
+        if(rgb2_bs <= 0.03928)
+            rgb2_b = rgb2_bs/12.92;
+        else
+            rgb2_b = Math.pow((rgb2_bs+0.055)/1.055, 2.4);
+        
+        let backgroundLuminance = 0.2126 * rgb2_r + 0.7152 * rgb2_g + 0.0722 * rgb2_b;
+        
+        
+        let contrastRatio = ((textLuminance + 0.05) / (backgroundLuminance + 0.05));
+        if(contrastRatio < 1)
+            contrastRatio = 1/contrastRatio;
+        contrastCheckerRatio.innerHTML = contrastRatio.toFixed(2);
+        updateRules(contrastRatio);
+    }
+    
+
+    //Updates rules in the html page
+    function updateRules(contrastRatio) {
+        let img1 = contrastCheckerRules[0].getElementsByTagName("img")[0];
+        let img2 = contrastCheckerRules[1].getElementsByTagName("img")[0];
+        let img3 = contrastCheckerRules[2].getElementsByTagName("img")[0];
+        
+        //for 17pt and below
+        if(contrastRatio >= 4.5)
+            img1.src = "../static/main/graphics/contrast_checker/check-circle.png";
+        else
+            img1.src = "../static/main/graphics/contrast_checker/x-circle.png";
+        
+        //for 18pt and above / 14pt bold and above
+        if(contrastRatio >= 3.0)
+            img2.src = "../static/main/graphics/contrast_checker/check-circle.png";
+        else
+            img2.src = "../static/main/graphics/contrast_checker/x-circle.png";
+        
+        //for icons and actionable graphics
+        if(contrastRatio >= 3.0)
+            img3.src = "../static/main/graphics/contrast_checker/check-circle.png";
+        else
+            img3.src = "../static/main/graphics/contrast_checker/x-circle.png";
+    }
+    
     
     //Setting up listeners
     firstColor.addEventListener("input", (event) => {
@@ -99,33 +160,6 @@ function startup() {
         secondColor.value = secondColorText.value;
         update();
     }, false);
-    
-    gradientDirection.addEventListener("change", (event) => {
-        update();
-    }, false);
-    
-    randomButton.addEventListener("click", (event) => {
-        generateRandomColors();
-        update();
-    }, false);
-    
-    for(let i = 0; i < gradientTypeRadioButtons.length; i++) {
-        gradientTypeRadioButtons[i].addEventListener("click", (event) => {
-            gradientType = gradientTypeRadioButtons[i].value;
-            switch(gradientType) {
-                case "linear":
-                    gradientDirection.disabled = false;
-                    gradientDirection.previousElementSibling.style.color = "black";
-                break;
-                
-                case "radial":
-                    gradientDirection.disabled = true;
-                    gradientDirection.previousElementSibling.style.color = "#CED4DA";
-                break;
-            }
-            update();
-        }, false);
-    }
     
     
     swapColorsButton.addEventListener("click", (event) => {
