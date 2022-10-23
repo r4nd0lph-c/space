@@ -31,51 +31,84 @@
         </div>
         <div id="color-picker-card">
             <div id="color-picker-card-settings">
-            <h4 style="margin-top: 32px;">Most common colors</h4>
-            <input style="margin-top: 32px; padding-left: 32px; padding-right: 32px;" type="range" class="form-range" min="2" max="10" step="1" value="5" id="">
-            <ul style="list-style-type: none; width: 100%; padding: 0px; margin-top: 32px;">
-            <li style="width: 100%;">
-                <div style="background-color:#A2C6CB; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
-                    <h3 style="margin: 16px 0px 16px 0px;">#A2C6CB</h3>
-                    <p style="margin: 0px;">Opai</p>
-                    <p style="margin: 0px;">63.4%</p>
+                <div>
+                    <div style="display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; margin-top: 32px; gap: 0px 16px; margin-bottom: 0">
+                        <h4 style="margin: 0;">Most common colors</h4>
+                        <img style="width: 24px; height: 24px "src="{% static 'main/graphics/contrast_checker/info_circle.png' %}" />
+                    </div>
+                    
+                    <div style="width: 100%; display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; gap: 0px 8px; margin-top: 32px;">
+                        <p style="margin: 0;">2</p>
+                        <input id="color-picker-range" type="range" class="form-range" min="2" max="10" step="1" value="5" >
+                        <p style="margin: 0;">10</p>
+                    </div>
+                    
+                    <ul id="color-picker-card-colors-list">
+                        <li style=" background-color:#A2C6CB; ">
+                            <h3 style="margin: 0;">#A2C6CB</h3>
+                            <p style="margin: 0;">Opai</p>
+                            <p style="margin: 0;">63.4%</p>
+                        </li>
+                        <li style="background-color:#CFE1D0;">
+                            <h3 style="margin: 0;">#CFE1D0</h3>
+                            <p style="margin: 0;">Honeydew</p>
+                            <p style="margin: 0;">27.5%</p>
+                        </li>
+                        <li style="background-color:#EFF0CF;">
+                            <h3 style="margin: 0;">#EFF0CF</h3>
+                            <p style="margin: 0;">Light Goldenrod Yellow</p>
+                            <p style="margin: 0;">11.9%</p>
+                        </li>
+                        <li style="background-color:#D8C9AD;">
+                            <h3 style="margin: 0;">#D8C9AD</h3>
+                            <p style="margin: 0;">Dutch White</p>
+                            <p style="margin: 0;">4.3%</p>
+                        </li>
+                        <li style="background-color:#CFE1D0;">
+                            <h3 style="margin: 0;">#CFE1D0</h3>
+                            <p style="margin: 0;">Dark Byzantium</p>
+                            <p style="margin: 0;">2.5%</p>
+                        </li>
+                        <!-- Hidden by default elements -->
+                        <li style="background-color:#6195ED;" hidden="">
+                            <h3 style="margin: 0;">#6195ED</h3>
+                            <p style="margin: 0;">Cornflower Blue</p>
+                            <p style="margin: 0;">1.9%</p>
+                        </li>
+                        <li style="background-color:#4AFF29;" hidden="">
+                            <h3 style="margin: 0;">#4AFF29</h3>
+                            <p style="margin: 0;">Harlequin</p>
+                            <p style="margin: 0;">1.8%</p>
+                        </li>
+                        <li style="background-color:#29DFFF;" hidden="">
+                            <h3 style="margin: 0;">#29DFFF</h3>
+                            <p style="margin: 0;">Cyan</p>
+                            <p style="margin: 0;">1.2%</p>
+                        </li>
+                        <li style="background-color:#FD96D8;" hidden="">
+                            <h3 style="margin: 0;">#FD96D8</h3>
+                            <p style="margin: 0;">Lavender Rose</p>
+                            <p style="margin: 0;">0.3%</p>
+                        </li>
+                        <li style="background-color:#E9070A;" hidden="">
+                            <h3 style="margin: 0;">#E9070A</h3>
+                            <p style="margin: 0;">Red</p>
+                            <p style="margin: 0;">0.1%</p>
+                        </li>
+                    </ul>
                 </div>
-            </li>
-            <li style="width: 100%;">
-                <div style="background-color:#CFE1D0; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
-                    <h3 style="margin: 16px 0px 16px 0px;">#CFE1D0</h3>
-                    <p style="margin: 0px;">Honeydew</p>
-                    <p style="margin: 0px;">27.5%</p>
+                
+                <div id="color-picker-card-settings-buttons">
+                    <button id="color-picker-upload-button" type="button" class="btn btn-light">UPLOAD IMAGE</button>
+                    <button id="gradient-gen-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
                 </div>
-            </li>
-            <li style="width: 100%;">
-                <div style="background-color:#EFF0CF; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
-                    <h3 style="margin: 16px 0px 16px 0px;">#EFF0CF</h3>
-                    <p style="margin: 0px;">Light Goldenrod Yellow</p>
-                    <p style="margin: 0px;">11.9%</p>
-                </div>
-            </li>
-            <li style="width: 100%;">
-                <div style="background-color:#D8C9AD; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
-                    <h3 style="margin: 16px 0px 16px 0px;">#D8C9AD</h3>
-                    <p style="margin: 0px;">Dutch White</p>
-                    <p style="margin: 0px;">4.3%</p>
-                </div>
-            </li>
-            <li style="width: 100%;">
-                <div style="background-color:#4C3345; padding-left: 32px; padding-right: 32px; display:flex; justify-content:space-between; align-items: center;  text-align: center;">
-                    <h3 style="margin: 16px 0px 16px 0px;">#CFE1D0</h3>
-                    <p style="margin: 0px;">Dark Byzantium</p>
-                    <p style="margin: 0px;">2.5%</p>
-                </div>
-            </li>
-            </ul>
-            <button id="gradient-gen-random-button" type="button" class="btn btn-light">UPLOAD IMAGE</button>
-            <button id="gradient-gen-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
-            </div>
 
+            </div>
             <div id="color-picker-card-result">
-                <img style="width: 100%;" src="{% static 'main/graphics/color_picker/image_example.png' %}" />
+<!--                <div style="position: absolute; z-index: 1;">
+                <div style="background-color: #A2C6CB; width: 64px; height: 64px; border: 4px solid white; border-radius: 50%; position: absolute; top: -120px; left: 100px;"></div>
+                </div> -->
+                <img id="color-picker-card-result-img" draggable="false" src="{% static 'main/graphics/color_picker/image_example.png' %}" />               
             </div>
         </div>
     </main>
@@ -83,5 +116,5 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'main/js/gradient-generator.js' %}"></script>
+<script src="{% static 'main/js/color-picker.js' %}"></script>
 {% endblock %}

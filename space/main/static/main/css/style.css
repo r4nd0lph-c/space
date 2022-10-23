@@ -1037,57 +1037,115 @@ footer .footer-copyright img {
     justify-content: center;
     flex-direction: row;
     gap: 0px;
-    width: 1120px;
-    height: 600px;
+    max-width: 1120px;
+    max-height: 1000px;
     margin: auto;
     margin-top: 0px;
     margin-bottom: 64px;
     background-color: white;
-
 }
 
 
 #color-picker-card-settings {
+    max-width: 492px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    align-items: stretch;
     border: 1px solid var(--secondary);
     border-radius: 16px 0px 0px 16px;
-    width: 900px;
     padding: 0px;
 }
 
+#color-picker-range {
+    max-width: 300px;
+}
 
+#color-picker-card-settings ul {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    list-style-type: none;
+    padding: 0px;
+    margin-top: 32px;
+    margin-bottom: 0px;
+}
+
+#color-picker-card-settings ul li{
+    display: flex;
+    flex-flow: row;
+    justify-content:space-between;
+    align-items: center;
+    padding: 16px 32px 16px 32px;
+    gap: 32px 32px;
+}
+
+#color-picker-card-settings-buttons {
+    display: flex; 
+    flex-flow: row nowrap; 
+    justify-content: space-between; 
+    gap: 32px 32px; 
+    margin: 32px 0px 0px 0px; 
+    padding: 0px 32px 32px 32px;
+}
+
+#color-picker-card-settings-buttons button {
+    padding: 0px;
+    border: 1px solid var(--secondary);
+    height: 50px;
+    width: 100%;
+    max-width: 200px;
+}
 
 #color-picker-card-result {
     padding: 32px;
     display: flex;
+    max-width: 628px;
     justify-content: center;
     align-items: center;
-    width: 50%;
     border: 1px solid var(--secondary);
     border-radius: 0px 16px 16px 0px;
+}
+
+#color-picker-card-result-img {
+    width: 100%;
+    max-height: 500px;
 }
 
 /* Adaptation for mobile devices  */
 @media (max-width: 768px) {
     #color-picker-card {
+        max-height: unset;
         flex-direction: column-reverse;
-        gap: 16px 16px;
-        height: auto;
-        width: 350px;
+        width: 95vw;
     }
     
     #color-picker-card-settings,
     #color-picker-card-result {
-        border-radius: 16px 16px 16px 16px;
-        width: 100%;
+        max-width: unset;
+        width: 95vw;
+    }
+    
+    #color-picker-card-settings {
+        flex-direction: column-reverse;
+        border-radius: 0px 0px 16px 16px;
+    }
+    
+    #color-picker-card-settings-buttons {
+        justify-content: center;
+    }
+        
+    /* !!! No support for firefox and opera !!! */
+    #color-picker-card-settings ul li:has(+li[hidden]),
+    #color-picker-card-settings ul li:last-child{
+        border-radius: 0px 0px 16px 16px;
     }
     
     #color-picker-card-result {
-        /* height: 250px; */
+        padding: 32px;
+        border-radius: 16px 16px 0px 0px;
     }
-}
+} 
 
 
 
