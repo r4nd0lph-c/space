@@ -15,7 +15,7 @@
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto " href="#recent-posts">Recent Posts</a></li>
-                    <li><a class="nav-link" href="#">English</a></li>
+                    <li"><a class="nav-link" href="#">English</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -52,7 +52,7 @@
             <div class="d-flex">
                 <a href="#about" class="btn-get-started scrollto">Get Started</a>
             </div>
-            <img draggable="false" src="{% static 'main/graphics/main_page/scroll_icon.png' %}" />
+            <img id="scroll-icon" draggable="false" src="{% static 'main/graphics/main_page/scroll_icon.png' %}" />
         </div>
     </section>
     <!-- -----   Hero End   ----- -->
@@ -76,63 +76,65 @@
             <div data-aos="fade-down" data-aos-duration="1000" class="d-flex justify-content-center row row-cols-auto g-5">
                 <div class="col">
                     <a href="{% url 'palette_generator' %}">
-                    <div class="service-card">
-                                <img class="service-card-icon" draggable="false" src="{% static 'main/graphics/main_page/palette_generator_icon.png' %}" />
-                                <h4 class="service-card-heading">Palletes</h4>
-                                <span class="service-card-bottom">
-                                    <img draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
-                                    <p>hover</p>
-                                </span>
-
-<!--                                <span class="service-card-hint">
-                                <p class="service-card-text">Create your own color palette in just one click! Use flexible settings to express all spectrum of your ideas.</p>
-                                <p class="service-card-text-action">try it</p> -->
-                        </span>
+                        <div class="service-card">
+                            <img class="service-card-icon" draggable="false" src="{% static 'main/graphics/main_page/palette_generator_icon.png' %}" />
+                            <h4 class="service-card-heading">Palettes</h4>
+                            <div class="service-card-bottom">
+                                <img draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                                <p>hover</p>
+                            </div>
+                            <div class="service-card-overlay">
+                                <p class="service-card-overlay-text">Create your own color palette in just one click! Use flexible settings to express all spectrum of your ideas.</p>
+                                <p class="service-card-overlay-text-action">try it</p>
+                            </div>
                         </div>
                     </a>
                 </div>
                 <div class="col">
                     <a href="{% url 'gradient_generator' %}">
                         <div class="service-card">
-                            <img style="margin-top: 32px;" draggable="false" src="{% static 'main/graphics/main_page/gradient_generator_icon.png' %}" />
-                            <h4 style="margin-top: 24px; color: var(--dark)">Gradients</h4>
-                            <img style="margin-top: 21px;" draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
-                            <p style="color: var(--secondary)">hover</p>
-<!--                            <div>
-                                <h4 style="margin-top: 32px; color: white;">Gradients</h4>
-                                <p style="margin-top: 16px; color: white;">Make your own art of soft and fluffy colors fluently flowing into each other. Be certain, everything will go smoothly.</p>
-                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
-                            </div> -->
+                            <img class="service-card-icon" draggable="false" src="{% static 'main/graphics/main_page/gradient_generator_icon.png' %}" />
+                            <h4 class="service-card-heading">Gradients</h4>
+                            <div class="service-card-bottom">
+                                <img draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                                <p>hover</p>
+                            </div>
+                            <div class="service-card-overlay">
+                                <p class="service-card-overlay-text">Make your own art of soft and fluffy colors fluently flowing into each other. Be certain, everything will go smoothly.</p>
+                                <p class="service-card-overlay-text-action">try it</p>
+                            </div>
                         </div>
                     </a>
                 </div>
                 <div class="col">
                     <a href="{% url 'color_picker' %}">
                         <div class="service-card">
-                            <img style="margin-top: 32px;" draggable="false" src="{% static 'main/graphics/main_page/color_picker_icon.png' %}" />
-                            <h4 style="margin-top: 24px; color: var(--dark)">Color Picker</h4>
-                            <img style="margin-top: 21px;" draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
-                            <p style="color: var(--secondary)">hover</p>
-<!--                            <div>
-                                <h4 style="margin-top: 32px; color: white;">Color Pick</h4>
-                                <p style="margin-top: 16px; color: white;">Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and learn in a sec.</p>
-                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
-                            </div> -->
+                            <img class="service-card-icon" draggable="false" src="{% static 'main/graphics/main_page/color_picker_icon.png' %}" />
+                            <h4 class="service-card-heading">Color Pick</h4>
+                            <div class="service-card-bottom">
+                                <img draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                                <p>hover</p>
+                            </div>
+                            <div class="service-card-overlay">
+                                <p class="service-card-overlay-text">Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and learn in a sec.</p>
+                                <p class="service-card-overlay-text-action">try it</p>
+                            </div>
                         </div>
                     </a>
                 </div>
                 <div class="col">
                     <a href="{% url 'contrast_checker' %}">
                         <div class="service-card">
-                            <img style="margin-top: 32px;" draggable="false" src="{% static 'main/graphics/main_page/contrast_check_icon.png' %}" />
-                            <h4 style="margin-top: 24px; color: var(--dark)">Contrast Check</h4>
-                            <img style="margin-top: 21px;" draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
-                            <p style="color: var(--secondary)">hover</p>
-<!--                            <div>
-                                <h4 style="margin-top: 32px; color: white;">Contrast Check</h4>
-                                <p style="margin-top: 16px; color: white;">Check the contrast between the colors of the background and the text. Let your graphical content be in-SIGHT-ful.</p>
-                                <p style="margin-top: 65px; color: var(--primary);">try it</p>
-                            </div> -->
+                            <img class="service-card-icon" draggable="false" src="{% static 'main/graphics/main_page/contrast_check_icon.png' %}" />
+                            <h4 class="service-card-heading">Contrast Check</h4>
+                            <div class="service-card-bottom">
+                                <img draggable="false" src="{% static 'main/graphics/main_page/chevron_up.png' %}" />
+                                <p>hover</p>
+                            </div>
+                            <div class="service-card-overlay">
+                                <p class="service-card-overlay-text">Check the contrast between the colors of the background and the text. Let your graphical content be in-SIGHT-ful.</p>
+                                <p class="service-card-overlay-text-action">try it</p>
+                            </div>
                         </div>
                     </a>
                 </div>

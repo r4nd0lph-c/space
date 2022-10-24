@@ -2,5 +2,93 @@
 {% load static %}
 
 {% block body %}
-    Palette Generator Page
+   <!-- ----- Header Start ----- -->
+    <header id="header" class="fixed-top header-inner-pages">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="{% url 'index' %}">SPACE</a></h1>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto " href="#recent-posts">Recent Posts</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+
+        </div>
+    </header>
+    <!-- -----  Header End  ----- -->
+    
+    <!-- -----  Main Start  ----- -->
+    <main>
+        <div class="tool-description">
+            <h3>PALETTE GENERATOR</h3>
+            <img class="underline" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
+            <p>Create your own color palette in just one click! Use flexible settings to express all spectrum of your ideas.</p>
+        </div>
+        <div id="palette-generator-card">
+            <div id="palette-generator-card-result">
+                <div class="palette-generator-card-result-color" style="background-color: #A2C6CB">
+                    <h3>#A2C6CB</h3>
+                    <p>Opal</p>
+                </div>
+                <div class="palette-generator-card-result-color" style="background-color: #CFE1D0">
+                    <h3>#CFE1D0</h3>
+                    <p>Honeydew</p>
+                </div>
+                <div class="palette-generator-card-result-color" style="background-color: #EFF0CF">
+                    <h3>#EFF0CF</h3>
+                    <p>Light Goldenrod Yellow</p>
+                </div>
+                <div class="palette-generator-card-result-color" style="background-color: #D8C9AD">
+                    <h3>#D8C9AD</h3>
+                    <p>Dutch White</p>
+                </div>
+                <div class="palette-generator-card-result-color" style="background-color: #4C3345">
+                    <h3>#4C3345</h3>
+                    <p>Dark Byzantium</p>
+                </div>
+            </div>
+            
+            <div id="palette-generator-card-settings">
+                <div style="justify-content: flex-end;">
+                    <button style="width: 160px;" type="button" class="btn btn-light">GENERATE</button>
+                </div>
+                
+                <div style="width: 1350px; border-left: 1px solid var(--secondary); justify-content: space-evenly; gap: 32px 32px;">
+                    <div style="height: 50px;"class="input-group">
+                        <span class="input-group-text">
+                            <img draggable="false" src="{% static 'main/graphics/palette_generator/eyeglasses_icon.png' %}" />
+                        </span>
+                        <select class="form-select">
+                            <option value="1" selected>Deuteranomaly</option>
+                            <option value="2">Something else</option>
+                            <option value="3">Something else</option>
+                            <option value="4">Another something else</option>
+                        </select>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-light">
+                            <img draggable="false" src="{% static 'main/graphics/palette_generator/sun_icon.png' %}" />
+                        </button>
+                        <button type="button" class="btn btn-light">
+                            <img draggable="false" src="{% static 'main/graphics/palette_generator/circle_half_icon.png' %}" />
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="border-left: 1px solid var(--secondary); justify-content: flex-start;">
+                    <button style="width: 160px;" type="button" class="btn btn-primary">EXPORT AS</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- -----   Main End   ----- -->
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'main/js/palette-generator.js' %}"></script>
 {% endblock %}

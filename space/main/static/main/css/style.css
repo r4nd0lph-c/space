@@ -605,6 +605,13 @@ footer .footer-copyright img {
     }
 }
 
+/* Remove scroll icon on mobile devices */
+@media (max-width: 768px) {
+    #scroll-icon {
+        display: none;
+    }
+}
+
 /*--------------------------------------------------------------
 # Main Section
 --------------------------------------------------------------*/
@@ -690,95 +697,161 @@ footer .footer-copyright img {
 }
 
 
+.service-card {
+    position: relative;
+    border: 1px solid var(--secondary);
+    border-radius: 16px;
+    height: 256px;
+    width: 256px;
+}
+
 .service-card-icon {
-    margin-top: 32px;
+    margin: 32px 0px 0px 0px;
+}
+
+.service-card-heading {
+    position: relative;
+    margin: 24px 0px 0px 0px;
 }
 
 .service-card-bottom {
-    margin-top: 24px;
+    margin: 16px 0px 0px 0px;
+}
+
+.service-card-bottom * {
+    margin: 0;
 }
 
 .service-card-bottom p {
     color: var(--secondary);
 }
 
-#services .service-card-text {
-    margin-left: 32px;
-    margin-right: 32px;
+.service-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: auto;
+    padding-bottom: 16px;
+    padding-top: 77px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.service-card-overlay-text {
     color: white;
 }
 
-#services .service-card-text-action {
-    margin-top: 64px;
+.service-card-overlay-text-action {
     color: var(--primary);
 }
 
+.service-card-overlay *{
+    margin: 0;
+}
 
-/* #services * {
+.service-card-overlay p:first-child {
+    font-size: 0.875em;
+}
+
+.service-card,
+.service-card *{
     transition: all 0.3s ease-out 0s;
-} */
+}
 
-
+/*** SERVICE CARDS ANIMATION ON HOVER ***/
 /* DEFAULT STATE  */
 
-#services .service-card {
-    position: relative;
-    border: 1px solid var(--secondary);
-    border-radius: 16px;
+.service-card {
     background-color: white;
-    height: 256px;
-    width: 256px;
 }
 
-#services .service-card-icon {
+.service-card-icon {
     opacity: 100%;
 }
 
-#services .service-card-heading {
-    position: relative;
+.service-card-heading {
+    color: var(--dark);
     top: 0px;
-    margin: 24px;
-    color: var(--dark)
 }
 
-#services .service-card-bottom {
+.service-card-bottom {
     opacity: 100%;
 }
 
-#services .service-card-hint {
-    position: relative;
-    top: 10px;
-    opacity: 0%;
-    box-sizing: border-box;
+.service-card-overlay {
+    height: 0;
 }
-
-
 
 
 /* HOVERED STATE */
-/* 
-#services .service-card:hover {
+
+.service-card:hover .service-card-overlay {
+    height: 100%;
+}
+ 
+.service-card:hover {
     background-color: var(--dark);
 }
 
-#services .service-card:hover .service-card-icon {
+.service-card:hover .service-card-icon {
     opacity: 0%;
 }
 
-#services .service-card:hover .service-card-heading {
+.service-card:hover .service-card-heading {
     top: -120px;
     color: white;
 }
 
-#services .service-card:hover .service-card-bottom {
+.service-card:hover .service-card-bottom {
     opacity: 0%;
 }
 
-#services .service-card:hover .service-card-hint {
-    top: -200px;
-    opacity: 100%;
+
+
+/* SERVICE CARDS ADAPTATION FOR MOBILE DEVICES */
+@media (max-width: 768px) {
+    
+    .service-card {
+        /* REMOVE ANIMATION */
+        pointer-events: none;
+        background: var(--dark);
+    }
+    
+    .service-card-icon {
+        /* Костыль, найти другой способ поменять цвет у SVG-иконки */
+        filter: invert(100%) sepia(97%) saturate(12%) hue-rotate(236deg) brightness(104%) contrast(103%);
+        
+        width: 64px;
+        height: 64px;
+    }
+    
+    .service-card-heading {
+        color: white;
+        margin-top: 16px;
+    }
+    
+    .service-card-bottom {
+        display: none;
+    }
+    
+    .service-card-overlay {
+        padding-top: 157px;
+        padding-left: 23px;
+        padding-right: 23px;
+        height: 100%;
+    }
+    
+    .service-card-overlay p:last-child {
+        display: none;
+    }
 }
- */
 
 
 /* RECENT POSTS */
@@ -927,12 +1000,79 @@ footer .footer-copyright img {
      justify-content: space-between; 
      align-items: center; 
      margin: 0px 0px 32px 0px;
+
 }
+
+/* .info-icon {
+    height: 24px;
+    width: 24px;
+    content: url("../graphics/color_picker/info_circle.png");
+    cursor: pointer;
+    transition: 0.250s 0s ease-in-out;
+}
+
+.info-icon:hover {
+    content: url("../graphics/color_picker/info_circle_hover.png");
+} */
 
 /*--------------------------------------------------------------
 # Palette Generator Section
 --------------------------------------------------------------*/
+#palette-generator-card {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    margin: auto;
+    margin-bottom: 64px;
+    width: 1120px;
+    height: 370px;
+    border: 1px solid var(--secondary);
+    border-radius: 16px;
+}
 
+#palette-generator-card-result {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    height: 256px;
+}
+
+.palette-generator-card-result-color {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px 16px;
+    padding: 24px;
+    width: 100%;
+}
+
+.palette-generator-card-result-color h3,
+.palette-generator-card-result-color p {
+    margin: 0;
+}
+
+#palette-generator-card-settings {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 114px;
+    width: 100%;
+}
+
+#palette-generator-card-settings button {
+    border: 1px solid var(--secondary);
+    height: 50px;
+}
+
+#palette-generator-card-settings > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 32px;
+}
 
 /*--------------------------------------------------------------
 # Gradient Generator Section
@@ -1136,6 +1276,9 @@ footer .footer-copyright img {
     }
         
     /* !!! No support for firefox and opera !!! */
+    /* Возможные решения:
+        1. Использовать box-sizing, чтобы контент внутри li обтекался по границам 
+        2. Скрывать элементы в js скрипте с помощью display:none, а не назначения аттрибута hidden*/
     #color-picker-card-settings ul li:has(+li[hidden]),
     #color-picker-card-settings ul li:last-child{
         border-radius: 0px 0px 16px 16px;
@@ -1193,7 +1336,7 @@ footer .footer-copyright img {
 }
 
 /* Adaptation for mobile devices  */
-@media (max-width: 1020px) {
+@media (max-width: 1070px) {
     #contrast-checker-card {
         flex-direction: column-reverse;
         height: auto;

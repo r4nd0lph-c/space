@@ -24,6 +24,51 @@
     
     <!-- -----  Main Start  ----- -->
     <main>
+        <!-- Export Modal -->
+        <div class="modal fade" tabindex="-1" id="gradient-export-modal">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Export As</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="display: flex; flex-flow: row wrap; justify-content: space-between; gap: 16px 16px;">
+                            <div data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#gradient-export-css-modal" style="cursor: pointer; display: flex; justify-content: center; align-items: center; border-radius: 16px; border: 1px solid var(--secondary); width: 128px; height: 128px;"><h3>CSS</h3></div>
+                            <div style="cursor: pointer; display: flex; justify-content: center; align-items: center; border-radius: 16px; border: 1px solid var(--secondary); width: 128px; height: 128px;"><h3>SVG</h3></div>
+                            <div style="cursor: pointer; display: flex; justify-content: center; align-items: center; border-radius: 16px; border: 1px solid var(--secondary); width: 128px; height: 128px;"><h3>PNG</h3></div>
+                            <div style="cursor: pointer; display: flex; justify-content: center; align-items: center; border-radius: 16px; border: 1px solid var(--secondary); width: 128px; height: 128px;"><h3>BLABLA</h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Export As CSS Modal -->
+        <div class="modal fade" tabindex="-1" id="gradient-export-css-modal">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Export As CSS</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>here's css code:</p>
+                        <p id="onetwothreefour">background: linear-gradient(rgb(218, 125, 3), rgb(136, 44, 204));</p>
+                        
+                        
+                        <!-- This current solution is temporary, maybe there'll be a better solution -->
+                        <script>
+                            document.querySelector('#gradient-export-css-modal').addEventListener('shown.bs.modal', (event) => {
+                                document.querySelector("#onetwothreefour").innerHTML = "background: " + document.querySelector("#gradient-gen-card-result").style.background;
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
         <div class="tool-description">
             <h3>GRADIENT GENERATOR</h3>
             <img class="underline" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
@@ -39,7 +84,7 @@
                 <div class="color-input-flexbox">
                     <div>
                         <p>First color</p>
-                        <div class="color-input">
+                        <div class="color-input" data-bs-placement="bottom" title="Invalid input">
                             <input class="color-input-first-color-text" type="text" size="7" maxlength="7" />
                             <input class="color-input-first-color" type="color" />
                         </div>
@@ -51,7 +96,7 @@
                     </span>
                     <div>
                         <p>Second color</p>
-                        <div class="color-input">
+                        <div class="color-input" data-bs-placement="bottom" title="Invalid input">
                             <input class="color-input-second-color-text" type="text" size="7" maxlength="7" />
                             <input class="color-input-second-color" type="color" />
                         </div>
@@ -83,7 +128,7 @@
                 
                 <div id="gradient-gen-card-settings-buttons" style="display: flex; flex-flow: row wrap; justify-content: center; gap: 32px 32px;">
                     <button id="gradient-gen-random-button" type="button" class="btn btn-light">RANDOM</button>
-                    <button id="gradient-gen-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
+                    <button id="gradient-gen-export-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#gradient-export-modal">EXPORT AS</button>
                 </div>
             </div>
 

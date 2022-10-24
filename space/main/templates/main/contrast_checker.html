@@ -2,6 +2,33 @@
 {% load static %}
 
 {% block body %}
+    <style>
+        /* Setting up red background color for color input tooltip  */
+        .bs-tooltip-top .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
+            border-top-color: #f00;
+        }
+        .bs-tooltip-end .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
+            border-right-color: #f00;
+        }
+        .bs-tooltip-bottom .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
+            border-bottom-color: #f00;
+        }
+
+        .bs-tooltip-start .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
+            border-left-color: #f00;
+        }
+        .tooltip-inner {
+            background-color: #f00;
+        }
+        
+        .tooltip {
+            z-index: 1049;
+        }
+    </style>
     <!-- ----- Header Start ----- -->
     <header id="header" class="fixed-top header-inner-pages">
         <div class="container d-flex align-items-center justify-content-between">
@@ -24,6 +51,22 @@
     
     <!-- -----  Main Start  ----- -->
     <main>
+        <!--  Info Modal  -->
+        <div class="modal fade" tabindex="-1" id="info-modal">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">What is contrast ratio?</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <p>Vivamus vulputate, turpis lacinia hendrerit vehicula, purus diam faucibus erat, sed maximus dolor dolor in sem. Suspendisse tincidunt fringilla lobortis. <a href="#">Nullam aliquam</a> diam urna, quis vehicula mauris pretium porta. Curabitur vitae dui urna. Morbi ut lacus lorem. Ut posuere lectus ut diam egestas, id fermentum mi pretium. Morbi ornare urna est, in cursus urna facilisis vel. Vivamus vel imperdiet risus. Maecenas non venenatis nunc, <a href="#">vitae feugiat</a> tortor. Maecenas hendrerit <a href="#">vestibulum sem</a>, sed commodo eros ultrices vitae. Proin dignissim iaculis nunc eu <a href="#">tincidunt</a>. Mauris nec tortor ultricies, malesuada libero non, congue lacus. Pellentesque sed mi a dui elementum ultricies non non arcu. Nullam a ligula ut est accumsan pulvinar vel in orci. Maecenas in consequat purus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
         <div class="tool-description">
             <h3>CONTRAST CHECKER</h3>
             <img class="underline" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
@@ -34,13 +77,13 @@
                 
                 <div style="display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; margin: 0px 0px 32px 0px; gap: 0px 16px;">
                     <h4 style="margin: 0;">Contrast Ratio</h4>
-                    <img style="width: 24px; height: 24px "src="{% static 'main/graphics/contrast_checker/info_circle.png' %}" />
+                    <img style="cursor: pointer; width: 24px; height: 24px" data-bs-toggle="modal" data-bs-target="#info-modal" src="{% static 'main/graphics/contrast_checker/info_circle.png' %}" />
                 </div>
                 
                 <div class="color-input-flexbox">
                     <div>
                         <p>Text color</p>
-                        <div class="color-input">
+                        <div class="color-input" data-bs-placement="bottom" title="Invalid input">
                             <input class="color-input-first-color-text" type="text" size="7" maxlength="7" />
                             <input class="color-input-first-color" type="color" />
                         </div>
@@ -52,7 +95,7 @@
                     </span>
                     <div>
                         <p>Background color</p>
-                        <div class="color-input">
+                        <div class="color-input" data-bs-placement="bottom" title="Invalid input">
                             <input class="color-input-second-color-text" type="text" size="7" maxlength="7" />
                             <input class="color-input-second-color" type="color" />
                         </div>
@@ -60,7 +103,7 @@
                 </div>
                 
                 <div style="display: flex; flex-flow: row nowrap; justify-content: center; gap: 0px 16px;">
-                    <div style="padding-right: 16px; border-right: 1px solid var(--secondary); display: flex; flex-flow: row nowrap; justify-content: center; align-items: center">
+                    <div style="margin-top: 16px; margin-bottom: 16px; padding-right: 16px; border-right: 1px solid var(--secondary); display: flex; flex-flow: row nowrap; justify-content: center; align-items: center">
                         <h2 id="contrast-checker-ratio"style="margin: 0;">4.48</h2>
                     </div>
                     <div id="contrast-checker-rules" style="display: flex; flex-flow: column nowrap; align-items: flex-start; gap: 16px 0px;">
@@ -82,6 +125,9 @@
             </div>
             
             <div id="contrast-checker-card-result">
+                <svg style="margin: 0px 0px 32px 0px;" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76516 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0C8.8174 0 5.76516 1.26428 3.51472 3.51472C1.26428 5.76516 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24V24ZM10.5 9.75C10.5 10.992 9.828 12 9 12C8.172 12 7.5 10.992 7.5 9.75C7.5 8.508 8.172 7.5 9 7.5C9.828 7.5 10.5 8.508 10.5 9.75ZM6.4275 14.3505C6.59976 14.251 6.80447 14.2241 6.9966 14.2756C7.18873 14.3271 7.35254 14.4527 7.452 14.625C7.91267 15.4235 8.57558 16.0866 9.37399 16.5474C10.1724 17.0082 11.0781 17.2505 12 17.25C12.9219 17.2505 13.8276 17.0082 14.626 16.5474C15.4244 16.0866 16.0873 15.4235 16.548 14.625C16.5969 14.539 16.6623 14.4636 16.7405 14.4029C16.8186 14.3423 16.908 14.2978 17.0035 14.2719C17.0989 14.246 17.1986 14.2392 17.2967 14.2519C17.3947 14.2647 17.4893 14.2967 17.575 14.3462C17.6607 14.3956 17.7357 14.4615 17.7958 14.5401C17.8558 14.6187 17.8998 14.7084 17.9251 14.804C17.9504 14.8996 17.9565 14.9993 17.9431 15.0973C17.9297 15.1953 17.897 15.2897 17.847 15.375C17.2547 16.4015 16.4024 17.2539 15.376 17.8464C14.3495 18.4389 13.1852 18.7505 12 18.75C10.8148 18.7505 9.65045 18.4389 8.62401 17.8464C7.59758 17.2539 6.74532 16.4015 6.153 15.375C6.05355 15.2027 6.0266 14.998 6.07808 14.8059C6.12955 14.6138 6.25525 14.45 6.4275 14.3505ZM15 12C14.172 12 13.5 10.992 13.5 9.75C13.5 8.508 14.172 7.5 15 7.5C15.828 7.5 16.5 8.508 16.5 9.75C16.5 10.992 15.828 12 15 12Z"/>
+                </svg>
                 <h4 style="margin: 0px 0px 16px 0px;">Lorem Ipsum</h4>
                 <p style="margin: 0 0 16px 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisi lacus, hendrerit ac metus at, iaculis laoreet nisl. Vestibulum sed erat diam. Nunc ex tellus, eleifend quis rutrum at, volutpat a enim. Integer efficitur neque nec dui fermentum convallis.</p>
                 <div style="text-align: right; align-self: flex-end;">
