@@ -2,6 +2,33 @@
 {% load static %}
 
 {% block body %}
+    <style>
+        /* Setting up red background color for color input tooltip  */
+        .bs-tooltip-top .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
+            border-top-color: #f00;
+        }
+        .bs-tooltip-end .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
+            border-right-color: #f00;
+        }
+        .bs-tooltip-bottom .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
+            border-bottom-color: #f00;
+        }
+
+        .bs-tooltip-start .tooltip-arrow::before, 
+        .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
+            border-left-color: #f00;
+        }
+        .tooltip-inner {
+            background-color: #f00;
+        }
+        
+        .tooltip {
+            z-index: 1049;
+        }
+    </style>
     <!-- ----- Header Start ----- -->
     <header id="header" class="fixed-top header-inner-pages">
         <div class="container d-flex align-items-center justify-content-between">

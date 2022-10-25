@@ -129,6 +129,7 @@
         firstColor.addEventListener("input", (event) => {
             isFirstColorValid = true;
             hideErrorForFirstColor();
+			colorInputs[0].style.border = "1px solid var(--primary)";
             firstColorText.value = firstColor.value;
             update();
         }, false);
@@ -149,6 +150,7 @@
         secondColor.addEventListener("input", (event) => {
             isSecondColorValid = true;
             hideErrorForSecondColor();
+			colorInputs[1].style.border = "1px solid var(--primary)";
             secondColorText.value = secondColor.value;
             update();
         }, false);

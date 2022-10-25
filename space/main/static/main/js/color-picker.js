@@ -25,8 +25,7 @@
         const colorRange = select("#color-picker-range");
         const colorsList = select("#color-picker-card-colors-list").children;
         const colorPickerCard = select("#color-picker-card");
-        
-        
+		
         
         colorRange.addEventListener("input", (event) => {
             let i = 0;

@@ -7,11 +7,15 @@
     --primary: #0D6EFD;
     --primary-hover: #0A58CA;
     --dark: #212529;
+	--success: #198754;
+	--warning: #ffc107;
+	--danger: #dc3545;
 }
 
 body {
     font-family: "Open Sans", sans-serif;
     color: var(--dark);
+	background-color: var(--light);
 }
 
 a, a:hover {
@@ -52,9 +56,43 @@ p {
     font-weight: 400;
 }
 
+.underline-white,
+.underline-black {
+	padding: 0 32px 32px 32px;
+}
+
+.underline-white {
+	border-bottom: 2px solid white;
+}
+
+.underline-black {
+	border-bottom: 2px solid black;
+}
+
+/* These lines are needed so that underline on headers shows up correctly */
+h1.underline-white, 
+h2.underline-white, 
+h3.underline-white, 
+h4.underline-white, 
+h5.underline-white, 
+h6.underline-black, 
+h1.underline-black, 
+h2.underline-black, 
+h3.underline-black, 
+h4.underline-black, 
+h5.underline-black, 
+h6.underline-black{
+	display: inline-block;
+}
+
+
+/*--------------------------------------------------------------
+# FOOTER
+--------------------------------------------------------------*/
+
 footer {
+	padding: 64px 32px 32px 32px;
     text-align: left;
-    align-items: center;
     background-color: var(--dark);
 }
 
@@ -62,52 +100,54 @@ footer h2, footer h4 {
     color: white;
 }
 
-footer h2 {
-    margin-bottom: 0px;
+footer h2, p{
+    margin: 0;
 }
 
 footer p {
+	color: var(--secondary);
+}
+
+footer a {
+	display: block;
     margin: 0px 0px 2px 0px;
     color: var(--secondary);
+	transition: all 0.2s ease-out 0s;
 }
 
-footer .footer-container {
+footer a:hover {
+	color: white;
+}
+
+#footer-main {
+	max-width: 1184px;
     display: flex;
+	gap: 32px;
     justify-content: space-between;
     flex-flow: row wrap;
-    margin: 0px 160px 0px 160px; 
-    padding-top: 64px;
-    row-gap: 30px;
+    margin: auto;
 }
 
-/* Footer for mobile devices */
-@media (max-width: 991px) {
-    footer .footer-container {
-        margin: 0px 20px 0px 20px;
-    }
+#footer-icons {
+	display: flex;
+	flex-flow: row-wrap;
+	gap: 16px;
+	margin: 16px 0px 0px 0px;
 }
 
-footer .footer-icon {
-    margin: 8px 16px 0px 0px;
+#footer-icons a {
+	margin: 0;
 }
 
-footer .footer-slogan {
-    margin: 0px 0px 16px 0px;
+#footer-icons a:hover {
+	/**** TODO ***/
 }
 
-footer .footer-copyright {
+#footer-copyright {
+	margin-top: 32px;
     text-align: center;
 }
 
-footer .footer-copyright p {
-    margin: auto;
-    margin-top: 32px;
-    padding-bottom: 32px;
-}
-
-footer .footer-copyright img {
-    max-width: 90vw;
-}
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -605,6 +645,11 @@ footer .footer-copyright img {
     }
 }
 
+#scroll-icon {
+	position: relative;
+	top: 64px;
+}
+
 /* Remove scroll icon on mobile devices */
 @media (max-width: 768px) {
     #scroll-icon {
@@ -616,42 +661,34 @@ footer .footer-copyright img {
 # Main Section
 --------------------------------------------------------------*/
 
-.hero-container > img {
-    margin-top: 64px;
-}
-
-.underline {
-    margin-top: 32px;
-}
+/* COMMON ELEMENTS */
 
 #main section {
-    text-align: center;
+	text-align: center;
     position: relative;
-    /* Использовался раньше для корректного отображения блоков */
-    /* Сейчас, вроде как, всё работает и без этой строчки ¯\_(ツ)_/¯ */
-    /*min-height: 100vh;*/
     background-color: var(--light);
+	padding: 64px 16px 64px 16px;
+}
+
+/* Positioning headers and  main text*/
+#about p,
+#services > p {
+	text-align: justify;
+	/* These two next lines are here so that text on mobile version doesn't look stuck to the sides of the screen */
+	padding-left: 32px;
+	padding-right: 32px;
+	margin: auto;
+	max-width: 768px;
+    margin-top: 64px;
 }
 
 
 /* ABOUT */
-
-#about-container {
-    padding: 48px;
-    position: relative;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
 #main #about {
-    background: var(--dark);
-    min-height: 50vh;
-    max-height: 100vh;
+	background-color: var(--dark);
 }
 
-#main #about:before {
+#about:before {
     content: "";
     background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
     position: absolute;
@@ -661,41 +698,22 @@ footer .footer-copyright img {
     right: 0;
 }
 
-#main #about h3 {
-    padding-top: 96px;
-    color: white;
-    text-align: center;
+#about h3,
+#about p {
+	color: white;
 }
 
-
-#main #about p {
-    margin: auto;
-    margin-top: 64px;
-    padding-bottom: 32px;
-    padding-left: 10px;
-    padding-right: 10px;
-    max-width: 768px;
-    color: white;
-}
 
 /* SERVICES */
-
-
-#main #services h3 {
-    padding-top: 64px;
-    color: black;
+#services-box {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	gap: 32px;
+	align-items: center;
+	margin: auto;
+	margin-top: 64px;
 }
-
-#main > #services > p {
-    margin: auto;
-    margin-top: 64px;
-    margin-bottom: 64px;
-    padding-left: 10px;
-    padding-right: 10px;
-    max-width: 768px;
-    color: black;
-}
-
 
 .service-card {
     position: relative;
@@ -722,7 +740,7 @@ footer .footer-copyright img {
     margin: 0;
 }
 
-.service-card-bottom p {
+.service-card-bottom {
     color: var(--secondary);
 }
 
@@ -805,14 +823,13 @@ footer .footer-copyright img {
 }
 
 .service-card:hover .service-card-heading {
-    top: -120px;
+    top: calc(-152px + 32px);
     color: white;
 }
 
 .service-card:hover .service-card-bottom {
     opacity: 0%;
 }
-
 
 
 /* SERVICE CARDS ADAPTATION FOR MOBILE DEVICES */
@@ -843,8 +860,8 @@ footer .footer-copyright img {
     
     .service-card-overlay {
         padding-top: 157px;
-        padding-left: 23px;
-        padding-right: 23px;
+        padding-left: 20px;
+        padding-right: 20px;
         height: 100%;
     }
     
@@ -855,69 +872,132 @@ footer .footer-copyright img {
 
 
 /* RECENT POSTS */
-
-#recent-posts {
-    padding-bottom: 64px;
+/* Margin to the "View all" label */
+#recent-posts > a {
+	margin-top: 16px;
 }
 
-#recent-posts-row {
+#recent-posts-box {
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    gap: 34px;
-    flex-wrap: wrap;
-    padding-left: 25px;
-    padding-right: 25px;
+    flex-flow: row wrap;
+    gap: 32px;
     margin: auto;
-    margin-top: 26px;
+	margin-top: 32px;
 }
 
-.recent-post {
+.recent-post-card {
+	position: relative;
     text-align: left;
-    padding: 32px;
+    padding: 32px 32px 64px 32px;
     border: 1px solid var(--secondary);
     border-radius: 16px;
     background-color: white;
-    max-height: 800px;
     max-width: 544px;
+	height: 590px;
 }
 
-.recent-post > a > img {
-    margin-top: 32px;
-    width: 100%;
-    height: auto;
-}
-
-.recent-post a{
+/* Link to a particular post */
+.recent-post-card a{
     color: black;
 }
 
-.recent-post-top {
+.recent-post-card a * {
+	transition: all 0.150s ease-out 0s;
+}
+
+.recent-post-card-top,
+.recent-post-card-bottom {
+    color: var(--secondary);
+}
+
+.recent-post-card-top {
     display: flex;
     justify-content: space-between;
 }
 
-.recent-post-top p,
-.recent-post-bottom p {
-    color: var(--secondary);
+.recent-post-card-top * {
+	margin: 0;
 }
 
-.recent-post-bottom {
-    margin: 32px 0px 0px 0px;
-    display: flex;
-    flex-flow: row wrap;
-    gap: 16px;
-    align-items: flex-start;
+.recent-post-title {
+	margin: 0;
 }
 
-.recent-post-bottom strong {
-    color: var(--primary);
+.recent-post-text {
+	margin: 0;
+	margin-top: 16px;
+	/* Showing only frist three lines of text, hiding the rest*/
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;  
 }
 
-.recent-post-bottom img,
-.recent-post-bottom p {
-    display: inline;
+.recent-post-image {
+	margin-top: 32px;
+	border-radius: 16px;
+	width: 100%;
 }
+
+.recent-post-card-content {
+	margin-top: 48px;
+}
+
+.recent-post-card-bottom * {
+	transition: all 0.05s ease-out 0s;
+}
+
+.recent-post-card-bottom {
+	position: absolute;
+	bottom: 16px;
+	right: 16px;
+	left: 16px;
+}
+
+.recent-post-card-bottom-comment {
+	margin-right: 16px;
+}
+
+.recent-post-card-bottom-rating {
+	float: right;
+}
+
+.recent-post-card-bottom-rating strong {
+	font-weight: bold;
+	color: var(--primary);
+}
+
+
+/* ANIMATION ON HOVER */
+.recent-post-card a:hover .recent-post-title,
+.recent-post-card a:hover .recent-post-text {
+	color: var(--primary);
+}
+
+.recent-post-card-bottom-comment:hover,
+.recent-post-card-bottom-favourite:hover,
+.recent-post-card-bottom-rating i:hover {
+	cursor: pointer;
+	color: black;
+}
+
+
+/* ADAPTATION FOR MOBILE DEVICES */
+@media (max-width: 768px) {
+	.recent-post-card {
+		height: auto;
+	}
+	
+	/* Hide text for comment and favourite sections, bc on mobile devices they may not fit in */
+	.recent-post-card-bottom-comment span,
+	.recent-post-card-bottom-favourite span	{
+		display: none;
+	}
+}
+
+
+
 
 /*--------------------------------------------------------------
 # Section general to all tools
@@ -1003,6 +1083,10 @@ footer .footer-copyright img {
 
 }
 
+.bi-info-circle {
+	font-size: 1.5em;
+}
+
 /* .info-icon {
     height: 24px;
     width: 24px;
@@ -1019,6 +1103,7 @@ footer .footer-copyright img {
 # Palette Generator Section
 --------------------------------------------------------------*/
 #palette-generator-card {
+	overflow: hidden;
     display: flex;
     flex-flow: column nowrap;
     align-items: stretch;
@@ -1079,6 +1164,7 @@ footer .footer-copyright img {
 --------------------------------------------------------------*/
 
 #gradient-gen-card {
+	overflow: hidden;
     display: flex;
     justify-content: center;
     margin: auto;
@@ -1178,15 +1264,17 @@ footer .footer-copyright img {
     flex-direction: row;
     gap: 0px;
     max-width: 1120px;
+	width: 100%;
     max-height: 1000px;
     margin: auto;
     margin-top: 0px;
     margin-bottom: 64px;
-    background-color: white;
+	background-color: white;
 }
 
 
 #color-picker-card-settings {
+	overflow: hidden;
     max-width: 492px;
     display: flex;
     flex-direction: column;
@@ -1274,15 +1362,7 @@ footer .footer-copyright img {
     #color-picker-card-settings-buttons {
         justify-content: center;
     }
-        
-    /* !!! No support for firefox and opera !!! */
-    /* Возможные решения:
-        1. Использовать box-sizing, чтобы контент внутри li обтекался по границам 
-        2. Скрывать элементы в js скрипте с помощью display:none, а не назначения аттрибута hidden*/
-    #color-picker-card-settings ul li:has(+li[hidden]),
-    #color-picker-card-settings ul li:last-child{
-        border-radius: 0px 0px 16px 16px;
-    }
+    
     
     #color-picker-card-result {
         padding: 32px;
