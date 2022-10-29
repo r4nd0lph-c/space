@@ -36,6 +36,7 @@
         let gradientType = select("input[name='gradient-type']:checked").value;
         const gradientTypeRadioButtons = select("#gradient-gen-card input[type='radio']", true);
         const gradientDirection = select("#gradient-direction");
+		const gradientPosition = select("#gradient-position");
         const result = select("#gradient-gen-card-result");
         const randomButton = select("#gradient-gen-random-button");
         const exportButton = select("#gradient-gen-export-button");
@@ -96,32 +97,15 @@
             let sentence = "";
             switch(gradientType) {
                 case 'linear':
-                    sentence = "linear-gradient(";
-                    switch(gradientDirection.value) {
-                        case '1':
-                        sentence += "to bottom, ";
-                        break;
-                        
-                        case '2':
-                        sentence += "to top, ";
-                        break;
-                        
-                        case '3':
-                        sentence += "to right, ";
-                        break;
-                        
-                        case '4':
-                        sentence += "to left, ";
-                        break;
-                    }
+                    sentence = "linear-gradient(" + gradientDirection.getElementsByTagName("select")[0].value + "deg, ";
                 break;
                 
                 case 'radial':
-                    sentence += "radial-gradient(";
+                    sentence += "radial-gradient(" + gradientPosition.getElementsByTagName("select")[0].value + ", ";
                 break;
             }
             
-            sentence += firstColorText.value + "," + secondColorText.value;
+            sentence += firstColorText.value + "," + secondColorText.value + ")";
             result.style.background = sentence;
         }
         
@@ -170,6 +154,10 @@
         gradientDirection.addEventListener("change", (event) => {
             update();
         }, false);
+		
+		gradientPosition.addEventListener("change", (event) => {
+            update();
+        }, false);
         
         randomButton.addEventListener("click", (event) => {
             generateRandomColors();
@@ -181,13 +169,13 @@
                 gradientType = gradientTypeRadioButtons[i].value;
                 switch(gradientType) {
                     case "linear":
-                        gradientDirection.disabled = false;
-                        gradientDirection.previousElementSibling.style.color = "black";
+                        gradientDirection.hidden = false;
+                        gradientPosition.hidden = true;
                     break;
                     
                     case "radial":
-                        gradientDirection.disabled = true;
-                        gradientDirection.previousElementSibling.style.color = "#CED4DA";
+                        gradientDirection.hidden = true;
+                        gradientPosition.hidden = false;
                     break;
                 }
                 update();

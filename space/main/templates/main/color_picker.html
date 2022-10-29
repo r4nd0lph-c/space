@@ -23,95 +23,131 @@
     <!-- -----  Header End  ----- -->
     
     <!-- -----  Main Start  ----- -->
-    <main>
+    <main class="tool-section">
         <div class="tool-description">
-            <h3>COLOR PICKER</h3>
-            <img class="underline" draggable="false" src="{% static 'main/graphics/main_page/black_underline.png' %}" />
+            <h3 class="underline-black">COLOR PICKER</h3>
             <p>Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and learn in a sec.</p>
         </div>
         <div id="color-picker-card">
             <div id="color-picker-card-settings">
                 <div>
-                    <div style="display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; margin-top: 32px; gap: 0px 16px; margin-bottom: 0">
-                        <h4 style="margin: 0;">Most common colors</h4>
-                        <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Vivamus vulputate, turpis lacinia hendrerit vehicula, purus diam faucibus erat, sed maximus dolor dolor in sem. Suspendisse tincidunt fringilla lobortis. Nullam aliquam diam urna, quis vehicula mauris pretium porta. Curabitur vitae dui urna. Morbi ut lacus lorem. Ut posuere lectus ut diam egestas, id fermentum mi pretium.">
-							<i class="bi bi-info-circle"></i>
+                    <div id="color-picker-card-settings-top">
+                        <h4>Most common colors</h4>
+                        <a tabindex="0" role="button" data-bs-html="true" data-bs-toggle="popover" data-bs-custom-class="custom-popover" data-bs-trigger="hover" data-bs-content="Vivamus vulputate, turpis lacinia hendrerit vehicula, purus diam faucibus erat, sed maximus dolor dolor in sem. Suspendisse tincidunt fringilla lobortis. Nullam aliquam diam urna, quis vehicula mauris pretium porta. Curabitur vitae dui urna. Morbi ut lacus lorem. Ut posuere lectus ut diam egestas, id fermentum mi.">
+							<!-- This SVG icon is not original Bootstrap's, it has been modified -->
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+								<circle cx="8" cy="8" r="8"/>
+								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+							</svg>
                         </a>
                     </div>
                     
-                    <div style="width: 100%; display: flex; flex-flow: row nowrap; justify-content: center; align-items: center; gap: 0px 8px; margin-top: 32px;">
-                        <p style="margin: 0;">2</p>
-                        <input id="color-picker-range" type="range" class="form-range" min="2" max="10" step="1" value="5" >
-                        <p style="margin: 0;">10</p>
+                    <div id="color-picker-card-colors-count">
+							<span>2</span>
+							<span id="color-picker-range-container">
+								<span id="color-picker-range-title" hidden="">5</span>
+								<input id="color-picker-range" type="range" class="form-range" min="2" max="10" step="1" value="5" >
+							</span>
+							<span>10</span>
                     </div>
                     
                     <ul id="color-picker-card-colors-list">
                         <li style=" background-color:#A2C6CB; ">
-                            <h3 style="margin: 0;">#A2C6CB</h3>
-                            <p style="margin: 0;">Opai</p>
-                            <p style="margin: 0;">63.4%</p>
+							<h3>#A2C6CB</h3>
+							<div>
+								<p>Opai</p>							
+								<p>63.4%</p>
+							</div>
                         </li>
                         <li style="background-color:#CFE1D0;">
-                            <h3 style="margin: 0;">#CFE1D0</h3>
-                            <p style="margin: 0;">Honeydew</p>
-                            <p style="margin: 0;">27.5%</p>
+							<h3>#CFE1D0</h3>
+							<div>
+								<p>Honeydew</p>
+								<p>27.5%</p>
+							</div>
                         </li>
                         <li style="background-color:#EFF0CF;">
-                            <h3 style="margin: 0;">#EFF0CF</h3>
-                            <p style="margin: 0;">Light Goldenrod Yellow</p>
-                            <p style="margin: 0;">11.9%</p>
+							<h3>#EFF0CF</h3>
+							<div>
+								<p>Light Goldenrod Yellow</p>
+								<p>11.9%</p>
+							</div>
                         </li>
                         <li style="background-color:#D8C9AD;">
-                            <h3 style="margin: 0;">#D8C9AD</h3>
-                            <p style="margin: 0;">Dutch White</p>
-                            <p style="margin: 0;">4.3%</p>
+							<h3>#D8C9AD</h3>
+							<div>
+								<p>Dutch White</p>
+								<p>4.3%</p>
+							</div>
                         </li>
-                        <li style="background-color:#CFE1D0;">
-                            <h3 style="margin: 0;">#CFE1D0</h3>
-                            <p style="margin: 0;">Dark Byzantium</p>
-                            <p style="margin: 0;">2.5%</p>
+                        <li style="background-color:#4C3345;">
+							<h3>#4C3345</h3>
+							<div>
+								<p>Dark Byzantium</p>
+								<p>2.5%</p>
+							</div>
                         </li>
-                        <!-- Hidden by default elements -->
+                        <!-- Elements hidden by default -->
                         <li style="background-color:#6195ED;" hidden="">
-                            <h3 style="margin: 0;">#6195ED</h3>
-                            <p style="margin: 0;">Cornflower Blue</p>
-                            <p style="margin: 0;">1.9%</p>
+                            <h3>#6195ED</h3>
+							<div>
+								<p>Cornflower Blue</p>
+								<p>1.9%</p>
+							</div>
                         </li>
                         <li style="background-color:#4AFF29;" hidden="">
-                            <h3 style="margin: 0;">#4AFF29</h3>
-                            <p style="margin: 0;">Harlequin</p>
-                            <p style="margin: 0;">1.8%</p>
+                            <h3>#4AFF29</h3>
+							<div>
+								<p>Harlequin</p>
+								<p>1.8%</p>
+							</div>
                         </li>
                         <li style="background-color:#29DFFF;" hidden="">
-                            <h3 style="margin: 0;">#29DFFF</h3>
-                            <p style="margin: 0;">Cyan</p>
-                            <p style="margin: 0;">1.2%</p>
+                            <h3>#29DFFF</h3>
+							<div>
+								<p>Cyan</p>
+								<p>1.2%</p>
+							</div>
                         </li>
                         <li style="background-color:#FD96D8;" hidden="">
-                            <h3 style="margin: 0;">#FD96D8</h3>
-                            <p style="margin: 0;">Lavender Rose</p>
-                            <p style="margin: 0;">0.3%</p>
+                            <h3>#FD96D8</h3>
+							<div>
+								<p>Lavender Rose</p>
+								<p>0.3%</p>
+							</div>
                         </li>
                         <li style="background-color:#E9070A;" hidden="">
-                            <h3 style="margin: 0;">#E9070A</h3>
-                            <p style="margin: 0;">Red</p>
-                            <p style="margin: 0;">0.1%</p>
+                            <h3>#E9070A</h3>
+							<div>
+								<p>Red</p>
+								<p>0.1%</p>
+							</div>
                         </li>
                     </ul>
                 </div>
                 
-                <div id="color-picker-card-settings-buttons">
+                <div id="color-picker-card-settings-bottom">
                     <button id="color-picker-upload-button" type="button" class="btn btn-light">UPLOAD IMAGE</button>
-                    <button id="gradient-gen-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
+                    <button id="color-picker-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
                 </div>
 
             </div>
             <div id="color-picker-card-result">
-<!--                <div style="position: absolute; z-index: 1;">
-                <div style="background-color: #A2C6CB; width: 64px; height: 64px; border: 4px solid white; border-radius: 50%; position: absolute; top: -120px; left: 100px;"></div>
-                </div> -->
-                <img id="color-picker-card-result-img" draggable="false" src="{% static 'main/graphics/color_picker/image_example.png' %}" />               
-            </div>
+				<div id="color-picker-card-result-image">
+					<img draggable="false" src="{% static 'main/graphics/color_picker/image_example.png' %}" />
+					<div style="background-color: #A2C6CB; width:48px; height: 48px; top: 10%; left: 80%;"></div>
+					<div style="background-color: #CFE1D0; width:24px; height: 24px; top: 20%; left: 5%;"></div>
+					<div style="background-color: #EFF0CF; width:36px; height: 36px; top: 20%; left: 52%;"></div>
+					<div style="background-color: #D8C9AD; width:48px; height: 48px; top: 55%; left: 40%;"></div>
+					<div style="background-color: #4C3345; width:24px; height: 24px; top: 20%; left: 50%;"></div>
+					<div style="background-color: #6195ED; width:24px; height: 24px; top: 30%; left: 20%;" class="hidden"></div>
+					<div style="background-color: #4AFF29; width:24px; height: 24px; top: 40%; left: 30%;" class="hidden"></div>
+					<div style="background-color: #29DFFF; width:24px; height: 24px; top: 50%; left: 18%;" class="hidden"></div>
+					<div style="background-color: #FD96D8; width:24px; height: 24px; top: 60%; left: 47%;" class="hidden"></div>
+					<div style="background-color: #E9070A; width:24px; height: 24px; top: 70%; left: 74%;" class="hidden"></div>
+				</div>
+			</div>
         </div>
     </main>
     <!-- -----   Main End   ----- -->

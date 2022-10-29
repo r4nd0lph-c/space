@@ -129,6 +129,7 @@ footer a:hover {
 }
 
 #footer-icons {
+	font-size: 1.5em;
 	display: flex;
 	flex-flow: row-wrap;
 	gap: 16px;
@@ -139,8 +140,28 @@ footer a:hover {
 	margin: 0;
 }
 
-#footer-icons a:hover {
-	/**** TODO ***/
+#footer-icons * {
+	transition: all 0.2s ease-out 0s;
+}
+
+#footer-icons .bi-twitter:hover {
+	color: #00acee;
+}
+
+#footer-icons .bi-facebook:hover {
+	color: #4267B2;
+}
+
+#footer-icons .bi-pinterest:hover {
+	color: #E60023;
+}
+
+#footer-icons .bi-instagram:hover {
+	color: #C13584;
+}
+
+#footer-icons .bi-behance:hover {
+	color: #1769ff;
 }
 
 #footer-copyright {
@@ -1002,28 +1023,48 @@ footer a:hover {
 /*--------------------------------------------------------------
 # Section general to all tools
 --------------------------------------------------------------*/
+.tool-section {
+	/* Padding from the header (header's height is 57px)*/
+	padding-top: calc(64px + 57px);
+	padding-bottom: 64px;
+}
+
 .tool-description {
     margin: auto;
-    margin-top: 121px;
     text-align: center;
 }
 
+.tool-description h3 {
+	margin: 0;
+}
+
 .tool-description p {
-    margin: 32px 0px 64px 0px;
+    margin: 32px 0px 0px 0px;
 }
 
 
 /* Input color with text field */
 
-.color-input {
-    display: flex;
+.color-input-flexbox {
+    display: flex; 
+    flex-flow: row nowrap; 
+    justify-content: center;
+	align-items: flex-end;
+	gap: 16px;
+}
+
+.color-input-flexbox p {
+	margin: 0px 0px 16px 0px;
+}
+
+.color-input {    
+	display: flex;
     padding: 16px;
-    width: 100%;
     height: 64px;
     border: 1px solid var(--secondary);
     border-radius: 8px;
     
-    /*Animations*/
+    /* Animations */
     transition-property: border-color;
     transition-duration: 0.15s, 0.15s;
     transition-timing-function: ease-in-out, ease-in-out;
@@ -1036,19 +1077,19 @@ footer a:hover {
     border: none;
 }
 
-
 .color-input input[type=text] {
     font-family: "Inter";
     font-size: 24px;
     font-weight: 300;
     letter-spacing: 0.1em;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 .color-input input[type=color] {
-    box-sizing: content-box;
+	min-width: 32px;
     width: 32px;
     height: 32px;
+	cursor: pointer;
 }
 
 ::-webkit-color-swatch {
@@ -1058,78 +1099,93 @@ footer a:hover {
 
 ::-moz-color-swatch {
     border: none;
-    border-radius: 1px;
+    border-radius: 4px;
 }
 
 .color-input-swap-button {
-    border: 0;
-    background: transparent;
+	border: 0px;
+	padding: 0;
+	background: transparent;
+	height: 64px;
 }
 
-.color-input-swap-button-span {
-    text-align: center; 
-    width: 64px; 
-    height: 64px;
-    line-height: 64px; 
-    align-self: flex-end;
+/* Adaptation for mobile devices */
+@media (max-width: 590px) {
+	.color-input-flexbox {
+		flex-flow: column;
+		align-items: center;
+	}
 }
 
-.color-input-flexbox {
-     display: flex; 
-     flex-flow: row wrap; 
-     justify-content: space-between; 
-     align-items: center; 
-     margin: 0px 0px 32px 0px;
 
+/* Animation on hover for info icon */
+.bi-info-circle *{
+	transition: 0.3s ease-out 0s;
 }
 
-.bi-info-circle {
-	font-size: 1.5em;
+.bi-info-circle circle {
+	fill: white;
 }
 
-/* .info-icon {
-    height: 24px;
-    width: 24px;
-    content: url("../graphics/color_picker/info_circle.png");
-    cursor: pointer;
-    transition: 0.250s 0s ease-in-out;
+.bi-info-circle:hover path:last-child{
+	fill: white;
 }
 
-.info-icon:hover {
-    content: url("../graphics/color_picker/info_circle_hover.png");
-} */
+.bi-info-circle:hover circle {
+	fill: var(--dark);
+}
+
+.bi-info-circle:hover {
+	cursor: pointer;
+}
+
+/* Temporay line */
+ .custom-popover {
+	 --bs-popover-bg: var(--dark);
+	 --bs-popover-body-color: white;
+	 --bs-popover-zindex: 996;
+ }
 
 /*--------------------------------------------------------------
 # Palette Generator Section
 --------------------------------------------------------------*/
 #palette-generator-card {
-	overflow: hidden;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    margin: auto;
-    margin-bottom: 64px;
-    width: 1120px;
-    height: 370px;
-    border: 1px solid var(--secondary);
-    border-radius: 16px;
+	display: grid;
+	grid-template-columns: 3em 1fr 3em;
+	grid-column-gap: 32px;
+	max-width: 1280px;
+	margin: auto;
+    margin-top: 64px;
 }
 
 #palette-generator-card-result {
-    display: flex;
-    flex-flow: row nowrap;
-    width: 100%;
-    height: 256px;
+	display: flex;
+	white-space: nowrap;
+	overflow: hidden;
+	height: 256px;
+	width: 100%;
+	border: 1px solid var(--secondary);
+	border-radius: 16px 16px 0px 0px;
+}
+
+#palette-generator-card-result-previous-button,
+#palette-generator-card-result-next-button {
+	padding: 0;
+	border: 0;
+	background: transparent;
+	font-size: 3em;
+	color: var(--secondary);
 }
 
 .palette-generator-card-result-color {
+	flex-shrink: 1;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
     align-items: center;
     gap: 16px 16px;
     padding: 24px;
-    width: 100%;
+	width: 100%;
 }
 
 .palette-generator-card-result-color h3,
@@ -1138,120 +1194,239 @@ footer a:hover {
 }
 
 #palette-generator-card-settings {
-    display: flex;
-    flex-flow: row nowrap;
-    height: 114px;
-    width: 100%;
+	display: flex;
+	grid-column-start: 2;
+	grid-column-end: 2;
+	padding: 16px;
+	justify-content: center;
+	align-items: center;
+	gap: 32px;
+	background-color: white;
+	border: 1px solid var(--secondary);
+	border-radius: 0px 0px 16px 16px;
 }
 
-#palette-generator-card-settings button {
-    border: 1px solid var(--secondary);
+#palette-generator-card-settings i {
+	font-size: 1.5em;
+}
+
+#palette-generator-card-settings .input-group {
+	width: fit-content;
+	padding: 16px 0px 16px 32px;
+	border-left: 1px solid var(--secondary);
+}
+
+#palette-generator-card-settings .btn-group {
+	/* max-width: 100px; */
+	padding: 16px 32px 16px 0px;
+	border-right: 1px solid var(--secondary);
+}
+
+#palette-generator-card-settings .btn-group button {
+	border: 1px solid var(--secondary);
     height: 50px;
 }
 
-#palette-generator-card-settings > div {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    width: 100%;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    padding: 32px;
+#palette-gen-generate-button,
+#palette-gen-export-button {
+    border: 1px solid var(--secondary);
+    height: 50px;
+	min-width: 160px;
 }
+
+/* Adaptation for mobile devices */
+@media (max-width: 1120px) {
+	
+	#palette-generator-card {
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 0px;
+	}
+	
+	#palette-generator-card-result-next-button,
+	#palette-generator-card-result-previous-button {
+		background-color: white;
+		border: 1px solid var(--secondary);
+	}
+	
+	#palette-generator-card-result {
+		height: 192px;
+		grid-row-start: 1;
+		grid-row-end: 1;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+	
+	#palette-generator-card-settings {
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+	
+	.palette-generator-card-result-color h3,
+	.palette-generator-card-result-color p {
+		display: none;
+	}
+}
+
+@media (max-width: 768px) {
+	
+	#palette-generator-card-settings {
+		align-content: center;
+		flex-flow: row wrap;
+		padding: 32px;
+	}
+	
+	#palette-generator-card-settings .input-group {
+		order: 3;
+		/* padding: 32px 16px 0px 16px; */
+		padding: 0;
+		border-left: none;
+		/* border-top: 1px solid var(--secondary); */
+	}
+
+	#palette-generator-card-settings .btn-group {
+		order: 4;
+		/* padding: 0px 96px 32px 96px; */
+		padding: 0;
+		border-right: none;
+		/* border-bottom: 1px solid var(--secondary); */
+	}
+	
+	#palette-gen-generate-button {
+		order: 1;
+	}
+	
+	#palette-gen-export-button {
+		order: 2;
+	}
+}
+
 
 /*--------------------------------------------------------------
 # Gradient Generator Section
 --------------------------------------------------------------*/
 
 #gradient-gen-card {
-	overflow: hidden;
     display: flex;
     justify-content: center;
+	align-items: stretch;
     margin: auto;
-    margin-bottom: 64px;
-    flex-direction: row;
-    height: 430px;
+    margin-top: 64px;
+	height: 468px;
     max-width: 1120px;
-    background-color: white;
 }
 
-
 #gradient-gen-card-settings {
-    display: flex;
-    flex-flow: column wrap;
+    display: grid;
+	grid-template-columns: 1fr calc(1.5em + 16px + 16px) 1fr;
+	grid-row-gap: 32px;
     border: 1px solid var(--secondary);
     border-radius: 16px 0px 0px 16px;
     padding: 32px 64px 32px 64px;
-    min-width: 723px;
-    max-width: 723px;
-    /** Оптимальные значения. Работаю в Гугл Хроме, но в Мозилле Фаерфкс вся верстка съезжает  */
-/*  min-width: 658px;
-    max-width: 658px; */
-    height: 100%;
+	min-width: 640px;
+	background-color: white
 }
 
+#gradient-gen-card-settings h4 {
+	margin: 0;
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
 
-#gradient-direction {
-    color:var(--secondary);
-    min-width: 232px;
+#gradient-gen-card-settings .color-input-flexbox {
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
+
+#gradient-gen-card-settings .color-input input[type=text] {
+	width: 100%;
+}
+
+#gradient-type {
+	grid-column-start: 1;
+	grid-column-end: 1;
+}
+
+#gradient-direction,
+#gradient-position {
+	grid-column-start: 3;
+	grid-column-end: 4;
+}
+
+#gradient-type h4,
+#gradient-direction h4,
+#gradient-position h4 {
+	margin-bottom: 16px;
+}
+
+#gradient-gen-card select {
     height: 64px;
 }
 
-#gradient-direction option {
-    font-size: 1.25em;
+#gradient-gen-card-settings-bottom {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	gap: 32px;
+	grid-column-start: 1;
+	grid-column-end: 4;
 }
 
-#gradient-gen-card-settings-buttons button{
+#gradient-gen-card-settings-bottom button {
     border: 1px solid var(--secondary);
-    min-width: 162px;
+    min-width: 160px;
     min-height: 50px
 }
 
-
 #gradient-gen-card-result {
-    width: 100%;
+	max-width: 492px;
+	width: 100%;
+	height: 100%;
     border: 1px solid var(--secondary);
     border-radius: 0px 16px 16px 0px;
     background: linear-gradient(90deg, rgba(239,240,207,1) 0%, rgba(207,225,208,1) 100%);
 }
 
 /* Adaptation for mobile devices  */
-@media (max-width: 930px) {
+@media (max-width: 1024px) {
+
     #gradient-gen-card {
         flex-direction: column-reverse;
-        height: auto;
-        width: 90vw;
-    }
-    
-    #gradient-gen-card-settings,
+		height: auto;
+		max-width: unset;
+	}
+
+    #gradient-gen-card-settings {
+		min-width: unset;
+		width: 100%;
+	}
+	
     #gradient-gen-card-result {
-        width: 100%;
+		max-width: unset;
     }
+	
+	#gradient-gen-card-settings .color-input-flexbox {
+		justify-content: flex-start;
+	}
     
     #gradient-gen-card-result {
+		height: 33.333vh;
         border-radius: 16px 16px 0px 0px;
     }
     
     #gradient-gen-card-settings {
         border-radius: 0px 0px 16px 16px;
-        min-width: unset;
-        max-width: unset;
     }
-    
-    #gradient-gen-card-result {
-        height: 200px
-    }
-    
-    .color-input-flexbox {
-        display: flex; 
-        flex-flow: column wrap; 
-        align-items: center;
-    }
-    
-    .color-input-swap-button-span {
-        margin: 0px;
-        align-self: center;
-    }
+	
+	#gradient-type {
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
+
+	#gradient-direction,
+	#gradient-position {
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
 }
 
 
@@ -1261,115 +1436,199 @@ footer a:hover {
 #color-picker-card {
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    gap: 0px;
-    max-width: 1120px;
-	width: 100%;
-    max-height: 1000px;
     margin: auto;
-    margin-top: 0px;
-    margin-bottom: 64px;
+    margin-top: 64px;
+}
+
+#color-picker-card-settings {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--secondary);
+    border-radius: 16px 0px 0px 16px;
+    padding: 32px 0px 32px 0px;
+	gap: 32px;
 	background-color: white;
 }
 
-
-#color-picker-card-settings {
-	overflow: hidden;
-    max-width: 492px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    border: 1px solid var(--secondary);
-    border-radius: 16px 0px 0px 16px;
-    padding: 0px;
+#color-picker-card-settings > div:first-child {
+	display: flex;
+	flex-flow: column;
+	gap: 32px;
 }
 
-#color-picker-range {
-    max-width: 300px;
+#color-picker-card-settings-top {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
 }
 
-#color-picker-card-settings ul {
-    width: 100%;
+#color-picker-card-settings-top h4 {
+	margin: 0;
+}
+
+#color-picker-card-colors-count {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+#color-picker-range-container {
+	position: relative;
+	height: 1.5em;
+	width: 100%;
+	max-width: 300px;
+}
+
+#color-picker-range-title {
+	position: absolute;
+	top: -1.5em;
+	width: 30px;
+	height: 1.5em;
+	text-align: center;
+	color: white;
+	white-space: nowrap;
+	border-radius: 8px;
+	background-color: rgba(13, 15, 16, 0.75);
+	
+	transition: 0.3s ease-out 0s;
+	transition-property: background-color;
+}
+
+#color-picker-card-colors-list {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column;
     list-style-type: none;
     padding: 0px;
-    margin-top: 32px;
-    margin-bottom: 0px;
 }
 
-#color-picker-card-settings ul li{
+#color-picker-card-colors-list h3,
+#color-picker-card-colors-list p {
+	margin: 0;
+}
+
+#color-picker-card-colors-list h3 {
+	min-width: 10ch;
+}
+
+#color-picker-card-colors-list li {
     display: flex;
-    flex-flow: row;
-    justify-content:space-between;
+	justify-content: flex-start;
     align-items: center;
     padding: 16px 32px 16px 32px;
-    gap: 32px 32px;
+	gap: 16px;
 }
 
-#color-picker-card-settings-buttons {
+#color-picker-card-colors-list li div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+}
+
+#color-picker-card-settings-bottom {
     display: flex; 
-    flex-flow: row nowrap; 
-    justify-content: space-between; 
-    gap: 32px 32px; 
-    margin: 32px 0px 0px 0px; 
-    padding: 0px 32px 32px 32px;
+    flex-flow: row wrap;
+    justify-content: center;
+	align-items: center;
+	padding-left: 32px;
+	padding-right: 32px;
+    gap: 32px;
 }
 
-#color-picker-card-settings-buttons button {
+#color-picker-card-settings-bottom button {
     padding: 0px;
     border: 1px solid var(--secondary);
     height: 50px;
-    width: 100%;
-    max-width: 200px;
+	min-width: 160px;
 }
 
 #color-picker-card-result {
+	display: flex;
+	justify-content: center;
+	align-items: center;
     padding: 32px;
-    display: flex;
     max-width: 628px;
-    justify-content: center;
-    align-items: center;
     border: 1px solid var(--secondary);
     border-radius: 0px 16px 16px 0px;
+	background-color: white;
 }
 
-#color-picker-card-result-img {
-    width: 100%;
-    max-height: 500px;
+#color-picker-card-result-image {
+	position: relative;
 }
+
+#color-picker-card-result-image img {
+	border-radius: 16px;
+	max-height: 1000px;
+	width: 100%;
+}
+
+#color-picker-card-result-image div {
+	position: absolute;
+	min-width: 24px;
+	min-height: 24px;
+	max-width: 48px;
+	max-height: 48px;
+	width: 100%;
+	height: 100%;
+	border: 3px solid white;
+	border-radius: 50%; 
+	transform: scale(1);
+	transition: 0.3s ease-out 0s;
+}
+
+#color-picker-card-result-image div.hidden {
+	transform: scale(0);
+}
+
+#color-picker-card-result-image div:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+
+.glow-animation {
+	animation-name: glowForColorListItem;
+	animation-duration: 2s;
+	animation-timing-function: ease-out;
+}
+
+@keyframes glowForColorListItem {
+
+	0% {
+		background: var(--primary);
+	}
+	
+	50% {
+		background: var(--primary);
+	}
+}
+
 
 /* Adaptation for mobile devices  */
 @media (max-width: 768px) {
     #color-picker-card {
-        max-height: unset;
         flex-direction: column-reverse;
-        width: 95vw;
     }
-    
-    #color-picker-card-settings,
-    #color-picker-card-result {
-        max-width: unset;
-        width: 95vw;
-    }
-    
+
     #color-picker-card-settings {
         flex-direction: column-reverse;
         border-radius: 0px 0px 16px 16px;
     }
-    
-    #color-picker-card-settings-buttons {
-        justify-content: center;
-    }
-    
-    
+
     #color-picker-card-result {
-        padding: 32px;
+		max-width: unset;
         border-radius: 16px 16px 0px 0px;
     }
-} 
-
+	
+	#color-picker-card-result-image div {
+		transform: scale(0.75);
+	}
+}
 
 
 /*--------------------------------------------------------------
@@ -1378,78 +1637,116 @@ footer a:hover {
 #contrast-checker-card {
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    max-width: 1120px;
-    height: 400px;
     margin: auto;
-    margin-top: 0px;
-    margin-bottom: 64px;
-    background-color: white;
+	margin-top: 64px;
 }
 
-
-#contrast-checker-card-settings {   
+#contrast-checker-card-settings {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     justify-content: space-between;
     padding: 32px 64px 32px 64px;
     border: 1px solid var(--secondary);
     border-radius: 16px 0px 0px 16px;
-    min-width: 723px;
-    max-width: 723px;
-    height: 100%;
+	background-color: white;
+	gap: 32px;
 }
 
+#contrast-checker-card-settings-top {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+}
+
+#contrast-checker-card-settings-top h4 {
+	margin: 0;
+}
+
+#contrast-checker-card-settings-bottom {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+}
+
+#contrast-checker-ratio {
+	width: 5ch;
+	margin: 0;
+	border-right: 1px solid var(--secondary);
+	padding: 16px 16px 16px 0px;
+
+}
+
+#contrast-checker-rules {
+	display: flex; 
+	flex-flow: column nowrap;
+	gap: 16px;
+}
+
+#contrast-checker-rules div {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#contrast-checker-rules p {
+	margin: 0px 0px 0px 16px;
+}
 
 #contrast-checker-card-result {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: flex-end;
-    width: 100%;
     border: 1px solid var(--secondary);
     border-radius: 0px 16px 16px 0px;
     padding: 32px;
-    text-align: center;
+    text-align: justify;
+	max-width: 492px;
     color: #4C3345;
     background-color: #CFE1D0;
 }
 
+#contrast-checker-card-result svg {
+	margin: 0px 0px 32px 0px;
+}
+
+#contrast-checker-card-result h4,
+#contrast-checker-card-result p {
+	margin: 0px 0px 16px 0px;
+}
+
+#contrast-checker-card-result div {
+	align-self: flex-end;
+}
+
 /* Adaptation for mobile devices  */
-@media (max-width: 1070px) {
+@media (max-width: 1024px) {
     #contrast-checker-card {
         flex-direction: column-reverse;
-        height: auto;
-        width: 90vw;
-    }
-    
-    #contrast-checker-card-settings,
-    #contrast-checker-card-result {
-        width: 100%;
     }
     
     #contrast-checker-card-result {
         border-radius: 16px 16px 0px 0px;
+		max-width: unset;
     }
     
     #contrast-checker-card-settings {
         border-radius: 0px 0px 16px 16px;
-        min-width: unset;
-        max-width: unset;
     }
-    
-    #contrast-checker-card-result {
-        height: 100%;
-    }
-    
-    .color-input-flexbox {
-        display: flex; 
-        flex-flow: column wrap; 
-        align-items: center;
-    }
-    
-    .color-input-swap-button-span {
-        margin: 0px;
-        align-self: center;
-    }
+	
+	#contrast-checker-card-settings-bottom {
+		flex-direction: column;
+	}
+	
+	#contrast-checker-ratio {
+		width: 8ch;
+		text-align: center;
+		border-right: none;
+		border-bottom: 1px solid var(--secondary);
+		padding: 0px 32px 16px 32px;
+	}
 }

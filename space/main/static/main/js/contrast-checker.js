@@ -7,6 +7,10 @@
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
+	
+	/* Popovers */
+	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+	const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 
     //Generates random hex-color
@@ -136,21 +140,21 @@
             
             //for 17pt and below
             if(contrastRatio >= 4.5)
-                img1.src = "../static/main/graphics/contrast_checker/check-circle.png";
+                img1.src = "../static/main/graphics/contrast_checker/check-circle.svg";
             else
-                img1.src = "../static/main/graphics/contrast_checker/x-circle.png";
+                img1.src = "../static/main/graphics/contrast_checker/x-circle.svg";
             
             //for 18pt and above / 14pt bold and above
             if(contrastRatio >= 3.0)
-                img2.src = "../static/main/graphics/contrast_checker/check-circle.png";
+                img2.src = "../static/main/graphics/contrast_checker/check-circle.svg";
             else
-                img2.src = "../static/main/graphics/contrast_checker/x-circle.png";
+                img2.src = "../static/main/graphics/contrast_checker/x-circle.svg";
             
             //for icons and actionable graphics
             if(contrastRatio >= 3.0)
-                img3.src = "../static/main/graphics/contrast_checker/check-circle.png";
+                img3.src = "../static/main/graphics/contrast_checker/check-circle.svg";
             else
-                img3.src = "../static/main/graphics/contrast_checker/x-circle.png";
+                img3.src = "../static/main/graphics/contrast_checker/x-circle.svg";
         }
         
         
