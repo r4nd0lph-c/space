@@ -2,17 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <style>
-        /* Setting up red background color for color input tooltip  */
-		.invalid-input-tooltip {
-			--bs-tooltip-bg: #f00;
-		}
-		
-		/* Setting z-index so that all tooltips don't overlap the navbar */
-		.tooltip {
-			z-index: 996;
-		}
-    </style>
+
     <!-- ----- Header Start ----- -->
     <header id="header" class="fixed-top header-inner-pages">
         <div class="container d-flex align-items-center justify-content-between">
@@ -45,8 +35,8 @@
                 <div id="contrast-checker-card-settings-top">
                     <h4>Contrast Ratio</h4>
 					<!-- This SVG icon is not original Bootstrap's, it has been modified -->
-					<a tabindex="0" role="button" data-bs-html="true" data-bs-toggle="popover" data-bs-custom-class="custom-popover" data-bs-trigger="hover" data-bs-content="Sed vestibulum elit quam, a aliquet nulla sollicitudin et. Suspendisse pretium cursus leo, sagittis dapibus eros vulputate eget. Aenean ullamcorper arcu lorem, sit amet porttitor tortor scelerisque eget. Quisque orci augue, pellentesque non maximus et, eleifend vel turpis <a href='#'>Подробнее...</a>">
-						<svg data-bs-toggle="modal" data-bs-target="#info-modal" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+					<a tabindex="0" role="button" data-bs-html="true" data-bs-custom-class="info-circle-popover" data-bs-content="Sed vestibulum elit quam, a aliquet nulla sollicitudin et. Suspendisse pretium cursus leo, sagittis dapibus eros vulputate eget. Aenean ullamcorper arcu lorem, sit amet porttitor tortor scelerisque eget. Quisque orci augue, pellentesque non maximus et, eleifend vel turpis <a href='#'>Подробнее...</a>">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
 							<circle cx="8" cy="8" r="8"/>
 							<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 							<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -59,10 +49,10 @@
                         <p>Text color</p>
                         <div class="color-input" data-bs-custom-class="invalid-input-tooltip" data-bs-placement="bottom" title="Invalid input">
                             <input class="color-input-first-color-text" type="text" size="7" maxlength="7" />
-                            <input class="color-input-first-color" type="color" />
+                            <input class="color-input-first-color" type="color" tabindex="-1" />
                         </div>
                     </div>
-                    <button class="color-input-swap-button">
+                    <button class="color-input-swap-button" tabindex="-1">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
 							<path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
 						</svg>
@@ -71,7 +61,7 @@
                         <p>Background color</p>
                         <div class="color-input" data-bs-custom-class="invalid-input-tooltip" data-bs-placement="bottom" title="Invalid input">
                             <input class="color-input-second-color-text" type="text" size="7" maxlength="7" />
-                            <input class="color-input-second-color" type="color" />
+                            <input class="color-input-second-color" type="color" tabindex="-1" />
                         </div>
                     </div>
                 </div>
@@ -80,15 +70,15 @@
                     <h2 id="contrast-checker-ratio">4.48</h2>
                     <div id="contrast-checker-rules">
                         <div>
-                            <img draggable="false" src="{% static 'main/graphics/contrast_checker/x-circle.svg' %}" />
+                            <i style="color: var(--danger);" class="bi bi-x-circle"></i>
                             <p>for 17pt and below</p>
                         </div>
                         <div>
-                            <img draggable="false" src="{% static 'main/graphics/contrast_checker/check-circle.svg' %}" />
+                            <i style="color: var(--success);" class="bi bi-check-circle"></i>
                             <p>for 18pt and above / 14pt bold and above</p>
                         </div>
                         <div>
-                            <img draggable="false" src="{% static 'main/graphics/contrast_checker/check-circle.svg' %}" />
+                            <i style="color: var(--success);" class="bi bi-check-circle"></i>
                             <p>for icons and actionable graphics</p>
                         </div>
                     </div>
@@ -111,6 +101,9 @@
     <!-- -----   Main End   ----- -->
 {% endblock %}
 
+
 {% block script %}
-<script src="{% static 'main/js/contrast-checker.js' %}"></script>
+<script src="{% static 'main/js/info_circle_popover.js' %}"></script>
+<script src="{% static 'main/js/color_input_validation.js' %}"></script>
+<script src="{% static 'main/js/contrast_checker.js' %}"></script>
 {% endblock %}

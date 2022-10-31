@@ -33,7 +33,7 @@
                 <div>
                     <div id="color-picker-card-settings-top">
                         <h4>Most common colors</h4>
-                        <a tabindex="0" role="button" data-bs-html="true" data-bs-toggle="popover" data-bs-custom-class="custom-popover" data-bs-trigger="hover" data-bs-content="Vivamus vulputate, turpis lacinia hendrerit vehicula, purus diam faucibus erat, sed maximus dolor dolor in sem. Suspendisse tincidunt fringilla lobortis. Nullam aliquam diam urna, quis vehicula mauris pretium porta. Curabitur vitae dui urna. Morbi ut lacus lorem. Ut posuere lectus ut diam egestas, id fermentum mi.">
+                        <a tabindex="0" role="button" data-bs-custom-class="info-circle-popover" data-bs-content="Vivamus vulputate, turpis lacinia hendrerit vehicula, purus diam faucibus erat, sed maximus dolor dolor in sem. Suspendisse tincidunt fringilla lobortis. Nullam aliquam diam urna, quis vehicula mauris pretium porta. Curabitur vitae dui urna. Morbi ut lacus lorem. Ut posuere lectus ut diam egestas, id fermentum mi.">
 							<!-- This SVG icon is not original Bootstrap's, it has been modified -->
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
 								<circle cx="8" cy="8" r="8"/>
@@ -154,5 +154,6 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'main/js/color-picker.js' %}"></script>
+<script src="{% static 'main/js/info_circle_popover.js' %}"></script>
+<script src="{% static 'main/js/color_picker.js' %}"></script>
 {% endblock %}
