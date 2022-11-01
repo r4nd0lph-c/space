@@ -1175,6 +1175,9 @@ footer a:hover {
 			transform: scale(1);
 }
 
+.modal-body {
+	padding: 32px;
+}
 
 .export-modal-icons {
 	display: flex;
@@ -1193,6 +1196,7 @@ footer a:hover {
 	border: 1px solid var(--secondary);
 	border-radius: 8px;
 	padding: 8px;
+	color: var(--dark);
 	transition: 0.3s ease-out 0s;
 }
 

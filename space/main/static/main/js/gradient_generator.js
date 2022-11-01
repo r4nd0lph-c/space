@@ -1,22 +1,7 @@
 (function () {
     "use strict"
 	
-	/* Activates tooltips on the page, particularly on export modal */
-	const tooltip = new bootstrap.Tooltip("button[data-bs-title='Copy to clipboard']", {
-		animation: false,
-		trigger: "hover",
-		title: "Copy to clipboard"
-	});
-	
-	//Copy text to clipboard library
-	const clipboard = new ClipboardJS('button');
-	clipboard.on("success", function(e) {
-		const btn = select("button[data-bs-title='Copy to clipboard']");
-		tooltip.hide();
-		tooltip._config.title = "Copied!";
-		tooltip.show();
-		tooltip._config.title = "Copy to clipboard";
-	});
+
 
     //Generates random hex-color
     const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
@@ -200,6 +185,29 @@
 		
 		
 		/* Handling export modals */
+		
+		/* Activates tooltips on the page, particularly on export modal */
+		const tooltip = new bootstrap.Tooltip("button[data-bs-title='Copy to clipboard']", {
+			animation: false,
+			trigger: "hover",
+			title: "Copy to clipboard"
+		});
+		
+		//Copy text to clipboard library
+		const clipboard = new ClipboardJS('button');
+		clipboard.on("success", function(e) {
+			const btn = select("button[data-bs-title='Copy to clipboard']");
+			tooltip.hide();
+			tooltip._config.title = "Copied!";
+			tooltip.show();
+			tooltip._config.title = "Copy to clipboard";
+		});
+		
+		/* Auto select on click */
+		select("#export-css-input").addEventListener("click", (event) => {
+			select("#export-css-input").select();
+		}, false);
+		
 		
 		//CSS
 		document.querySelector('#gradient-export-css-modal').addEventListener('show.bs.modal', (event) => {
