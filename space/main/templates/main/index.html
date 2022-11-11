@@ -143,18 +143,19 @@
             <h4 class="underline-black" data-aos="fade-down" data-aos-duration="1000">Recent Posts</h4>
             <a href="{% url 'blog' %}"><p data-aos="fade-down" data-aos-duration="1000">View all</p></a>
             <div id="recent-posts-box" data-aos="fade-down" data-aos-duration="1000">
+                <!-- card 1 Start -->
                 <div class="recent-post-card">
                     <div class="recent-post-card-top">
-                        <p class="recent-post-date">02.10.2022</p>
-                        <p class="recent-post-reading-time">Reading time ~ 10 min.</p>
+                        <p class="recent-post-date">{{ recent_posts.0.created }}</p>
+                        <p class="recent-post-reading-time">Reading time ~ {{ recent_posts.0.reading }} min.</p>
                     </div>
 					<div class="recent-post-card-content">
-						<a href="#">
-							<h4 class="recent-post-title">How to create a gradient background for your website</h4>
+						<a href="{% url 'article' article_slug=recent_posts.0.slug %}">
+							<h4 class="recent-post-title"> {{ recent_posts.0.title }}</h4>
 							<div class="recent-post-text">
-								If you’ve been reading our blog at all, you know that we’re pretty gradient crazy. Backgrounds have a massive impact on a website’s design. So big, in fact, it’s probably the most important aspect... it’s probably the most important aspect it’s probably the most important aspect it’s probably the most important aspect
+                                {{ recent_posts.0.content|safe }}
 							</div>
-							<img class="recent-post-image" src="{% static 'main/graphics/main_page/recent_post_img1.png' %}" />
+							<img class="recent-post-image" src={{ recent_posts_images.0 }} />
 						</a>
 					</div>
                     <div class="recent-post-card-bottom">
@@ -168,23 +169,26 @@
 						</span>
                         <span class="recent-post-card-bottom-rating">
                             <i class="bi bi-chevron-down"></i>
-                            <strong>157</strong>
+                            <strong> {{ recent_posts.0.rating }} </strong>
                             <i class="bi bi-chevron-up"></i>
                         </span>
                     </div>
                 </div>
+                <!-- card 1 End -->
+
+                <!-- card 2 Start -->
 				<div class="recent-post-card">
                     <div class="recent-post-card-top">
-                        <p class="recent-post-date">25.10.2022</p>
-                        <p class="recent-post-reading-time">Reading time ~ 15 min.</p>
+                        <p class="recent-post-date">{{ recent_posts.1.created }}</p>
+                        <p class="recent-post-reading-time">Reading time ~ {{ recent_posts.1.reading }} min. </p>
                     </div>
 					<div class="recent-post-card-content">
-						<a href="#">
-							<h4 class="recent-post-title">Digging into color temperature: the difference between "cool" and "warm" colors</h4>
+						<a href="{% url 'article' article_slug=recent_posts.1.slug %}">
+							<h4 class="recent-post-title">{{ recent_posts.1.title }}</h4>
 							<div class="recent-post-text">
-								As an object heats up, it begins to emit light. In very simple terms, a hotter object emits more high frequency radiation than a less hot one. For the sake of this explanation, a "hot" object will have...
+								{{ recent_posts.1.content|safe }}
 							</div>
-							<img class="recent-post-image" src="{% static 'main/graphics/main_page/recent_post_img2.png' %}" />
+							<img class="recent-post-image" src={{ recent_posts_images.1 }} />
 						</a>
 					</div>
                     <div class="recent-post-card-bottom">
@@ -198,11 +202,12 @@
 						</span>
                         <span class="recent-post-card-bottom-rating">
                             <i class="bi bi-chevron-down"></i>
-                            <strong>157</strong>
+                            <strong> {{ recent_posts.1.rating }}</strong>
                             <i class="bi bi-chevron-up"></i>
                         </span>
                     </div>
                 </div>
+                <!-- card 2 End -->
             </div>
         </section>
         <!-- -----  Recent Posts End  ----- -->

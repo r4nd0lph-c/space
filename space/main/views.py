@@ -4,6 +4,8 @@ from django.views.generic import TemplateView, ListView, DetailView
 
 from .models import *
 
+from bs4 import BeautifulSoup
+
 
 # --------------------- MAIN PAGE START -------------------- #
 class IndexView(TemplateView):
@@ -15,7 +17,18 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = ''
+        context['title'] = 'Home | SPACE'
+        recent_posts = list(Article.objects.order_by('-created')[0:2])
+        recent_posts_images = []
+        for item in recent_posts:
+            start = item.content.find("<img")
+            start += item.content[start:].find('src=')
+            end = item.content[start + 5:].find('"')
+            recent_posts_images.append(item.content[start + 5: start + 5 + end])
+        for item in recent_posts:
+            item.content = ' '.join(BeautifulSoup(item.content, "html.parser").stripped_strings)
+        context['recent_posts'] = recent_posts
+        context['recent_posts_images'] = recent_posts_images
         return context
 
 
