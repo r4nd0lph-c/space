@@ -165,7 +165,7 @@
                         <p class="recent-post-reading-time">Reading time ~ {{ recent_posts.0.reading }} min.</p>
                     </div>
                     <div class="recent-post-card-content">
-                        <a href="{% url 'article' article_slug=recent_posts.0.slug %}">
+                        <a href="{% url 'article' article_slug=recent_posts.0.slug %}" target="_blank">
                             <h4 class="recent-post-title"> {{ recent_posts.0.title }}</h4>
                             <div class="recent-post-text">
                                 {{ recent_posts.0.content|safe }}
@@ -200,7 +200,7 @@
                         <p class="recent-post-reading-time">Reading time ~ {{ recent_posts.1.reading }} min. </p>
                     </div>
                     <div class="recent-post-card-content">
-                        <a href="{% url 'article' article_slug=recent_posts.1.slug %}">
+                        <a href="{% url 'article' article_slug=recent_posts.1.slug %}" target="_blank">
                             <h4 class="recent-post-title">{{ recent_posts.1.title }}</h4>
                             <div class="recent-post-text">
                                 {{ recent_posts.1.content|safe }}

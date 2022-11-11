@@ -16,10 +16,10 @@
                         <p class="recent-post-reading-time">Reading time ~ {{ article.reading }} min.</p>
                     </div>
                     <div class="recent-post-card-content">
-                        <a href="{% url 'article' article_slug=article.slug %}">
+                        <a href="{% url 'article' article_slug=article.slug %}" target="_blank">
                             <h4 class="recent-post-title"> {{ article.title }}</h4>
                             <div class="recent-post-text">
-                                {{ article.content|safe }}
+                                {{ posts_clear_content|get_value:article.slug }}
                             </div>
                             <img class="recent-post-image" src={{ posts_images|get_value:article.slug }}/>
                         </a>

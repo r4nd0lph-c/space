@@ -23,7 +23,6 @@ class IndexView(TemplateView):
         for item in recent_posts:
             soup = BeautifulSoup(item.content, 'html.parser')
             recent_posts_images.append(soup.find('img').attrs['src'])
-        for item in recent_posts:
             item.content = ' '.join(BeautifulSoup(item.content, "html.parser").stripped_strings)
         context['recent_posts'] = recent_posts
         context['recent_posts_images'] = recent_posts_images
@@ -50,12 +49,13 @@ class BlogListView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Blog | SPACE'
         posts_images = {}
-        i = 0
+        posts_clear_content = {}
         for item in self.object_list:
             soup = BeautifulSoup(item.content, 'html.parser')
             posts_images[item.slug] = soup.find('img').attrs['src']
-            i += 1
+            posts_clear_content[item.slug] = ' '.join(BeautifulSoup(item.content, "html.parser").stripped_strings)
         context['posts_images'] = posts_images
+        context['posts_clear_content'] = posts_clear_content
         return context
 
 
