@@ -1,10 +1,75 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load blog_extract_imgs %}
 
 {% block body %}
     <!-- -----  Main Start  ----- -->
     <main id="main">
+        <!-- Articles START -->
+        <h1>Articles</h1>
+        <ul>
+            {% for article in object_list %}
+                <!-- card Start -->
+                <div class="recent-post-card">
+                    <div class="recent-post-card-top">
+                        <p class="recent-post-date">{{ article.created }}</p>
+                        <p class="recent-post-reading-time">Reading time ~ {{ article.reading }} min.</p>
+                    </div>
+                    <div class="recent-post-card-content">
+                        <a href="{% url 'article' article_slug=article.slug %}">
+                            <h4 class="recent-post-title"> {{ article.title }}</h4>
+                            <div class="recent-post-text">
+                                {{ article.content|safe }}
+                            </div>
+                            <img class="recent-post-image" src={{ posts_images|get_value:article.slug }}/>
+                        </a>
+                    </div>
+                    <div class="recent-post-card-bottom">
+						<span class="recent-post-card-bottom-comment">
+							<i class="bi bi-chat"></i>
+							<span>1337</span>
+						</span>
+                        <span class="recent-post-card-bottom-favourite">
+							<span class="{{ article.slug }} fav_mark">
+                                <i class="bi bi-bookmark"></i>
+                                add to favourite
+                            </span>
+						</span>
+                        <span class="recent-post-card-bottom-rating">
+                            <i class="bi bi-chevron-down"></i>
+                            <strong> {{ article.rating }} </strong>
+                            <i class="bi bi-chevron-up"></i>
+                        </span>
+                    </div>
+                </div>
+                <!-- card End -->
+            {% empty %}
+                <li>No articles yet.</li>
+            {% endfor %}
+        </ul>
+        <!-- Articles END -->
 
+        <!-- Pagination START -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        <!-- Pagination END -->
     </main>
+
+    <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
     <!-- -----   Main End   ----- -->
 {% endblock %}

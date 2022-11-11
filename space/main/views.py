@@ -18,13 +18,11 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home | SPACE'
-        recent_posts = list(Article.objects.order_by('-created')[0:2])
+        recent_posts = list(Article.objects.filter(published=True).order_by('-created')[0:2])
         recent_posts_images = []
         for item in recent_posts:
-            start = item.content.find("<img")
-            start += item.content[start:].find('src=')
-            end = item.content[start + 5:].find('"')
-            recent_posts_images.append(item.content[start + 5: start + 5 + end])
+            soup = BeautifulSoup(item.content, 'html.parser')
+            recent_posts_images.append(soup.find('img').attrs['src'])
         for item in recent_posts:
             item.content = ' '.join(BeautifulSoup(item.content, "html.parser").stripped_strings)
         context['recent_posts'] = recent_posts
@@ -43,10 +41,21 @@ class BlogListView(ListView):
 
     template_name = 'main/blog.html'
 
+    model = Article
+    queryset = Article.objects.filter(published=True).order_by('-created')
+
+    paginate_by = 2
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Blog | SPACE'
-
+        posts_images = {}
+        i = 0
+        for item in self.object_list:
+            soup = BeautifulSoup(item.content, 'html.parser')
+            posts_images[item.slug] = soup.find('img').attrs['src']
+            i += 1
+        context['posts_images'] = posts_images
         return context
 
 
@@ -59,7 +68,6 @@ class ArticleDetailView(DetailView):
     context_object_name = 'article'
 
     model = Article
-
     queryset = Article.objects.filter(published=True)
 
     def get_object(self):
