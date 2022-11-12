@@ -1,6 +1,8 @@
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView
+from django.http import JsonResponse
 
 from .models import *
 
@@ -120,8 +122,27 @@ class ColorPickerView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = ''
+        context['title'] = 'Color Picker | SPACE'
         return context
+
+
+# @csrf_exempt
+# def color_picker_get_params(request):
+#     img = request.GET.get('img', None)
+#     data = {
+#         'result': img
+#     }
+#     return JsonResponse(data)
+
+
+@csrf_exempt
+def color_picker_get_params(request):
+    if request.method == 'POST':
+        image = request.FILES['img']
+        print(image.size)
+        return JsonResponse({"img_params": None})
+    else:
+        return JsonResponse({"message": "you don't have enough rights!"})
 
 
 class ContrastCheckerView(TemplateView):
