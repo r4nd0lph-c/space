@@ -20,8 +20,6 @@
         const colorRange = select("#color-picker-range");
         const colorList = select("#color-picker-card-colors-list").children;
         var colorCircles = select("#color-picker-card-result-image").getElementsByTagName("div");
-        // colorCircles = [].slice.call(colorCircles);
-        // colorCircles.shift();
         const colorPickerCard = select("#color-picker-card");
         const colorRangeTitle = select("#color-picker-range-title");
         const uploadImageButton = select("#color-picker-upload-button");

@@ -174,8 +174,6 @@
                 document.querySelector("#display-image").src = uploaded_image;
                 // make blob from dataURI
                 let blob_img = dataURItoBlob(uploaded_image);
-                console.log(uploaded_image);
-                console.log(blob_img);
                 // send blob
                 send_img(blob_img);
             });

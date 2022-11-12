@@ -5,6 +5,7 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.http import JsonResponse
 
 from .models import *
+from .services import color_clusters
 
 from bs4 import BeautifulSoup
 
@@ -126,21 +127,14 @@ class ColorPickerView(TemplateView):
         return context
 
 
-# @csrf_exempt
-# def color_picker_get_params(request):
-#     img = request.GET.get('img', None)
-#     data = {
-#         'result': img
-#     }
-#     return JsonResponse(data)
-
-
 @csrf_exempt
 def color_picker_get_params(request):
+    """ FBV for color_picker AJAX """
+
     if request.method == 'POST':
-        image = request.FILES['img']
-        print(image.size)
-        return JsonResponse({"img_params": None})
+        blob_img = request.FILES['img']
+        res = color_clusters.clustering_main(blob_img)
+        return JsonResponse({"img_params": res})
     else:
         return JsonResponse({"message": "you don't have enough rights!"})
 
@@ -163,6 +157,8 @@ class ContrastCheckerView(TemplateView):
 
 # -------------------- ERROR PAGE START -------------------- #
 def page_not_found(request, exception):
+    """ FBV for 404 Error """
+
     return HttpResponseNotFound('Page not found')
 
 # --------------------  ERROR PAGE END  -------------------- #
