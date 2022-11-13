@@ -110,19 +110,81 @@
             }
         }
 
-        uploadImageButton.addEventListener("click", (event) => {
-            function getRandomInt(max) {
-                return Math.floor(Math.random() * max);
-            }
 
-            for (let circle of colorCircles) {
-                let size = getRandomInt(24) + 24;
-                circle.style.height = size + "px";
-                circle.style.width = size + "px";
-                circle.style.top = getRandomInt(85) + "%";
-                circle.style.left = getRandomInt(85) + "%";
+
+
+
+        // image input button element
+        const image_input = document.querySelector("#color-picker-upload-button");
+
+        // checking if new image loaded
+        image_input.addEventListener("change", function () {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                const uploaded_image = reader.result;
+                // show img
+                document.querySelector("#display-image").src = uploaded_image;
+                // make blob from dataURI
+                let blob_img = dataURItoBlob(uploaded_image);
+                // send blob
+                send_img(blob_img);
+            });
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        // function to send blob img (ajax -> no reloading)
+        function send_img(blob) {
+            var fd = new FormData();
+            fd.append('img', blob);
+            var tet = $.ajax({
+                url: 'get_params',
+                type: 'POST',
+                data: fd,
+                async: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    // got params for rendering are saved in data
+                    let img_params = data.img_params;
+					console.log(img_params);
+					for(let i = 0; i < img_params.length; i++) {
+						//Updating the table
+						colorList[i].style.backgroundColor = img_params[i].hex;
+						colorList[i].getElementsByTagName("h3")[0].innerHTML = img_params[i].hex;
+						colorList[i].getElementsByTagName("p")[0].innerHTML = img_params[i].name;
+						colorList[i].getElementsByTagName("p")[1].innerHTML = img_params[i].contribution;
+						checkBrightness();
+						
+						//Updating color circles on the image
+						colorCircles[i].style.backgroundColor = img_params[i].hex;
+						colorCircles[i].style.left = (img_params[i].coords[0] / select("#display-image").naturalWidth) * 100 +  "%";
+						colorCircles[i].style.top = (img_params[i].coords[1] / select("#display-image").naturalHeight) * 100 + "%";
+					}
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            }).responseText;
+        }
+
+        // make blob from image dataURI ('data:image/jpeg;base64,/9j/4AAQS...gD//Z')
+        function dataURItoBlob(dataURI) {
+            // convert base64 to raw binary data held in a string
+            // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+            var byteString = atob(dataURI.split(',')[1]);
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+            // write the bytes of the string to an ArrayBuffer
+            var ab = new ArrayBuffer(byteString.length);
+            // create a view into the buffer
+            var ia = new Uint8Array(ab);
+            // set the bytes of the buffer to the correct values
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
             }
-        }, false);
+            // write the ArrayBuffer to a blob, and you're done
+            return new Blob([ab], {type: mimeString});
+        }
 
 
         //After all preparations, executing next code:

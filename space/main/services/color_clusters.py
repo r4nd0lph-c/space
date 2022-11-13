@@ -65,9 +65,9 @@ def clustering(image):
         while (lab[s] != lab1[i][0]):
             s = random.randint(0, len(lab) - 1)
         y = int((s) / nw)
-        y = y * h / nh
+        y = (y * h / nh)
         x = (s) % nw
-        x = x * w / nw
+        x = (x * w / nw)   
         cord[lab[s]] = (x, y)
 
     return dict, cord
@@ -95,7 +95,7 @@ def clustering_main(blob):
         hex_name = c.rgb2hex((r, g, b))
         name = c_name(r, g, b, data_names)
         new_item = {
-            "hex": "#" + hex_name,
+            "hex": hex_name,
             "name": name,
             "contribution": "{:0.2f}%".format(float(item)),
             "coords": (round(cord[i][0]), round(cord[i][1]))
