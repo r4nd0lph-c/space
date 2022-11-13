@@ -67,7 +67,7 @@ def clustering(image):
         y = int((s) / nw)
         y = (y * h / nh)
         x = (s) % nw
-        x = (x * w / nw)   
+        x = (x * w / nw)
         cord[lab[s]] = (x, y)
 
     return dict, cord
@@ -79,7 +79,11 @@ def blob_to_image(blob):
 
 def clustering_main(blob):
     img = blob_to_image(blob)
-    dict, cord = clustering(img)
+    height, width, _ = img.shape
+    dict, cord_dict = clustering(img)
+    cord = []
+    for item in cord_dict:
+        cord.append(cord_dict[item])
 
     c = Converter()
     with open(path.join(STATIC_ROOT, 'color_names.json'), encoding='utf-8') as f:
@@ -98,7 +102,7 @@ def clustering_main(blob):
             "hex": hex_name,
             "name": name,
             "contribution": "{:0.2f}%".format(float(item)),
-            "coords": (round(cord[i][0]), round(cord[i][1]))
+            "coords": (cord[i][0] / width, cord[i][1] / height)
         }
         i += 1
         res.append(new_item)
