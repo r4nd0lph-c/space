@@ -157,8 +157,8 @@
 						
 						//Updating color circles on the image
 						colorCircles[i].style.backgroundColor = img_params[i].hex;
-						colorCircles[i].style.left = (img_params[i].coords[0] / select("#display-image").naturalWidth) * 100 +  "%";
-						colorCircles[i].style.top = (img_params[i].coords[1] / select("#display-image").naturalHeight) * 100 + "%";
+						colorCircles[i].style.left = img_params[i].coords[0] * 100 +  "%";
+						colorCircles[i].style.top = img_params[i].coords[1] * 100 + "%";
 					}
                 },
                 error: function (error) {
