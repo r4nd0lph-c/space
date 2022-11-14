@@ -1175,15 +1175,21 @@ footer a:hover {
 			transform: scale(1);
 }
 
+
 .modal-body {
 	padding: 32px;
 }
 
+.modal-content {
+	--bs-modal-bg: white;
+	--bs-modal-border-color: white;
+	--bs-modal-border-radius: 16px;
+}
+
+
 .export-modal-icons {
 	display: flex;
 	flex-flow: row wrap;
-	/* Uncomment this later */
-	/* justify-content: space-between; */
 	justify-content: center;
 	gap: 32px;
 }
@@ -1212,12 +1218,6 @@ footer a:hover {
 .export-modal-icons button:hover {
 	color: var(--primary);
 	border-color: var(--primary);
-}
-
-.modal-content {
-	--bs-modal-bg: white;
-	--bs-modal-border-color: white;
-	--bs-modal-border-radius: 16px;
 }
 
 
