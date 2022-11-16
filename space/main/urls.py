@@ -4,6 +4,8 @@ from .views import *
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
+    path('about/', AboutView.as_view(), name='about'),
+    path('services/', ServicesView.as_view(), name='services'),
     path('blog/', BlogListView.as_view(), name='blog'),
     path('blog/article/<slug:article_slug>/', ArticleDetailView.as_view(), name='article'),
     path('palette_generator/', PaletteGeneratorView.as_view(), name='palette_generator'),

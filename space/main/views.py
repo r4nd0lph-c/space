@@ -35,6 +35,40 @@ class IndexView(TemplateView):
 # ---------------------  MAIN PAGE END  -------------------- #
 
 
+# ------------------- ABOUT US PAGE START ------------------ #
+class AboutView(TemplateView):
+    """
+    CBV for the About Page representation
+    """
+
+    template_name = 'main/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'About | SPACE'
+        return context
+
+
+# -------------------  ABOUT US PAGE END  ------------------ #
+
+
+# ------------------- SERVICES PAGE START ------------------ #
+class ServicesView(TemplateView):
+    """
+    CBV for the Services Page representation
+    """
+
+    template_name = 'main/services.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Services | SPACE'
+        return context
+
+
+# -------------------  SERVICES PAGE END  ------------------ #
+
+
 # ------------------ BLOG&POST PAGES START ----------------- #
 class BlogListView(ListView):
     """
