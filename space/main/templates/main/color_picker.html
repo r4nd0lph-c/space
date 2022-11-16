@@ -24,6 +24,118 @@
 
     <!-- -----  Main Start  ----- -->
     <main class="tool-section">
+		<!-- Export Modal -->
+        <div class="modal fade" tabindex="-1" id="color-picker-export-modal">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">EXPORT AS...</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="export-modal-icons">
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#color-picker-export-css-modal">
+								<i class="bi bi-filetype-css"></i>
+								<div>CSS</div>
+							</button>
+							<button id="color-picker-export-collage-png-button" data-bs-dismiss="modal">
+								<i class="bi bi-image"></i>
+								<div>Image</div>
+							</button>
+							<button id="color-picker-export-collage-pdf-button" data-bs-dismiss="modal">
+								<i class="bi bi-file-earmark-pdf"></i>
+								<div>PDF</div>
+							</button>
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#color-picker-export-csv-modal">
+								<i class="bi bi-list-columns-reverse"></i>
+								<div>CSV</div>
+							</button>
+							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#color-picker-export-json-modal">
+								<i class="bi bi-braces"></i>
+								<div>JSON</div>
+							</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Export As CSS Modal -->
+        <div class="modal fade" tabindex="-1" id="color-picker-export-css-modal">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">EXPORT AS CSS</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+						<pre>
+							<code id="color-picker-export-css-code" class="language-scss">
+								You should not see this text
+							</code>
+						</pre>
+						<div style="display: flex; justify-content: space-between; gap: 32px;">
+							<a id="color-picker-export-css-modal-download-button" href="" download="color_picker.scss" style="height: 50px; flex: 1;"><button style="width: 100%; height: 50px; border: 1px solid var(--secondary);" class="btn">DOWNLOAD</button></a>
+							<button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="Copied!" data-clipboard-target="#color-picker-export-css-code">COPY</button>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- Export As CSV Modal -->
+        <div class="modal fade" tabindex="-1" id="color-picker-export-csv-modal">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">EXPORT AS CSV</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+						<pre>
+							<code id="color-picker-export-csv-code" class="language-plaintext">
+							</code>
+						</pre>
+						<div style="display: flex; justify-content: space-between; gap: 32px;">
+							<a id="color-picker-export-csv-modal-download-button" href="" download="color_picker.csv" style="height: 50px; flex: 1;"><button style="width: 100%; height: 50px; border: 1px solid var(--secondary);" class="btn">DOWNLOAD</button></a>
+							<button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="Copied!" data-clipboard-target="#color-picker-export-csv-code">COPY</button>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- Export As JSON Modal -->
+        <div class="modal fade" tabindex="-1" id="color-picker-export-json-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">EXPORT AS JSON</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+						<pre>
+							<code id="color-picker-export-json-code" class="language-json">
+							</code>
+						</pre>
+						<div style="display: flex; justify-content: space-between; gap: 32px;">
+							<a id="color-picker-export-json-modal-download-button" href="" download="color_picker.json" style="height: 50px; flex: 1;"><button style="width: 100%; height: 50px; border: 1px solid var(--secondary);" class="btn">DOWNLOAD</button></a>
+							<button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="Copied!" data-clipboard-target="#color-picker-export-json-code">COPY</button>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- Export As Collage -->
+        <div id="color-picker-export-collage">
+            <div>
+				<ul id="color-picker-export-collage-color-list">
+				</ul>
+				<div id="color-picker-export-collage-result-image">
+					<img id="color-picker-export-collage-display-image" draggable="false"
+					src="{% static 'main/graphics/color_picker/image_example.png' %}"/>
+				</div>
+            </div>
+        </div>
+		
+	
         <div class="tool-description">
             <h3 class="underline-black">COLOR PICKER</h3>
             <p>Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and
@@ -57,7 +169,7 @@
                     </div>
 
                     <ul id="color-picker-card-colors-list">
-                        <li style=" background-color:#A2C6CB; ">
+                        <li style=" background-color:#A2C6CB;">
                             <h3>#A2C6CB</h3>
                             <div>
                                 <p>Opai</p>
@@ -134,7 +246,7 @@
                 <div id="color-picker-card-settings-bottom">
 					<input style="display: none;" type="file" id="color-picker-upload-button" accept="image/jpeg, image/png, image/jpg">
 					<label id="color-picker-upload" for="color-picker-upload-button">UPLOAD IMAGE</label>
-					<button id="color-picker-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
+					<button id="color-picker-export-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#color-picker-export-modal">EXPORT AS</button>
                 </div>
 
             </div>
@@ -146,14 +258,14 @@
                     <div style="background-color: #CFE1D0; width:24px; height: 24px; top: 20%; left: 5%;"></div>
                     <div style="background-color: #EFF0CF; width:36px; height: 36px; top: 20%; left: 52%;"></div>
                     <div style="background-color: #D8C9AD; width:48px; height: 48px; top: 55%; left: 40%;"></div>
-                    <div style="background-color: #4C3345; width:24px; height: 24px; top: 20%; left: 50%;"></div>
+                    <div style="background-color: #4C3345; width:24px; height: 24px; top: 65%; left: 25%;"></div>
                     <div style="background-color: #6195ED; width:24px; height: 24px; top: 30%; left: 20%;"
                          class="hidden"></div>
                     <div style="background-color: #4AFF29; width:24px; height: 24px; top: 40%; left: 30%;"
                          class="hidden"></div>
                     <div style="background-color: #29DFFF; width:24px; height: 24px; top: 50%; left: 18%;"
                          class="hidden"></div>
-                    <div style="background-color: #FD96D8; width:24px; height: 24px; top: 60%; left: 47%;"
+                    <div style="background-color: #FD96D8; width:24px; height: 24px; top: 75%; left: 47%;"
                          class="hidden"></div>
                     <div style="background-color: #E9070A; width:24px; height: 24px; top: 70%; left: 74%;"
                          class="hidden"></div>

@@ -1220,6 +1220,94 @@ footer a:hover {
 	border-color: var(--primary);
 }
 
+#color-picker-export-modal > div.modal-dialog {
+	max-width: 600px;
+}
+
+/* CSS export */
+pre code {
+	border: 1px solid var(--secondary);
+	border-radius: 0.375rem;
+	background-color: white;
+	height: 300px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+pre code::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+pre code {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Collage Export */
+#color-picker-export-collage {
+	display: none;
+}
+
+#color-picker-export-collage > div {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+	padding: 32px;
+	width: 1920px;
+	height: 1080px;
+}
+
+#color-picker-export-collage-color-list {
+	display: flex;
+    flex-flow: column;
+    list-style-type: none;
+	flex: 1;
+	margin: 0;
+	padding: 0px;
+	border-radius: 16px;
+	height: 100%;
+	overflow: hidden;
+}
+
+#color-picker-export-collage-color-list h3,
+#color-picker-export-collage-color-list p {
+	margin: 0;
+}
+
+#color-picker-export-collage-color-list h3 {
+	min-width: 10ch;
+}
+
+#color-picker-export-collage-color-list li {
+	flex: 1;
+    display: flex;
+	justify-content: flex-start;
+    align-items: center;
+    padding: 16px 32px 16px 32px;
+	gap: 16px;
+}
+
+#color-picker-export-collage-color-list li div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	opacity: calc(100% * 2 / 3);
+	width: 100%;
+}
+
+#color-picker-export-collage-result-image {
+	flex: 1;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#color-picker-export-collage-display-image {
+	border-radius: 16px;
+}
 
 
 /*--------------------------------------------------------------
@@ -1514,10 +1602,12 @@ footer a:hover {
     justify-content: center;
     margin: auto;
     margin-top: 64px;
+	max-width: 1120px;
 }
 
 #color-picker-card-settings {
 	display: flex;
+	flex: 1;
     flex-direction: column;
     justify-content: space-between;
     border: 1px solid var(--secondary);
@@ -1642,6 +1732,7 @@ footer a:hover {
 
 #color-picker-card-result {
 	display: flex;
+	flex: 1;
 	justify-content: center;
 	align-items: center;
     padding: 32px;
@@ -1657,7 +1748,7 @@ footer a:hover {
 
 #color-picker-card-result-image img {
 	border-radius: 16px;
-	max-height: 1000px;
+	max-height: 80vh;
 	width: 100%;
 }
 
