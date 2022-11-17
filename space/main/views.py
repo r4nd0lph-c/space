@@ -80,7 +80,7 @@ class BlogListView(ListView):
     model = Article
     queryset = Article.objects.filter(published=True).order_by('-created')
 
-    paginate_by = 2
+    paginate_by = 1
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
