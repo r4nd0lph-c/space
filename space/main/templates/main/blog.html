@@ -6,40 +6,68 @@
     <!-- -----  Main Start  ----- -->
     <main id="main">
         <!-- Articles START -->
-        <h1>Articles</h1>
-        <ul>
+        <div id="blog-header">
+			<div>
+				<label for="blog-header-date">Date: </label>
+				<select id="blog-header-date">
+					<option selected>all time</option>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div>
+				<label class="form-check-label" for="blog-header-sorting">Sorting: </label>
+				<select id="blog-header-sorting">
+					<option selected>by popularity</option>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+			<div class="form-check form-check-reverse">
+				<input class="form-check-input" type="checkbox" value="" id="blog-header-favorites-only">
+				<label class="form-check-label" for="blog-header-favorites-only">Favorites only: </label>
+			</div>
+		</div>
+        <ul id="blog-main">
             {% for article in object_list %}
                 <!-- card Start -->
-                <div class="recent-post-card">
-                    <div class="recent-post-card-top">
-                        <p class="recent-post-date">{{ article.created }}</p>
-                        <p class="recent-post-reading-time">Reading time ~ {{ article.reading }} min.</p>
+                <div class="blog-main-post-card">
+                    <div class="blog-main-post-card-top">
+                        <p class="blog-main-post-date">{{ article.created }}</p>
+                        <p class="blog-main-post-reading-time">Reading time ~ {{ article.reading }} min.</p>
                     </div>
-                    <div class="recent-post-card-content">
+                    <div class="blog-main-post-card-content">
                         <a href="{% url 'article' article_slug=article.slug %}" target="_blank">
-                            <h4 class="recent-post-title"> {{ article.title }}</h4>
-                            <div class="recent-post-text">
+                            <h4 class="blog-main-post-title"> {{ article.title }}</h4>
+                            <div class="blog-main-post-text">
                                 {{ posts_clear_content|get_value:article.slug }}
                             </div>
-                            <img class="recent-post-image" src={{ posts_images|get_value:article.slug }}/>
+                            <img class="blog-main-post-image" src={{ posts_images|get_value:article.slug }}/>
                         </a>
                     </div>
-                    <div class="recent-post-card-bottom">
-						<span class="recent-post-card-bottom-comment">
+                    <div class="blog-main-post-card-bottom">
+						<span class="blog-main-post-card-bottom-comment">
 							<i class="bi bi-chat"></i>
 							<span>1337</span>
 						</span>
-                        <span class="recent-post-card-bottom-favourite">
+                        <span class="blog-main-post-card-bottom-favourite">
 							<span class="{{ article.slug }} fav_mark">
                                 <i class="bi bi-bookmark"></i>
                                 add to favourite
                             </span>
 						</span>
-                        <span class="recent-post-card-bottom-rating">
+						<span class="blog-main-post-card-bottom-rating">
                             <i class="bi bi-chevron-down"></i>
                             <strong> {{ article.rating }} </strong>
                             <i class="bi bi-chevron-up"></i>
                         </span>
+						<span class="blog-main-post-card-bottom-tags">
+							<span>tag#1</span>
+							<span>tag#2</span>
+							<span>tag#3</span>
+						</span>
                     </div>
                 </div>
                 <!-- card End -->
@@ -50,23 +78,21 @@
         <!-- Articles END -->
 
         <!-- Pagination START -->
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
+        <ul class="pagination">
+			{% if page_obj.has_previous %}
+				<li class="page-item"><a class="page-link" href="?page=1">&laquo;First</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+			{% endif %}
 
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
+			<li class="page-link">
+				{{ page_obj.number }}
+			</li>
 
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
+			{% if page_obj.has_next %}
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last&raquo;</a></li>
+			{% endif %}
+        </ul>
         <!-- Pagination END -->
     </main>
 

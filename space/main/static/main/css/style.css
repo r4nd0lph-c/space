@@ -892,7 +892,7 @@ footer a:hover {
 }
 
 
-/* RECENT POSTS */
+/* RECENT POSTS + BLOG POSTS*/
 /* Margin to the "View all" label */
 #recent-posts > a {
 	margin-top: 16px;
@@ -907,7 +907,8 @@ footer a:hover {
 	margin-top: 32px;
 }
 
-.recent-post-card {
+.recent-post-card,
+.blog-main-post-card {
 	position: relative;
     text-align: left;
     padding: 32px 32px 64px 32px;
@@ -919,33 +920,41 @@ footer a:hover {
 }
 
 /* Link to a particular post */
-.recent-post-card a{
+.recent-post-card a,
+.blog-main-post-card a {
     color: black;
 }
 
-.recent-post-card a * {
+.recent-post-card a *,
+.blog-main-post-card a * {
 	transition: all 0.150s ease-out 0s;
 }
 
 .recent-post-card-top,
-.recent-post-card-bottom {
+.recent-post-card-bottom,
+.blog-main-post-card-top,
+.blog-main-post-card-bottom {
     color: var(--secondary);
 }
 
-.recent-post-card-top {
+.recent-post-card-top,
+.blog-main-post-card-top {
     display: flex;
     justify-content: space-between;
 }
 
-.recent-post-card-top * {
+.recent-post-card-top *,
+.blog-main-post-card-top * {
 	margin: 0;
 }
 
-.recent-post-title {
+.recent-post-title,
+.blog-main-post-title {
 	margin: 0;
 }
 
-.recent-post-text {
+.recent-post-text,
+.blog-main-post-text {
 	margin: 0;
 	margin-top: 16px;
 	/* Showing only frist three lines of text, hiding the rest */
@@ -955,36 +964,43 @@ footer a:hover {
 	-webkit-box-orient: vertical;  
 }
 
-.recent-post-image {
+.recent-post-image,
+.blog-main-post-image {
 	margin-top: 32px;
 	border-radius: 16px;
 	width: 100%;
 }
 
-.recent-post-card-content {
+.recent-post-card-content,
+.blog-main-post-card-content {
 	margin-top: 48px;
 }
 
-.recent-post-card-bottom * {
+.recent-post-card-bottom *,
+.blog-main-post-card-bottom * {
 	transition: all 0.05s ease-out 0s;
 }
 
-.recent-post-card-bottom {
+.recent-post-card-bottom,
+.blog-main-post-card-bottom {
 	position: absolute;
 	bottom: 16px;
 	right: 16px;
 	left: 16px;
 }
 
-.recent-post-card-bottom-comment {
+.recent-post-card-bottom-comment,
+.blog-main-post-card-bottom-comment {
 	margin-right: 16px;
 }
 
-.recent-post-card-bottom-rating {
+.recent-post-card-bottom-rating,
+.blog-main-post-card-bottom-rating {
 	float: right;
 }
 
-.recent-post-card-bottom-rating strong {
+.recent-post-card-bottom-rating strong,
+.blog-main-post-card-bottom-rating strong {
 	font-weight: bold;
 	color: var(--primary);
 }
@@ -992,13 +1008,21 @@ footer a:hover {
 
 /* ANIMATION ON HOVER */
 .recent-post-card a:hover .recent-post-title,
-.recent-post-card a:hover .recent-post-text {
+.recent-post-card a:hover .recent-post-text,
+
+.blog-main-post-card a:hover .blog-main-post-title,
+.blog-main-post-card a:hover .blog-main-post-text
+ {
 	color: var(--primary);
 }
 
 .recent-post-card-bottom-comment:hover,
 .recent-post-card-bottom-favourite:hover,
-.recent-post-card-bottom-rating i:hover {
+.recent-post-card-bottom-rating i:hover,
+
+.blog-main-post-card-bottom-comment:hover,
+.blog-main-post-card-bottom-favourite:hover,
+.blog-main-post-card-bottom-rating i:hover {
 	cursor: pointer;
 	color: black;
 }
@@ -1936,5 +1960,86 @@ pre code {
 		border-right: none;
 		border-bottom: 1px solid var(--secondary);
 		padding: 0px 32px 16px 32px;
+	}
+}
+
+/*--------------------------------------------------------------
+# Blog
+--------------------------------------------------------------*/
+#blog-header {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 64px;
+	margin: auto;
+	margin-bottom: 64px;
+}
+
+/* Copying style from h4 */
+#blog-header * {
+	font-family: "Inter";
+	font-size: 24px;
+    font-weight: 400;
+}
+
+#blog-header select {
+	display: inline-block;
+	border: none;
+	background-color: transparent;
+	/* -webkit-appearance: none; */
+	/* -moz-appearance: none; */
+}
+
+#blog-header select:focus,
+#blog-header select:focus-visible {
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
+
+#blog-main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 32px;
+	margin-bottom: 32px;
+}
+
+ul.pagination {
+	width: fit-content;
+	margin: auto;
+	margin-bottom: 64px;
+}
+
+.blog-main-post-card {
+	max-width: unset;
+	height: unset;
+    width: 70vw;
+}
+
+.blog-main-post-card-bottom-tags {
+	margin-right: 16px;
+	float: right;
+}
+
+
+/* ANIMATION ON HOVER */
+.blog-main-post-card-bottom-tags span:hover {
+	color: black;
+}
+
+
+/* ADAPTATION FOR MOBILE DEVICES */
+@media (max-width: 768px) {
+	.blog-post-card {
+		height: auto;
+	}
+	
+	/* Hide text for comment and favourite sections, bc on mobile devices they may not fit in */
+	.blog-post-card-bottom-comment span,
+	.blog-post-card-bottom-favourite span	{
+		display: none;
 	}
 }
