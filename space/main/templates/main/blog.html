@@ -6,32 +6,47 @@
     <!-- -----  Main Start  ----- -->
     <main id="main">
         <!-- Filters START -->
-        <div id="blog-header">
-            <div>
-                <label for="blog-header-date">Date: </label>
-                <select id="blog-header-date">
-                    <option selected>all time</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
+        <form method="get" action="{% url 'blog' %}">
+            <div id="_____blog-header">
+                <div>
+                    <label for="blog-header-date">Date: </label>
+                    <select id="blog-header-date" name="filter_date">
+                        <option value="0">All time</option>
+                        <option value="1">Last day</option>
+                        <option value="2">Last week</option>
+                        <option value="3">Last month</option>
+                    </select>
+                </div>
 
-            <div>
-                <label class="form-check-label" for="blog-header-sorting">Sorting: </label>
-                <select id="blog-header-sorting">
-                    <option selected>by popularity</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
+                <div>
+                    <label for="blog-header-sorting">Sorting: </label>
+                    <select id="blog-header-sorting" name="filter_sorting">
+                        <option value="0">By creation date (new first)</option>
+                        <option value="1">By creation date (old first)</option>
+                        <option value="2">By popularity (the best)</option>
+                        <option value="3">By popularity (worst)</option>
+                    </select>
+                </div>
 
-            <div class="form-check form-check-reverse">
-                <input class="form-check-input" type="checkbox" value="" id="blog-header-favorites-only">
-                <label class="form-check-label" for="blog-header-favorites-only">Favorites only: </label>
+                <!--
+                <div class="form-check">
+                    <label class="form-check-label" for="blog-header-favorites-only">Favorites only: </label>
+                    <input id="blog-header-favorites-only" class="form-check-input" type="checkbox"
+                           name="filter_favourite">
+                </div>
+                -->
+
+                <button class="btn btn-info" type="submit"> Apply</button>
             </div>
-        </div>
+        </form>
+
+        <script>
+            var filter_date = document.getElementById("blog-header-date");
+            filter_date.value = {{ filter_date }};
+
+            var filter_sorting = document.getElementById("blog-header-sorting");
+            filter_sorting.value = {{ filter_sorting }};
+        </script>
         <!-- Filters END -->
 
         <!-- Articles START -->
@@ -85,8 +100,17 @@
         <!-- Pagination START -->
         <ul class="pagination">
             {% if page_obj.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page=1">&laquo;First</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page=1&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                        &laquo;First
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ page_obj.previous_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                        Previous
+                    </a>
                 </li>
             {% else %}
                 <li class="page-item"><a class="page-link" href="#">&laquo;First</a></li>
@@ -98,9 +122,18 @@
             </li>
 
             {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-                <li class="page-item"><a class="page-link"
-                                         href="?page={{ page_obj.paginator.num_pages }}">Last&raquo;</a></li>
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ page_obj.next_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                        Next
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ page_obj.paginator.num_pages }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                        Last&raquo;
+                    </a>
+                </li>
             {% else %}
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 <li class="page-item"><a class="page-link" href="#">Last&raquo;</a></li>

@@ -76,11 +76,34 @@ class BlogListView(ListView):
     """
 
     template_name = 'main/blog.html'
+    paginate_by = 1
 
     model = Article
-    queryset = Article.objects.filter(published=True).order_by('-created')
 
-    paginate_by = 1
+    def get_queryset(self):
+        FILTER_DATE = {
+            '0': None,  # All time
+            '1': None,  # Last day
+            '2': None,  # Last week
+            '3': None,  # Last month
+        }
+
+        FILTER_SORTING = {
+            '0': '-created',  # By creation date (new first)
+            '1': 'created',  # By creation date (old first)
+            '2': '-rating',  # By popularity (the best)
+            '3': 'rating',  # By popularity (worst)
+        }
+
+        # new_queryset = Article.objects.filter(published=True).order_by('-created')
+        new_queryset = Article.objects.filter(published=True)
+
+        filter_date = self.request.GET.get('filter_date', '0')
+        filter_sorting = self.request.GET.get('filter_sorting', '0')
+
+        if filter_sorting in FILTER_SORTING:
+            new_queryset = new_queryset.order_by(FILTER_SORTING[filter_sorting])
+        return new_queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -93,6 +116,8 @@ class BlogListView(ListView):
             posts_clear_content[item.slug] = ' '.join(BeautifulSoup(item.content, "html.parser").stripped_strings)
         context['posts_images'] = posts_images
         context['posts_clear_content'] = posts_clear_content
+        context['filter_date'] = self.request.GET.get('filter_date', '0')
+        context['filter_sorting'] = self.request.GET.get('filter_sorting', '0')
         return context
 
 
