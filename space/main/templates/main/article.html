@@ -3,18 +3,36 @@
 
 {% block body %}
     <!-- -----  Main Start  ----- -->
-    <main id="main">
-        {{ article.created }}
-        <b> {{ article.reading }} </b>
-        <h1> {{ article.title }} </h1>
-        {{ article.content|safe }}
-        <p>
-            Tags:
-            {% for tag in article.tags.all %}
-                {{ tag.name }}
-            {% endfor %}
-        </p>
-        <b> {{ article.rating }} </b>
+    <main>
+		<div class="article">
+			<span class="article-date">{{ article.created }}</span>
+			<span class="article-reading-time">Reading time ~ {{ article.reading }} min.</span>
+			<h2 class="article-title">{{ article.title }}</h2>
+			{{ article.content|safe }}
+			<div class="article-bottom">
+				<span class="blog-main-post-card-bottom-comment">
+					<i class="bi bi-chat"></i>
+					<span>1337</span>
+				</span>
+				<span class="blog-main-post-card-bottom-favourite">
+					<span class="{{ article.slug }} fav_mark">
+						<i class="bi bi-bookmark"></i>
+						add to favourite
+					</span>
+				</span>
+				<span class="blog-main-post-card-bottom-rating">
+					<i class="{{ article.slug }} bi bi-chevron-down rating-down"></i>
+					<strong class="{{ article.slug }} rating"> {{ article.rating }} </strong>
+					<i class="{{ article.slug }} bi bi-chevron-up rating-up"></i>
+				</span>
+				<span class="blog-main-post-card-bottom-tags">
+					Tags:
+					{% for tag in article.tags.all %}
+					<span>{{ tag.name }}</span>
+					{% endfor %}
+				</span>
+			</div>
+		</div>
     </main>
     <!-- -----   Main End   ----- -->
 {% endblock %}

@@ -203,15 +203,12 @@
 			tooltip._config.title = "Copy to clipboard";
 		});
 		
-		/* Auto select on click */
-		select("#export-css-input").addEventListener("click", (event) => {
-			select("#export-css-input").select();
-		}, false);
-		
 		
 		//CSS
 		document.querySelector('#gradient-export-css-modal').addEventListener('show.bs.modal', (event) => {
-			document.querySelector("#gradient-export-css-modal input[type=text]").value = "background: " + document.querySelector("#gradient-gen-card-result").style.background + ";";
+			const preCode = document.querySelector("#gradient-export-css-modal pre code");
+			preCode.innerHTML= "background: " + document.querySelector("#gradient-gen-card-result").style.background + ";";
+			hljs.highlightElement(preCode);
 		});
 		
 		

@@ -916,7 +916,6 @@ footer a:hover {
     border-radius: 16px;
     background-color: white;
     max-width: 544px;
-	height: 590px;
 }
 
 /* Link to a particular post */
@@ -984,9 +983,9 @@ footer a:hover {
 .recent-post-card-bottom,
 .blog-main-post-card-bottom {
 	position: absolute;
-	bottom: 16px;
-	right: 16px;
-	left: 16px;
+	bottom: calc(32px - 1.5rem/2);
+	right: 32px;
+	left: 32px;
 }
 
 .recent-post-card-bottom-comment,
@@ -2004,6 +2003,8 @@ pre code {
 	justify-content: center;
 	align-items: center;
 	gap: 32px;
+	margin: auto;
+	max-width: 1024px;
 	margin-bottom: 32px;
 }
 
@@ -2016,7 +2017,6 @@ ul.pagination {
 .blog-main-post-card {
 	max-width: unset;
 	height: unset;
-    width: 70vw;
 }
 
 .blog-main-post-card-bottom-tags {
@@ -2033,13 +2033,59 @@ ul.pagination {
 
 /* ADAPTATION FOR MOBILE DEVICES */
 @media (max-width: 768px) {
-	.blog-post-card {
-		height: auto;
-	}
-	
-	/* Hide text for comment and favourite sections, bc on mobile devices they may not fit in */
-	.blog-post-card-bottom-comment span,
-	.blog-post-card-bottom-favourite span	{
-		display: none;
-	}
+	/* TODO */
+}
+
+
+/*--------------------------------------------------------------
+# Article
+--------------------------------------------------------------*/
+.article {
+	border: 1px solid var(--secondary);
+	border-radius: 16px;
+	background-color: white;
+	padding: 64px;
+	text-align: justify;
+	max-width: 1024px;
+	margin: auto;
+	margin-bottom: 64px;
+	margin-top: 64px;
+}
+
+.article-date,
+.article-reading-time {
+	color: var(--secondary);
+}
+
+.article-date {
+	float: left:
+}
+
+.article-reading-time {
+	float: right;
+}
+
+.article-title {
+	margin: 48px 0px 16px 0px;
+}
+
+.article img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 16px;
+}
+
+.article-bottom {
+	margin-top: 32px;
+	color: var(--secondary);
+}
+
+.article blockquote {
+	margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+	background-color: #fdf5e0;
+	border-left: 4px solid #e9aa5d;
+	padding: 16px;
 }
