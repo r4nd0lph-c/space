@@ -102,6 +102,7 @@ class BlogListView(ListView):
 
         filter_date = self.request.GET.get('filter_date', '0')
         filter_sorting = self.request.GET.get('filter_sorting', '0')
+        filter_favourite = self.request.GET.get('filter_favourite', 'off')
 
         if filter_date in FILTER_DATE:
             if filter_date != '0':
@@ -111,6 +112,14 @@ class BlogListView(ListView):
 
         if filter_sorting in FILTER_SORTING:
             new_queryset = new_queryset.order_by(FILTER_SORTING[filter_sorting])
+        else:
+            new_queryset = new_queryset.order_by('-created')
+
+        if filter_favourite == "on":
+            favs = self.request.COOKIES.get('fav_posts')[1:-1]
+            favs = [item[1:-1] for item in favs.split(',')]
+            new_queryset = new_queryset.filter(slug__in=favs)
+
         return new_queryset
 
     def get_context_data(self, **kwargs):
@@ -126,6 +135,7 @@ class BlogListView(ListView):
         context['posts_clear_content'] = posts_clear_content
         context['filter_date'] = self.request.GET.get('filter_date', '0')
         context['filter_sorting'] = self.request.GET.get('filter_sorting', '0')
+        context['filter_favourite'] = self.request.GET.get('filter_favourite', 'off')
         return context
 
 

@@ -6,7 +6,7 @@
     <!-- -----  Main Start  ----- -->
     <main id="main">
         <!-- Filters START -->
-        <form method="get" action="{% url 'blog' %}">
+        <form method="get" action="{% url 'blog' %}" name="filter_form">
             <div id="_____blog-header">
                 <div>
                     <label for="blog-header-date">Date: </label>
@@ -28,24 +28,54 @@
                     </select>
                 </div>
 
-                <!--
                 <div class="form-check">
                     <label class="form-check-label" for="blog-header-favorites-only">Favorites only: </label>
                     <input id="blog-header-favorites-only" class="form-check-input" type="checkbox"
                            name="filter_favourite">
                 </div>
-                -->
 
                 <button class="btn btn-info" type="submit"> Apply</button>
+                <button id="reset" class="btn btn-secondary"> Reset</button>
             </div>
         </form>
 
         <script>
             var filter_date = document.getElementById("blog-header-date");
-            filter_date.value = {{ filter_date }};
-
             var filter_sorting = document.getElementById("blog-header-sorting");
-            filter_sorting.value = {{ filter_sorting }};
+            var filter_favourite = document.getElementById("blog-header-favorites-only");
+
+            var date_val = {{ filter_date }};
+            var sorting_val = {{ filter_sorting }};
+            var favourite_val = "{{ filter_favourite }}";
+
+            function set_date(val) {
+                if (Number(val) < 4)
+                    filter_date.value = val;
+                else
+                    filter_date.value = '0';
+            }
+
+            function set_sorting(val) {
+                if (Number(val) < 4)
+                    filter_sorting.value = val;
+                else
+                    filter_sorting.value = '0';
+            }
+
+            function set_favourite(val) {
+                filter_favourite.checked = val === "on";
+            }
+
+            document.getElementById("reset").onclick = function () {
+                set_date('0');
+                set_sorting('0');
+                set_favourite('off');
+                document.forms["filter_form"].submit();
+            };
+
+            set_date(date_val);
+            set_sorting(sorting_val);
+            set_favourite(favourite_val);
         </script>
         <!-- Filters END -->
 
@@ -102,13 +132,13 @@
             {% if page_obj.has_previous %}
                 <li class="page-item">
                     <a class="page-link"
-                       href="?page=1&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                       href="?page=1&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}&filter_favourite={{ filter_favourite }}">
                         &laquo;First
                     </a>
                 </li>
                 <li class="page-item">
                     <a class="page-link"
-                       href="?page={{ page_obj.previous_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                       href="?page={{ page_obj.previous_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}&filter_favourite={{ filter_favourite }}">
                         Previous
                     </a>
                 </li>
@@ -124,13 +154,13 @@
             {% if page_obj.has_next %}
                 <li class="page-item">
                     <a class="page-link"
-                       href="?page={{ page_obj.next_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                       href="?page={{ page_obj.next_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}&filter_favourite={{ filter_favourite }}">
                         Next
                     </a>
                 </li>
                 <li class="page-item">
                     <a class="page-link"
-                       href="?page={{ page_obj.paginator.num_pages }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}">
+                       href="?page={{ page_obj.paginator.num_pages }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}&filter_favourite={{ filter_favourite }}">
                         Last&raquo;
                     </a>
                 </li>

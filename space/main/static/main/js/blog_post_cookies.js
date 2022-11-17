@@ -215,9 +215,3 @@ for (let i = 0; i < rating_up_buttons.length; i++)
     redraw_rating_chevron("rating_up", rating_up_buttons[i]);
 for (let i = 0; i < rating_down_buttons.length; i++)
     redraw_rating_chevron("rating_down", rating_down_buttons[i]);
-
-console.log(rating_up_buttons);
-console.log(rating_down_buttons);
-console.log("COOKIES:", document.cookie);
-console.log(get_rating_cookies("rating_up"));
-console.log(get_rating_cookies("rating_down"));
