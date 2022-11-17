@@ -5,7 +5,7 @@
 {% block body %}
     <!-- -----  Main Start  ----- -->
     <main id="main">
-        <!-- Articles START -->
+        <!-- Filters START -->
         <div id="blog-header">
             <div>
                 <label for="blog-header-date">Date: </label>
@@ -16,6 +16,7 @@
                     <option value="3">Three</option>
                 </select>
             </div>
+
             <div>
                 <label class="form-check-label" for="blog-header-sorting">Sorting: </label>
                 <select id="blog-header-sorting">
@@ -25,11 +26,15 @@
                     <option value="3">Three</option>
                 </select>
             </div>
+
             <div class="form-check form-check-reverse">
                 <input class="form-check-input" type="checkbox" value="" id="blog-header-favorites-only">
                 <label class="form-check-label" for="blog-header-favorites-only">Favorites only: </label>
             </div>
         </div>
+        <!-- Filters END -->
+
+        <!-- Articles START -->
         <ul id="blog-main">
             {% for article in object_list %}
                 <!-- card Start -->
