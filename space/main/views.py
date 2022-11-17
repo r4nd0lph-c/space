@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
@@ -83,9 +85,9 @@ class BlogListView(ListView):
     def get_queryset(self):
         FILTER_DATE = {
             '0': None,  # All time
-            '1': None,  # Last day
-            '2': None,  # Last week
-            '3': None,  # Last month
+            '1': 1,  # Last day
+            '2': 7,  # Last week
+            '3': 30,  # Last month
         }
 
         FILTER_SORTING = {
@@ -100,6 +102,12 @@ class BlogListView(ListView):
 
         filter_date = self.request.GET.get('filter_date', '0')
         filter_sorting = self.request.GET.get('filter_sorting', '0')
+
+        if filter_date in FILTER_DATE:
+            if filter_date != '0':
+                today = date.today()
+                day_before = today - timedelta(days=FILTER_DATE[filter_date])
+                new_queryset = new_queryset.filter(created__gt=day_before)
 
         if filter_sorting in FILTER_SORTING:
             new_queryset = new_queryset.order_by(FILTER_SORTING[filter_sorting])
