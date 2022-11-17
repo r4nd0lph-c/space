@@ -185,9 +185,9 @@
                             </span>
 						</span>
                         <span class="recent-post-card-bottom-rating">
-                            <i class="bi bi-chevron-down"></i>
-                            <strong> {{ recent_posts.0.rating }} </strong>
-                            <i class="bi bi-chevron-up"></i>
+                            <i class="{{ recent_posts.0.slug }} bi bi-chevron-down rating-down"></i>
+                            <strong class="{{ recent_posts.0.slug }} rating"> {{ recent_posts.0.rating }} </strong>
+                            <i class="{{ recent_posts.0.slug }} bi bi-chevron-up rating-up"></i>
                         </span>
                     </div>
                 </div>
@@ -220,9 +220,9 @@
                             </span>
 						</span>
                         <span class="recent-post-card-bottom-rating">
-                            <i class="bi bi-chevron-down"></i>
-                            <strong> {{ recent_posts.1.rating }}</strong>
-                            <i class="bi bi-chevron-up"></i>
+                            <i class="{{ recent_posts.1.slug }} bi bi-chevron-down rating-down"></i>
+                            <strong class="{{ recent_posts.1.slug }} rating"> {{ recent_posts.1.rating }}</strong>
+                            <i class="{{ recent_posts.1.slug }} bi bi-chevron-up rating-up"></i>
                         </span>
                     </div>
                 </div>

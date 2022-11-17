@@ -118,6 +118,34 @@ class ArticleDetailView(DetailView):
         return context
 
 
+@csrf_exempt
+def add_rating(request):
+    """ FBV for add rating to post (slug) AJAX """
+
+    if request.method == "POST":
+        slug = request.POST.get("slug", None)
+        article = Article.objects.get(slug=slug)
+        article.rating += 1
+        article.save()
+        return JsonResponse({"message": "success add"})
+    else:
+        return JsonResponse({"message": "you don't have enough rights!"})
+
+
+@csrf_exempt
+def remove_rating(request):
+    """ FBV for remove rating to post (slug) AJAX """
+
+    if request.method == "POST":
+        slug = request.POST.get("slug", None)
+        article = Article.objects.get(slug=slug)
+        article.rating -= 1
+        article.save()
+        return JsonResponse({"message": "success remove"})
+    else:
+        return JsonResponse({"message": "you don't have enough rights!"})
+
+
 # ------------------  BLOG&POST PAGES END  ----------------- #
 
 
