@@ -2098,15 +2098,23 @@ ul.pagination {
 /*--------------------------------------------------------------
 # Article
 --------------------------------------------------------------*/
-.article {
-	border: 1px solid var(--secondary);
-	border-radius: 16px;
-	background-color: white;
-	padding: 64px;
+.article-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column nowrap;
+	gap: 64px;
 	max-width: 1024px;
 	margin: auto;
 	margin-bottom: 64px;
 	margin-top: 64px;
+}
+
+.article-container > div {
+	border: 1px solid var(--secondary);
+	border-radius: 16px;
+	background-color: white;
+	padding: 64px;
 }
 
 .article-date,
@@ -2149,4 +2157,41 @@ ul.pagination {
 	background-color: #fdf5e0;
 	border-left: 4px solid #e9aa5d;
 	padding: 16px;
+}
+
+#section_add #id_nickname {
+	max-width: 256px;
+}
+
+#section_add form * {
+	margin-top: 32px;
+}
+
+#section_add form button {
+	min-width: 120px;
+}
+
+#section_view {
+	margin-top: 64px;
+}
+
+#section_view > div {
+	background-color: white;
+	border-radius: 8px;
+	border: 1px solid var(--secondary);
+	padding: 32px;
+	margin-top: 32px;
+}
+
+#section_view > div h4 {
+	display: inline;
+	margin-right: 16px;
+}
+
+#section_view > div span {
+	color: var(--secondary);
+}
+
+#section_view > div p {
+	margin-top: 10px;
 }

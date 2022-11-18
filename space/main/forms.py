@@ -2,16 +2,18 @@ from django import forms
 
 
 class CommentForm(forms.Form):
-    nickname = forms.CharField(label="Your nickname",
-                               widget=forms.TextInput(
+    nickname = forms.CharField(widget=forms.TextInput(
                                    attrs={
+                                       "class": "form-control",
+                                       "placeholder": "Your nickname"
                                    }
                                ))
 
-    content = forms.CharField(label="Add a comment...",
-                              widget=forms.Textarea(
+    content = forms.CharField(widget=forms.Textarea(
                                   attrs={
-                                      "rows": "3"
+                                      "rows": "3",
+                                      "class": "form-control",
+                                      "placeholder": "Add a comment..."
                                   }
                               ))
 
