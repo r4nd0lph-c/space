@@ -893,6 +893,11 @@ footer a:hover {
 
 
 /* RECENT POSTS + BLOG POSTS*/
+#main #recent-posts {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 /* Margin to the "View all" label */
 #recent-posts > a {
 	margin-top: 16px;
@@ -1030,7 +1035,15 @@ footer a:hover {
 /* ADAPTATION FOR MOBILE DEVICES */
 @media (max-width: 768px) {
 	.recent-post-card {
+		padding: 16px;
+		padding-bottom: 48px;
 		height: auto;
+	}
+	
+	.recent-post-card-bottom {
+		bottom: calc(24px - 1.5rem/2);
+		right: 16px;
+		left: 16px;
 	}
 	
 	/* Hide text for comment and favourite sections, bc on mobile devices they may not fit in */
@@ -1997,11 +2010,18 @@ pre code {
 	box-shadow: none;
 }
 
+#blog-header-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 32px;
+}
+
 #blog-main {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 0px;
 	gap: 32px;
 	margin: auto;
 	max-width: 1024px;
@@ -2015,9 +2035,17 @@ ul.pagination {
 }
 
 .blog-main-post-card {
+	padding: 64px;
 	max-width: unset;
 	height: unset;
 }
+
+.blog-main-post-card-bottom {
+	bottom: calc(32px - 1.5rem/2);
+	left: 64px;
+	right: 64px;
+}
+	
 
 .blog-main-post-card-bottom-tags {
 	margin-right: 16px;
@@ -2033,7 +2061,27 @@ ul.pagination {
 
 /* ADAPTATION FOR MOBILE DEVICES */
 @media (max-width: 768px) {
-	/* TODO */
+	
+	#blog-header-buttons {
+		flex-basis: 100%;
+	}
+	
+	.blog-main-post-card {
+		padding: 16px;
+		padding-bottom: 48px;
+	}
+	
+	.blog-main-post-card-bottom {
+	bottom: calc(24px - 1.5rem/2);
+	left: 16px;
+	right: 16px;
+}
+	
+	/* Hide text for comment and favourite sections, bc on mobile devices they may not fit in */
+	.blog-main-post-card-bottom-comment span,
+	.blog-main-post-card-bottom-favourite span	{
+		display: none;
+	}
 }
 
 
@@ -2045,7 +2093,6 @@ ul.pagination {
 	border-radius: 16px;
 	background-color: white;
 	padding: 64px;
-	text-align: justify;
 	max-width: 1024px;
 	margin: auto;
 	margin-bottom: 64px;

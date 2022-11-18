@@ -470,6 +470,7 @@
 		})
 		.then(function (blob) {
 			send_img(blob);
+			select("#color-picker-card-colors-list").style.opacity = null;
 		});
     }
 
