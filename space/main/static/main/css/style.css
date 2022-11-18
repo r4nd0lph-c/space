@@ -961,6 +961,7 @@ footer a:hover {
 .recent-post-title,
 .blog-main-post-title {
 	margin: 0;
+    color: var(--dark);
 }
 
 .recent-post-text,
@@ -971,7 +972,8 @@ footer a:hover {
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;  
+	-webkit-box-orient: vertical;
+    color: var(--dark);
 }
 
 .recent-post-image,
