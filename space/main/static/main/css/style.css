@@ -1970,15 +1970,15 @@ pre code {
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
-	gap: 64px;
+	gap: 32px;
 	margin: auto;
 	margin-bottom: 64px;
 }
 
-/* Copying style from h4 */
+/* Copying style from p */
 #blog-header * {
-	font-family: "Inter";
-	font-size: 24px;
+    font-family: "Open Sans";
+    font-size: 16px;
     font-weight: 400;
 }
 
