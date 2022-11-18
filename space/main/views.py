@@ -26,6 +26,8 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home | SPACE'
+        context['active_link'] = 'link-index'
+        context['is_index'] = True
         recent_posts = list(Article.objects.filter(published=True).order_by('-created')[0:2])
         recent_posts_images = []
         count_comments = []
@@ -54,6 +56,7 @@ class AboutView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'About | SPACE'
+        context['active_link'] = 'link-about'
         return context
 
 
@@ -71,6 +74,7 @@ class ServicesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Services | SPACE'
+        context['active_link'] = 'link-services'
         return context
 
 
@@ -131,6 +135,7 @@ class BlogListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Blog | SPACE'
+        context['active_link'] = 'link-blog'
         posts_images = {}
         posts_clear_content = {}
         posts_count_comments = {}
@@ -166,6 +171,7 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Article | SPACE'
+        context['active_link'] = 'link-blog'
         context['form'] = CommentForm
         context['comments_queryset'] = Comment.objects.filter(
             article__slug=self.kwargs['article_slug']
@@ -235,7 +241,8 @@ class PaletteGeneratorView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = ''
+        context['title'] = 'Palette Generator | SPACE'
+        context['active_link'] = 'link-services'
         return context
 
 
@@ -248,7 +255,8 @@ class GradientGeneratorView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = ''
+        context['title'] = 'Gradient Generator | SPACE'
+        context['active_link'] = 'link-services'
         return context
 
 
@@ -262,6 +270,7 @@ class ColorPickerView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Color Picker | SPACE'
+        context['active_link'] = 'link-services'
         return context
 
 
@@ -286,7 +295,8 @@ class ContrastCheckerView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = ''
+        context['title'] = 'Contrast Checker | SPACE'
+        context['active_link'] = 'link-services'
         return context
 
 

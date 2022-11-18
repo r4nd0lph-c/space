@@ -2,31 +2,11 @@
 {% load static %}
 
 {% block body %}
-    <!-- ----- Header Start ----- -->
-    <header id="header" class="fixed-top header-inner-pages">
-        <div class="container d-flex align-items-center justify-content-between">
-
-            <h1 class="logo"><a href="{% url 'index' %}">SPACE</a></h1>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto " href="#recent-posts">Recent Posts</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
-
-        </div>
-    </header>
-    <!-- -----  Header End  ----- -->
-
     <!-- -----  Main Start  ----- -->
     <main class="tool-section">
-		<!-- Export Modal -->
+        <!-- Export Modal -->
         <div class="modal fade" tabindex="-1" id="color-picker-export-modal">
-            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">EXPORT AS...</h4>
@@ -34,26 +14,29 @@
                     </div>
                     <div class="modal-body">
                         <div class="export-modal-icons">
-							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#color-picker-export-css-modal">
-								<i class="bi bi-filetype-css"></i>
-								<div>CSS</div>
-							</button>
-							<button id="color-picker-export-collage-png-button" data-bs-dismiss="modal">
-								<i class="bi bi-image"></i>
-								<div>Image</div>
-							</button>
-							<button id="color-picker-export-collage-pdf-button" data-bs-dismiss="modal">
-								<i class="bi bi-file-earmark-pdf"></i>
-								<div>PDF</div>
-							</button>
-							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#color-picker-export-csv-modal">
-								<i class="bi bi-list-columns-reverse"></i>
-								<div>CSV</div>
-							</button>
-							<button data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#color-picker-export-json-modal">
-								<i class="bi bi-braces"></i>
-								<div>JSON</div>
-							</button>
+                            <button data-bs-toggle="modal" data-bs-dismiss="modal"
+                                    data-bs-target="#color-picker-export-css-modal">
+                                <i class="bi bi-filetype-css"></i>
+                                <div>CSS</div>
+                            </button>
+                            <button id="color-picker-export-collage-png-button" data-bs-dismiss="modal">
+                                <i class="bi bi-image"></i>
+                                <div>Image</div>
+                            </button>
+                            <button id="color-picker-export-collage-pdf-button" data-bs-dismiss="modal">
+                                <i class="bi bi-file-earmark-pdf"></i>
+                                <div>PDF</div>
+                            </button>
+                            <button data-bs-toggle="modal" data-bs-dismiss="modal"
+                                    data-bs-target="#color-picker-export-csv-modal">
+                                <i class="bi bi-list-columns-reverse"></i>
+                                <div>CSV</div>
+                            </button>
+                            <button data-bs-toggle="modal" data-bs-dismiss="modal"
+                                    data-bs-target="#color-picker-export-json-modal">
+                                <i class="bi bi-braces"></i>
+                                <div>JSON</div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -61,7 +44,7 @@
         </div>
         <!-- Export As CSS Modal -->
         <div class="modal fade" tabindex="-1" id="color-picker-export-css-modal">
-            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">EXPORT AS CSS</h4>
@@ -73,17 +56,25 @@
 								You should not see this text
 							</code>
 						</pre>
-						<div style="display: flex; justify-content: space-between; gap: 32px;">
-							<a id="color-picker-export-css-modal-download-button" href="" download="color_picker.scss" style="height: 50px; flex: 1;"><button style="width: 100%; height: 50px; border: 1px solid var(--secondary);" class="btn">DOWNLOAD</button></a>
-							<button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="Copied!" data-clipboard-target="#color-picker-export-css-code">COPY</button>
-						</div>
+                        <div style="display: flex; justify-content: space-between; gap: 32px;">
+                            <a id="color-picker-export-css-modal-download-button" href="" download="color_picker.scss"
+                               style="height: 50px; flex: 1;">
+                                <button style="width: 100%; height: 50px; border: 1px solid var(--secondary);"
+                                        class="btn">DOWNLOAD
+                                </button>
+                            </a>
+                            <button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom"
+                                    data-bs-toggle="tooltip" data-bs-title="Copied!"
+                                    data-clipboard-target="#color-picker-export-css-code">COPY
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-		<!-- Export As CSV Modal -->
+        <!-- Export As CSV Modal -->
         <div class="modal fade" tabindex="-1" id="color-picker-export-csv-modal">
-            <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">EXPORT AS CSV</h4>
@@ -94,17 +85,25 @@
 							<code id="color-picker-export-csv-code" class="language-plaintext">
 							</code>
 						</pre>
-						<div style="display: flex; justify-content: space-between; gap: 32px;">
-							<a id="color-picker-export-csv-modal-download-button" href="" download="color_picker.csv" style="height: 50px; flex: 1;"><button style="width: 100%; height: 50px; border: 1px solid var(--secondary);" class="btn">DOWNLOAD</button></a>
-							<button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="Copied!" data-clipboard-target="#color-picker-export-csv-code">COPY</button>
-						</div>
+                        <div style="display: flex; justify-content: space-between; gap: 32px;">
+                            <a id="color-picker-export-csv-modal-download-button" href="" download="color_picker.csv"
+                               style="height: 50px; flex: 1;">
+                                <button style="width: 100%; height: 50px; border: 1px solid var(--secondary);"
+                                        class="btn">DOWNLOAD
+                                </button>
+                            </a>
+                            <button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom"
+                                    data-bs-toggle="tooltip" data-bs-title="Copied!"
+                                    data-clipboard-target="#color-picker-export-csv-code">COPY
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-		<!-- Export As JSON Modal -->
+        <!-- Export As JSON Modal -->
         <div class="modal fade" tabindex="-1" id="color-picker-export-json-modal">
-            <div class="modal-dialog modal-dialog-centered modal-lg" >
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">EXPORT AS JSON</h4>
@@ -115,27 +114,35 @@
 							<code id="color-picker-export-json-code" class="language-json">
 							</code>
 						</pre>
-						<div style="display: flex; justify-content: space-between; gap: 32px;">
-							<a id="color-picker-export-json-modal-download-button" href="" download="color_picker.json" style="height: 50px; flex: 1;"><button style="width: 100%; height: 50px; border: 1px solid var(--secondary);" class="btn">DOWNLOAD</button></a>
-							<button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="Copied!" data-clipboard-target="#color-picker-export-json-code">COPY</button>
-						</div>
+                        <div style="display: flex; justify-content: space-between; gap: 32px;">
+                            <a id="color-picker-export-json-modal-download-button" href="" download="color_picker.json"
+                               style="height: 50px; flex: 1;">
+                                <button style="width: 100%; height: 50px; border: 1px solid var(--secondary);"
+                                        class="btn">DOWNLOAD
+                                </button>
+                            </a>
+                            <button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom"
+                                    data-bs-toggle="tooltip" data-bs-title="Copied!"
+                                    data-clipboard-target="#color-picker-export-json-code">COPY
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-		<!-- Export As Collage -->
+        <!-- Export As Collage -->
         <div id="color-picker-export-collage">
             <div>
-				<ul id="color-picker-export-collage-color-list">
-				</ul>
-				<div id="color-picker-export-collage-result-image">
-					<img id="color-picker-export-collage-display-image" draggable="false"
-					src="{% static 'main/graphics/color_picker/image_example.png' %}"/>
-				</div>
+                <ul id="color-picker-export-collage-color-list">
+                </ul>
+                <div id="color-picker-export-collage-result-image">
+                    <img id="color-picker-export-collage-display-image" draggable="false"
+                         src="{% static 'main/graphics/color_picker/image_example.png' %}"/>
+                </div>
             </div>
         </div>
-		
-	
+
+
         <div class="tool-description">
             <h3 class="underline-black">COLOR PICKER</h3>
             <p>Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and
@@ -244,9 +251,12 @@
                 </div>
 
                 <div id="color-picker-card-settings-bottom">
-					<input style="display: none;" type="file" id="color-picker-upload-button" accept="image/jpeg, image/png, image/jpg">
-					<label id="color-picker-upload" for="color-picker-upload-button">UPLOAD IMAGE</label>
-					<button id="color-picker-export-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#color-picker-export-modal">EXPORT AS</button>
+                    <input style="display: none;" type="file" id="color-picker-upload-button"
+                           accept="image/jpeg, image/png, image/jpg">
+                    <label id="color-picker-upload" for="color-picker-upload-button">UPLOAD IMAGE</label>
+                    <button id="color-picker-export-button" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#color-picker-export-modal">EXPORT AS
+                    </button>
                 </div>
 
             </div>
@@ -260,10 +270,10 @@
                     <div></div>
                     <div></div>
                     <div class="hidden"></div>
-					<div class="hidden"></div>
-					<div class="hidden"></div>
-					<div class="hidden"></div>
-					<div class="hidden"></div>
+                    <div class="hidden"></div>
+                    <div class="hidden"></div>
+                    <div class="hidden"></div>
+                    <div class="hidden"></div>
                 </div>
             </div>
         </div>
