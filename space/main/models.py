@@ -27,3 +27,13 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse('article', kwargs={'slug': self.slug})
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=32)
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'Comment ID: ' + str(self.id)

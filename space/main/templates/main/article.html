@@ -4,33 +4,37 @@
 {% block body %}
     <!-- -----  Main Start  ----- -->
     <main>
-		<div class="article">
-			<span class="article-date">{{ article.created }}</span>
-			<span class="article-reading-time">Reading time ~ {{ article.reading }} min.</span>
-			<h2 class="article-title">{{ article.title }}</h2>
-			{{ article.content|safe }}
-			<div class="article-bottom">
+        <!-- Articles START -->
+        <div class="article">
+            <span class="article-date">{{ article.created }}</span>
+            <span class="article-reading-time">Reading time ~ {{ article.reading }} min.</span>
+            <h2 class="article-title">{{ article.title }}</h2>
+            {{ article.content|safe }}
+            <div class="article-bottom">
 				<span class="blog-main-post-card-bottom-comment">
 					<i class="bi bi-chat"></i>
 					<span>1337</span>
 				</span>
-				<span class="{{ article.slug }} fav_mark blog-main-post-card-bottom-favourite">
+                <span class="{{ article.slug }} fav_mark blog-main-post-card-bottom-favourite">
 					<i class="bi bi-bookmark"></i>
 					<span>add to favourite</span>
 				</span>
-				<span class="blog-main-post-card-bottom-rating">
+                <span class="blog-main-post-card-bottom-rating">
 					<i class="{{ article.slug }} bi bi-chevron-down rating-down"></i>
 					<strong class="{{ article.slug }} rating"> {{ article.rating }} </strong>
 					<i class="{{ article.slug }} bi bi-chevron-up rating-up"></i>
 				</span>
-				<span class="blog-main-post-card-bottom-tags">
+                <span class="blog-main-post-card-bottom-tags">
 					Tags:
-					{% for tag in article.tags.all %}
-					<span>#{{ tag.name }}</span>
-					{% endfor %}
+                    {% for tag in article.tags.all %}
+                        <span>#{{ tag.name }}</span>
+                    {% endfor %}
 				</span>
-			</div>
-		</div>
+            </div>
+        </div>
+        <!-- Articles END -->
     </main>
+
+    <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
     <!-- -----   Main End   ----- -->
 {% endblock %}

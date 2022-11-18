@@ -162,12 +162,12 @@ class ArticleDetailView(DetailView):
 
 
 @csrf_exempt
-def add_rating(request):
+def add_rating(request, article_slug=None):
     """ FBV for add rating to post (slug) AJAX """
 
     if request.method == "POST":
-        slug = request.POST.get("slug", None)
-        article = Article.objects.get(slug=slug)
+        got_slug = request.POST.get("slug", None)
+        article = Article.objects.get(slug=got_slug)
         article.rating += 1
         article.save()
         return JsonResponse({"message": "success add"})
@@ -176,12 +176,12 @@ def add_rating(request):
 
 
 @csrf_exempt
-def remove_rating(request):
+def remove_rating(request, article_slug=None):
     """ FBV for remove rating to post (slug) AJAX """
 
     if request.method == "POST":
-        slug = request.POST.get("slug", None)
-        article = Article.objects.get(slug=slug)
+        got_slug = request.POST.get("slug", None)
+        article = Article.objects.get(slug=got_slug)
         article.rating -= 1
         article.save()
         return JsonResponse({"message": "success remove"})
