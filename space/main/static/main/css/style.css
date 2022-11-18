@@ -1994,6 +1994,14 @@ pre code {
 /*--------------------------------------------------------------
 # Blog
 --------------------------------------------------------------*/
+#blog {
+	display: flex;
+	flex-flow: column;
+	padding-top: calc(64px + 57px);
+	padding-bottom: 64px;
+	min-height: calc(100vh - 300px);
+}
+
 #blog-header {
 	display: flex;
 	flex-flow: row wrap;
@@ -2026,6 +2034,11 @@ pre code {
 	box-shadow: none;
 }
 
+#blog-header > div:not(:last-child) {
+	border-bottom: 2px solid black;
+	padding-bottom: 8px;
+}
+
 #blog-header-buttons {
 	display: flex;
 	justify-content: center;
@@ -2047,13 +2060,18 @@ pre code {
 ul.pagination {
 	width: fit-content;
 	margin: auto;
-	margin-bottom: 64px;
+	margin-bottom: 0;
 }
 
 .blog-main-post-card {
 	padding: 64px;
+	padding-top: 32px;
 	max-width: unset;
 	height: unset;
+}
+
+.blog-main-post-card-content {
+	margin-top: 32px;
 }
 
 .blog-main-post-card-bottom {
@@ -2088,10 +2106,10 @@ ul.pagination {
 	}
 	
 	.blog-main-post-card-bottom {
-	bottom: calc(24px - 1.5rem/2);
-	left: 16px;
-	right: 16px;
-}
+		bottom: calc(24px - 1.5rem/2);
+		left: 16px;
+		right: 16px;
+	}
 	
 	/* Hide text for comment and favourite sections, bc on mobile devices they may not fit in */
 	.blog-main-post-card-bottom-comment span,
@@ -2113,7 +2131,8 @@ ul.pagination {
 	max-width: 1024px;
 	margin: auto;
 	margin-bottom: 64px;
-	margin-top: 64px;
+	margin-top: calc(64px + 57px);
+	overflow-wrap: break-word;
 }
 
 .article-container > div {
@@ -2165,6 +2184,8 @@ ul.pagination {
 	padding: 16px;
 }
 
+
+/* COMMENT SECTION */
 #section_add #id_nickname {
 	max-width: 256px;
 }
@@ -2200,4 +2221,34 @@ ul.pagination {
 
 #section_view > div p {
 	margin-top: 10px;
+}
+
+
+/* ADAPTATION FOR MOBILE DEVICES */
+@media (max-width: 768px) {
+	
+	.article-container > div h1 {
+		font-size: 28px;
+	}
+	
+	.article-container > div h2 {
+		font-size: 24px;
+	}
+	
+	.article-container > div {
+		padding: 16px;
+		padding-bottom: 48px;
+	}
+	
+	.blog-main-post-card-bottom {
+		bottom: calc(24px - 1.5rem/2);
+		left: 16px;
+		right: 16px;
+	}
+	
+	/* Hide text for comment and favourite sections, bc on mobile devices they may not fit in */
+	.blog-main-post-card-bottom-comment span,
+	.blog-main-post-card-bottom-favourite span	{
+		display: none;
+	}
 }
