@@ -33,6 +33,32 @@
             </div>
         </div>
         <!-- Articles END -->
+
+        <!-- Comments START -->
+        <div id="block_comments">
+            <div id="section_add">
+                <form method="post" action="{% url 'article_form' %}" name="add_comm_form">
+                    {% csrf_token %}
+                    {{ form.nickname.label }}
+                    {{ form.nickname }}
+
+                    {{ form.content.label }}
+                    {{ form.content }}
+
+                    {{ form.article_slug.as_hidden }}
+                    <button class="btn btn-primary" type="submit">Post</button>
+                    <script>
+                        var hidden_slug_field = document.getElementById("id_article_slug");
+                        hidden_slug_field.value = "{{ article.slug }}";
+                    </script>
+                </form>
+            </div>
+
+            <div id="section_view">
+
+            </div>
+        </div>
+        <!-- Comments END -->
     </main>
 
     <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>

@@ -8,6 +8,7 @@ urlpatterns = [
     path('services/', ServicesView.as_view(), name='services'),
     path('blog/', BlogListView.as_view(), name='blog'),
     path('blog/article/<slug:article_slug>/', ArticleDetailView.as_view(), name='article'),
+    path('blog/article/form', ArticleFormView.as_view(), name='article_form'),
     path('add_rating/', add_rating, name="add_rating"),
     path('remove_rating/', remove_rating, name="remove_rating"),
     path('blog/add_rating/', add_rating, name="add_rating_blog"),

@@ -2,11 +2,14 @@ from datetime import date, timedelta
 
 from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView
 from django.http import JsonResponse
+from django.views.generic.edit import FormView
 
 from .models import *
+from .forms import *
 from .services import color_clusters
 
 from bs4 import BeautifulSoup
@@ -157,8 +160,29 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Article | SPACE'
-
+        context['form'] = CommentForm
         return context
+
+
+class ArticleFormView(FormView):
+    """
+    CBV for the Article Form representation
+    """
+
+    form_class = CommentForm
+
+    def form_valid(self, form):
+        article = Article.objects.get(slug=self.request.POST['article_slug'])
+        comment = Comment(
+            article_id=article.id,
+            nickname=self.request.POST['nickname'],
+            content=self.request.POST['content']
+        )
+        comment.save()
+        return super(ArticleFormView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('article', kwargs={'article_slug': self.request.POST['article_slug']}) + "#section_view"
 
 
 @csrf_exempt
