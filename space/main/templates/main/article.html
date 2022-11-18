@@ -37,14 +37,17 @@
         <!-- Comments START -->
         <div id="block_comments">
             <div id="section_add">
+                <h3> Add comment</h3>
                 <form method="post" action="{% url 'article_form' %}" name="add_comm_form">
                     {% csrf_token %}
-                    {{ form.nickname.label }}
-                    {{ form.nickname }}
-
-                    {{ form.content.label }}
-                    {{ form.content }}
-
+                    <p>
+                        {{ form.nickname.label }}
+                        {{ form.nickname }}
+                    </p>
+                    <p>
+                        {{ form.content.label }}
+                        {{ form.content }}
+                    </p>
                     {{ form.article_slug.as_hidden }}
                     <button class="btn btn-primary" type="submit">Post</button>
                     <script>
@@ -55,7 +58,14 @@
             </div>
 
             <div id="section_view">
-
+                <h3> Comments ({{ comments_queryset.count }}) </h3>
+                {% for comment in comments_queryset %}
+                    <div style="background-color: var(--secondary); margin: 16px;">
+                        <span> {{ comment.nickname }}</span>
+                        <span> {{ comment.created }}</span>
+                        <p> {{ comment.content }}</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <!-- Comments END -->

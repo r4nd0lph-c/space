@@ -161,6 +161,9 @@ class ArticleDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Article | SPACE'
         context['form'] = CommentForm
+        context['comments_queryset'] = Comment.objects.filter(
+            article__slug=self.kwargs['article_slug']
+        ).order_by('-created')
         return context
 
 
