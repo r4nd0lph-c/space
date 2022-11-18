@@ -12,8 +12,10 @@
             {{ article.content|safe }}
             <div class="article-bottom">
 				<span class="blog-main-post-card-bottom-comment">
-					<i class="bi bi-chat"></i>
-					<span>1337</span>
+                    <a href="#section_view">
+                        <i class="bi bi-chat"></i>
+                        <span>{{ comments_queryset.count }}</span>
+                    </a>
 				</span>
                 <span class="{{ article.slug }} fav_mark blog-main-post-card-bottom-favourite">
 					<i class="bi bi-bookmark"></i>
@@ -49,7 +51,7 @@
                         {{ form.content }}
                     </p>
                     {{ form.article_slug.as_hidden }}
-                    <button class="btn btn-primary" type="submit">Post</button>
+                    <button id="post_comm" class="btn btn-primary" type="submit">Post</button>
                     <script>
                         var hidden_slug_field = document.getElementById("id_article_slug");
                         hidden_slug_field.value = "{{ article.slug }}";
@@ -72,5 +74,6 @@
     </main>
 
     <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
+    <script src="{% static 'main/js/save_nickname.js' %}"></script>
     <!-- -----   Main End   ----- -->
 {% endblock %}

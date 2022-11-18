@@ -28,12 +28,15 @@ class IndexView(TemplateView):
         context['title'] = 'Home | SPACE'
         recent_posts = list(Article.objects.filter(published=True).order_by('-created')[0:2])
         recent_posts_images = []
+        count_comments = []
         for item in recent_posts:
             soup = BeautifulSoup(item.content, 'html.parser')
             recent_posts_images.append(soup.find('img').attrs['src'])
             item.content = ' '.join(BeautifulSoup(item.content, "html.parser").stripped_strings)
+            count_comments.append(len(Comment.objects.filter(article__slug=item.slug)))
         context['recent_posts'] = recent_posts
         context['recent_posts_images'] = recent_posts_images
+        context['count_comments'] = count_comments
         return context
 
 
@@ -130,12 +133,15 @@ class BlogListView(ListView):
         context['title'] = 'Blog | SPACE'
         posts_images = {}
         posts_clear_content = {}
+        posts_count_comments = {}
         for item in self.object_list:
             soup = BeautifulSoup(item.content, 'html.parser')
             posts_images[item.slug] = soup.find('img').attrs['src']
             posts_clear_content[item.slug] = ' '.join(BeautifulSoup(item.content, "html.parser").stripped_strings)
+            posts_count_comments[item.slug] = len(Comment.objects.filter(article__slug=item.slug))
         context['posts_images'] = posts_images
         context['posts_clear_content'] = posts_clear_content
+        context['posts_count_comments'] = posts_count_comments
         context['filter_date'] = self.request.GET.get('filter_date', '0')
         context['filter_sorting'] = self.request.GET.get('filter_sorting', '0')
         context['filter_favourite'] = self.request.GET.get('filter_favourite', 'off')
