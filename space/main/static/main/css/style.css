@@ -998,6 +998,16 @@ footer a:hover {
 	margin-right: 16px;
 }
 
+.recent-post-card-bottom-comment a,
+.blog-main-post-card-bottom-comment a {
+	color: unset;
+}
+
+.recent-post-card-bottom-comment a *,
+.blog-main-post-card-bottom-comment a * {
+	transition: unset;
+}
+
 .recent-post-card-bottom-rating,
 .blog-main-post-card-bottom-rating {
 	float: right;
@@ -2125,6 +2135,10 @@ ul.pagination {
 .article-bottom {
 	margin-top: 32px;
 	color: var(--secondary);
+}
+
+.article-bottom * {
+	transition: all 0.05s ease-out 0s;
 }
 
 .article blockquote {

@@ -235,8 +235,10 @@
         </section>
         <!-- -----  Recent Posts End  ----- -->
     </main>
-
-    <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
-    <script src="{% static 'main/js/index.js' %}"></script>
     <!-- -----   Main End   ----- -->
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
+	<script src="{% static 'main/js/index.js' %}"></script>
 {% endblock %}
