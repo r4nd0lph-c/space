@@ -4,74 +4,80 @@
 {% block body %}
     <!-- -----  Main Start  ----- -->
     <main>
-		<div class="article-container">
-			<!-- Articles START -->
-			<div class="article">
-				<span class="article-date">{{ article.created }}</span>
-				<span class="article-reading-time">Reading time ~ {{ article.reading }} min.</span>
-				<h1 class="article-title">{{ article.title }}</h1>
-				{{ article.content|safe }}
-				<div class="article-bottom">
+        <div class="article-container">
+            <!-- Articles START -->
+            <div class="article">
+                <span class="article-date">{{ article.created }}</span>
+                <span class="article-reading-time">Reading time ~ {{ article.reading }} min.</span>
+                <h1 class="article-title">{{ article.title }}</h1>
+                {{ article.content|safe }}
+                <div class="article-bottom">
 					<span class="blog-main-post-card-bottom-comment">
 						<a href="#section_view">
 							<i class="bi bi-chat"></i>
 							<span>{{ comments_queryset.count }}</span>
 						</a>
 					</span>
-					<span class="{{ article.slug }} fav_mark blog-main-post-card-bottom-favourite">
+                    <span class="{{ article.slug }} fav_mark blog-main-post-card-bottom-favourite">
 						<i class="bi bi-bookmark"></i>
 						<span>add to favourite</span>
 					</span>
-					<span class="blog-main-post-card-bottom-rating">
+                    <span class="blog-main-post-card-bottom-rating">
 						<i class="{{ article.slug }} bi bi-chevron-down rating-down"></i>
 						<strong class="{{ article.slug }} rating"> {{ article.rating }} </strong>
 						<i class="{{ article.slug }} bi bi-chevron-up rating-up"></i>
 					</span>
-					<span class="blog-main-post-card-bottom-tags">
+                    <span class="blog-main-post-card-bottom-tags">
 						Tags:
-						{% for tag in article.tags.all %}
-							<span>#{{ tag.name }}</span>
-						{% endfor %}
+                        {% for tag in article.tags.all %}
+                            <span>#{{ tag.name }}</span>
+                        {% endfor %}
 					</span>
-				</div>
-			</div>
-			<!-- Articles END -->
+                </div>
+            </div>
+            <script>
+                var images = document.getElementsByClassName("article")[0].getElementsByTagName("img");
+                for (let img of images) {
+                    img.style.height = null;
+                }
+            </script>
+            <!-- Articles END -->
 
-			<!-- Comments START -->
-			<div id="block_comments">
-				<div id="section_add">
-					<h3> Add comment</h3>
-					<form method="post" action="{% url 'article_form' %}" name="add_comm_form">
-						{% csrf_token %}
-						{{ form.nickname }}
-						{{ form.content }}
-						{{ form.article_slug.as_hidden }}
-						<button id="post_comm" class="btn btn-primary" type="submit">Post</button>
-						<script>
-							var hidden_slug_field = document.getElementById("id_article_slug");
-							hidden_slug_field.value = "{{ article.slug }}";
-						</script>
-					</form>
-				</div>
+            <!-- Comments START -->
+            <div id="block_comments">
+                <div id="section_add">
+                    <h3> Add comment</h3>
+                    <form method="post" action="{% url 'article_form' %}" name="add_comm_form">
+                        {% csrf_token %}
+                        {{ form.nickname }}
+                        {{ form.content }}
+                        {{ form.article_slug.as_hidden }}
+                        <button id="post_comm" class="btn btn-primary" type="submit">Post</button>
+                        <script>
+                            var hidden_slug_field = document.getElementById("id_article_slug");
+                            hidden_slug_field.value = "{{ article.slug }}";
+                        </script>
+                    </form>
+                </div>
 
-				<div id="section_view">
-					<h3> Comments ({{ comments_queryset.count }}) </h3>
-					{% for comment in comments_queryset %}
-						<div>
-							<h4> {{ comment.nickname }}</h4>
-							<span> {{ comment.created }}</span>
-							<p> {{ comment.content }}</p>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
-			<!-- Comments END -->
-		</div>
+                <div id="section_view">
+                    <h3> Comments ({{ comments_queryset.count }}) </h3>
+                    {% for comment in comments_queryset %}
+                        <div>
+                            <h4> {{ comment.nickname }}</h4>
+                            <span> {{ comment.created }}</span>
+                            <p> {{ comment.content }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Comments END -->
+        </div>
     </main>
     <!-- -----   Main End   ----- -->
 {% endblock %}
 
 {% block script %}
-	<script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
-	<script src="{% static 'main/js/save_nickname.js' %}"></script>
+    <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
+    <script src="{% static 'main/js/save_nickname.js' %}"></script>
 {% endblock %}
