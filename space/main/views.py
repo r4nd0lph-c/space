@@ -126,9 +126,12 @@ class BlogListView(ListView):
             new_queryset = new_queryset.order_by('-created')
 
         if filter_favourite == "on":
-            favs = self.request.COOKIES.get('fav_posts')[1:-1]
-            favs = [item[1:-1] for item in favs.split(',')]
-            new_queryset = new_queryset.filter(slug__in=favs)
+            if self.request.COOKIES.get('fav_posts') is not None:
+                favs = self.request.COOKIES.get('fav_posts')[1:-1]
+                favs = [item[1:-1] for item in favs.split(',')]
+                new_queryset = new_queryset.filter(slug__in=favs)
+            else:
+                new_queryset = Article.objects.none()
 
         return new_queryset
 
