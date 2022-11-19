@@ -6,7 +6,7 @@ function get_nick_cookies(name) {
     const value = `; ${document.cookie}`;
     let parts = value.split(`; ${name}=`);
     if (parts.length === 2) {
-        return parts[1];
+        return parts[1].split(";")[0];
     }
     return "";
 }
