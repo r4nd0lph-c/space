@@ -690,6 +690,10 @@ footer a:hover {
 
 /* COMMON ELEMENTS */
 
+#main {
+	padding: 0;
+}
+
 #main section {
 	text-align: center;
     position: relative;
@@ -2132,8 +2136,6 @@ ul.pagination {
 	gap: 64px;
 	max-width: 1024px;
 	margin: auto;
-	margin-bottom: 64px;
-	margin-top: calc(64px + 57px);
 	overflow-wrap: break-word;
 }
 
@@ -2254,3 +2256,70 @@ ul.pagination {
 		display: none;
 	}
 }
+
+
+/*--------------------------------------------------------------
+# Services Page
+--------------------------------------------------------------*/
+
+#services-container {
+	display: flex;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-flow: column;
+	gap: 32px;
+	padding: 0;
+	margin: auto;
+	max-width: 1024px;
+	list-style-type: none;
+}
+
+#services-container li a {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	gap: 16px;
+	align-items: stretch;
+	background-color: white;
+	border-radius: 16px;
+	border: 1px solid var(--secondary);
+	padding: 32px;
+	color: var(--dark);
+	transition: all 0.150s ease-out 0s;
+}
+
+/* ANIMATION ON HOVER */
+#services-container li a:hover {
+	border: 1px solid var(--primary);
+	color: var(--primary);
+}
+
+#services-container li a img {
+	flex: 1;
+	width: auto;
+	border-radius: 16px;
+	border: 1px solid var(--secondary);
+	background-color: var(--light);
+	transition: border 0.150s ease-out 0s;
+}
+
+#services-container li a div {
+	flex: 5;
+}
+
+main {
+	padding-top: calc(64px + 57px);
+	padding-bottom: 64px;
+}
+
+/* ADAPTATION FOR MOBILE DEVICES */
+@media (max-width: 768px) {
+	
+	#services-container li a {
+		padding: 16px;
+	}
+}
+
+/*--------------------------------------------------------------
+# About Us Page
+--------------------------------------------------------------*/

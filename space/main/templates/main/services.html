@@ -2,5 +2,49 @@
 {% load static %}
 
 {% block body %}
-
+<main>
+	<div style="text-align: center; margin-bottom: 64px;"><h3 class="underline-black">SERVICES</h3></div>
+	<ul id="services-container">
+		<li>
+			<a href="{% url 'palette_generator' %}">
+				<img src="{% static 'main/graphics/main_page/palette_generator_icon.svg' %}"/>
+				<div>
+					<h4>Palettes</h4>
+					<p>Create your own color palette in just one click! Use
+									flexible settings to express all spectrum of your ideas.</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{% url 'gradient_generator' %}">
+				<img src="{% static 'main/graphics/main_page/gradient_generator_icon.svg' %}"/>
+				<div>
+					<h4>Gradients</h4>
+					<p>Make your own art of soft and fluffy colors fluently
+                                flowing into each other. Be certain, everything will go smoothly.</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{% url 'color_picker' %}">
+				<img src="{% static 'main/graphics/main_page/color_picker_icon.svg' %}"/>
+				<div>
+					<h4>Color Pick</h4>
+					<p>Life is filled with colors. You’ve always been
+                                wondering what color your life’s in? Upload your photo and learn in a sec.</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="{% url 'contrast_checker' %}">
+				<img src="{% static 'main/graphics/main_page/contrast_check_icon.svg' %}"/>
+				<div>
+					<h4>Contrast Check</h4>
+					<p>Check the contrast between the colors of the background
+                                and the text. Let your graphical content be in-SIGHT-ful.</p>
+				</div>
+			</a>
+		</li>
+	</ul>
+</main>
 {% endblock %}
