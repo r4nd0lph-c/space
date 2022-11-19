@@ -1400,19 +1400,39 @@ pre code {
 }
 
 .palette-generator-card-result-color {
-	flex-shrink: 1;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 16px 16px;
+	flex: 1;
+    position: relative;
+	text-align: center;
     padding: 24px;
-	width: 100%;
+}
+
+.palette-generator-card-result-color * {
+	transition: all 0.3s ease-out 0s;
 }
 
 .palette-generator-card-result-color h3,
 .palette-generator-card-result-color p {
-    margin: 0;
+	position: absolute;
+	margin: 0 auto 0 auto;
+	left: 0;
+	right: 0;
+}
+
+.palette-generator-card-result-color p {
+	opacity: calc(100% * 2 / 3);
+	bottom: 32px;
+}
+
+.palette-generator-card-result-color h3 {
+	bottom: 70px;
+}
+
+.palette-generator-card-result-color:hover p {
+	bottom: -32px;
+}
+
+.palette-generator-card-result-color:hover h3 {
+	bottom: 32px;
 }
 
 #palette-generator-card-settings {
@@ -2319,7 +2339,3 @@ main {
 		padding: 16px;
 	}
 }
-
-/*--------------------------------------------------------------
-# About Us Page
---------------------------------------------------------------*/
