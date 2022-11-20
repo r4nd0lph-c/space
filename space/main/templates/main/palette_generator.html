@@ -2,6 +2,22 @@
 {% load static %}
 
 {% block body %}
+	<!-- Palette Color Additional Info Modal -->
+	<div class="modal fade" tabindex="-1" id="palette-generator-color-info-modal">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">COLOR INFO</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div id="palette-generator-color-info-modal-color"></div>
+					<pre><code class="language-scss"></code></pre>
+				</div>
+			</div>
+		</div>
+	</div>
+
     <!-- -----  Main Start  ----- -->
     <main class="tool-section">
         <div class="tool-description">
@@ -18,7 +34,7 @@
 						<i class="bi bi-x-lg"></i>
 						<i class="bi bi-unlock-fill"></i>
 						<i class="bi bi-arrow-left-right"></i>
-						<i class="bi bi-info-square"></i>
+						<i class="bi bi-info-square" data-bs-toggle="modal" data-bs-target="#palette-generator-color-info-modal"></i>
 					</span>
                     <h3>#A2C6CB</h3>
 					<input type="color" value="#A2C6CB" />
@@ -32,7 +48,7 @@
 						<i class="bi bi-x-lg"></i>
 						<i class="bi bi-unlock-fill"></i>
 						<i class="bi bi-arrow-left-right"></i>
-						<i class="bi bi-info-square"></i>
+						<i class="bi bi-info-square" data-bs-toggle="modal" data-bs-target="#palette-generator-color-info-modal"></i>
 					</span>
                     <h3>#CFE1D0</h3>
 					<input type="color" value="#CFE1D0" />
@@ -46,7 +62,7 @@
 						<i class="bi bi-x-lg"></i>
 						<i class="bi bi-unlock-fill"></i>
 						<i class="bi bi-arrow-left-right"></i>
-						<i class="bi bi-info-square"></i>
+						<i class="bi bi-info-square" data-bs-toggle="modal" data-bs-target="#palette-generator-color-info-modal"></i>
 					</span>
                     <h3>#EFF0CF</h3>
 					<input type="color" value="#EFF0CF" />
@@ -60,7 +76,7 @@
 						<i class="bi bi-x-lg"></i>
 						<i class="bi bi-unlock-fill"></i>
 						<i class="bi bi-arrow-left-right"></i>
-						<i class="bi bi-info-square"></i>
+						<i class="bi bi-info-square" data-bs-toggle="modal" data-bs-target="#palette-generator-color-info-modal"></i>
 					</span>
                     <h3>#D8C9AD</h3>
 					<input type="color" value="#D8C9AD" />
@@ -74,7 +90,7 @@
 						<i class="bi bi-x-lg"></i>
 						<i class="bi bi-unlock-fill"></i>
 						<i class="bi bi-arrow-left-right"></i>
-						<i class="bi bi-info-square"></i>
+						<i class="bi bi-info-square" data-bs-toggle="modal" data-bs-target="#palette-generator-color-info-modal"></i>
 					</span>
                     <h3>#4C3345</h3>
 					<input type="color" value="#4C3345" />

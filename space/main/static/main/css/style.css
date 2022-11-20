@@ -1499,15 +1499,15 @@ pre code {
 
 /* ANIMATION ON HOVER */
 
-.palette-generator-card-result-color:hover .palette-generator-card-result-color-tools i {
+.palette-generator-card-result-color.hovered .palette-generator-card-result-color-tools i {
 	opacity: calc(100% * 2 / 3);
 }
 
-.palette-generator-card-result-color:hover p {
+.palette-generator-card-result-color.hovered p {
 	bottom: -32px;
 }
 
-.palette-generator-card-result-color:hover h3 {
+.palette-generator-card-result-color.hovered h3 {
 	bottom: 32px;
 }
 
@@ -1550,6 +1550,19 @@ pre code {
     border: 1px solid var(--secondary);
     height: 50px;
 	min-width: 160px;
+}
+
+/* Palette Color Additional Info Modal */
+#palette-generator-color-info-modal-color {
+	height: 128px;
+	width: 100%;
+	margin-bottom: 16px;
+	border-radius: 0.375rem;
+	border: 1px solid var(--secondary);
+}
+
+#palette-generator-color-info-modal pre code {
+	height: auto;
 }
 
 /* Adaptation for mobile devices */
