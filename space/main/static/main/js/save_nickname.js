@@ -12,7 +12,9 @@ function get_nick_cookies(name) {
 }
 
 function set_nick_cookies(name, nickname) {
-    document.cookie = name + "=" + nickname + ";path = /";
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + 365);
+    document.cookie = name + "=" + nickname + "; expires =" + exdate.toUTCString() + "; path = /";
 }
 
 var post_comm_btn = document.getElementById("post_comm");

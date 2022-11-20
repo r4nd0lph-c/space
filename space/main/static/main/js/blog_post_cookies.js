@@ -28,7 +28,9 @@ function change_cookie(name) {
             new_cookie += line;
         }
         new_cookie = `"${new_cookie.slice(0, -1) + ']'}"`;
-        document.cookie = name + "=" + new_cookie + ";path = /";
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + 365);
+        document.cookie = name + "=" + new_cookie + "; expires =" + exdate.toUTCString() + "; path = /";
     } else document.cookie = name + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path = /";
 }
 
@@ -101,7 +103,9 @@ function change_rating_cookies(name, cookies_array) {
         for (let i = 0; i < cookies_array.length; i++) {
             body += cookies_array[i] + ".";
         }
-        document.cookie = name + "=" + body.slice(0, -1) + ";path = /";
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + 365);
+        document.cookie = name + "=" + body.slice(0, -1) + "; expires =" + exdate.toUTCString() + "; path = /";
     } else document.cookie = name + "= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path = /";
 }
 
