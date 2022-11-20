@@ -1406,12 +1406,17 @@ pre code {
     padding: 24px;
 }
 
+.palette-generator-card-result-color {
+	transition: transform 0.3s ease-out 0s;
+}
+
 .palette-generator-card-result-color * {
 	transition: all 0.3s ease-out 0s;
 }
 
 .palette-generator-card-result-color h3,
-.palette-generator-card-result-color p {
+.palette-generator-card-result-color p,
+.palette-generator-card-result-color-tools {
 	position: absolute;
 	margin: 0 auto 0 auto;
 	left: 0;
@@ -1420,11 +1425,80 @@ pre code {
 
 .palette-generator-card-result-color p {
 	opacity: calc(100% * 2 / 3);
+}
+
+.palette-generator-card-result-color-tools {
+	font-size: 1.125rem;
+	display: flex;
+	flex-flow: column;
+	gap: 13px;
+	top: 32px;
+}
+
+.palette-generator-card-result-color-tools i.bi-lock-fill {
+	opacity: calc(100% * 2 / 3);
+}
+
+.palette-generator-card-result-color-tools i.bi-arrow-left-right {
+	cursor: grab;
+}
+
+.palette-generator-card-result-color-tools i {
+	opacity: 0;
+	margin: auto;
+	cursor: pointer;
+}
+
+.palette-generator-card-result-color p {
 	bottom: 32px;
 }
 
 .palette-generator-card-result-color h3 {
+	text-transform: uppercase;
+	cursor: pointer;
 	bottom: 70px;
+}
+
+.palette-generator-card-result-color input {
+	position: absolute;
+	height: 0;
+	width: 0;
+	opacity: 0;
+	left: 50%;
+	bottom: 70px;
+}
+
+.palette-generator-card-result-color-add {
+	position: absolute;
+	font-size: 1.125rem;
+	top: 0;
+	left: calc(100% - 56px / 2);
+	width: 56px;
+	height: 100%;
+	z-index: 1;
+}
+
+.palette-generator-card-result-color-add i {
+	opacity: 0;
+	position: absolute;
+	border-radius: 50%;
+	border: 1px dashed black;
+	background-color: white;
+	width: 28px;
+	height: 28px;
+	top: calc(50% - 28px / 2);
+	left: calc(50% - 28px / 2);
+}
+
+.palette-generator-card-result-color-add:hover i {
+	cursor: pointer;
+	opacity: calc(100% * 2 / 3);
+}
+
+/* ANIMATION ON HOVER */
+
+.palette-generator-card-result-color:hover .palette-generator-card-result-color-tools i {
+	opacity: calc(100% * 2 / 3);
 }
 
 .palette-generator-card-result-color:hover p {
@@ -1458,13 +1532,13 @@ pre code {
 	border-left: 1px solid var(--secondary);
 }
 
-#palette-generator-card-settings .btn-group {
+#palette-generator-card-settings div:nth-child(3) {
 	/* max-width: 100px; */
 	padding: 16px 32px 16px 0px;
 	border-right: 1px solid var(--secondary);
 }
 
-#palette-generator-card-settings .btn-group button {
+#palette-generator-card-settings div:nth-child(3) button {
 	border: 1px solid var(--secondary);
     height: 50px;
 }
