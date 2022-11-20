@@ -119,6 +119,18 @@
 				checkBrightness();
 			});
 			
+			function CheckAndToggleRemoveIcons() {
+				const removeIcons = palette.getElementsByClassName("bi-x-lg");	
+				//If less than 3 - remove icons so that users can't remove colors anymore
+				if(paletteColors.length <= 3)
+					for(let removeIcon of removeIcons) {
+						if(removeIcon.style.visibility)
+							removeIcon.style.removeProperty("visibility");
+						else
+							removeIcon.style.visibility = "hidden";
+					}
+			}
+			
 			colorAdd.addEventListener("click", function() {
 				const newColor = createNewPaletteColor();
 				const firstColor = getRgbFromCssStyle(paletteColor.style.backgroundColor);
@@ -130,12 +142,26 @@
 				newColor.style.backgroundColor = middleColor;
 				newColor.querySelector("h3").textContent = middleColor;
 				newColor.querySelector("input").value = middleColor;
+				newColor.style.flex = "0";
+				newColor.style.padding = "0";
 				paletteColor.after(newColor);
+				setTimeout(function() {
+					newColor.style.removeProperty("flex");
+					newColor.style.removeProperty("padding");
+				}, 100);
+				
+				// CheckAndToggleRemoveIcons();
 				checkBrightness();
 			});
 			
 			colorRemove.addEventListener("click", function () {
-				paletteColor.remove();
+				paletteColor.style.flex = "0";
+				paletteColor.style.padding = "0";
+				
+				// CheckAndToggleRemoveIcons();
+				setTimeout(function() {
+					paletteColor.remove();
+				}, 300);
 			});
 			
 			colorUnlock.addEventListener("click", function () {
@@ -148,7 +174,7 @@
 				}
 			});
 			
-			colorDrag.ondragstart = function() {
+			palette.ondragstart = function() {
 				return false;
 			};
 			
@@ -157,6 +183,9 @@
 				for(let i = 0; i < paletteColors.length; i++) {
 					paletteColors[i].style.removeProperty("transition");
 				}
+				
+				palette.style.cursor = 'grabbing';
+				colorDrag.style.cursor = 'grabbing';
 				
 				const colorDragInitialLeft = colorDrag.getBoundingClientRect().left;
 				const paletteColorInitialLeft = paletteColor.getBoundingClientRect().left;
@@ -168,22 +197,23 @@
 				// console.log("right-boundary: " + rightBoundary);
 				let direction = 1;
 				let count;
+				let diff;
 				
 				paletteColor.style.position = "relative";
 				paletteColor.style.zIndex = "3";
 				
 				function paletteColorMove(evt) {
 					const colorDragWidth = getComputedStyle(colorDrag).width.slice(0, -2);
-					let diff = evt.clientX - colorDragInitialLeft - colorDragWidth/2;
+					// diff = evt.clientX - colorDragInitialLeft - colorDragWidth/2;
+					diff = evt.clientX - colorDragInitialLeft;
 					if((paletteColorInitialLeft + diff) < leftBoundary) {
-						paletteColor.style.left = (leftBoundary - paletteColorInitialLeft + 1) + "px";
+						diff = (leftBoundary - paletteColorInitialLeft + 1);
 					}else if ((paletteColorInitialLeft + diff + paletteColorWidth) > rightBoundary) {
-						paletteColor.style.left = (rightBoundary - paletteColorInitialLeft - paletteColorWidth - 1) + "px";
-					}else {
-						paletteColor.style.left = diff + "px";
+						diff = (rightBoundary - paletteColorInitialLeft - paletteColorWidth - 1);
 					}
 					
-
+					
+					paletteColor.style.left = diff + "px";
 					//Moving siblings
 					//Siblings to the right hand
 					if(diff > 0) {
@@ -192,13 +222,11 @@
 						count = Math.floor(count + 0.5);
 						let current = paletteColor.nextElementSibling;
 						for(let i = 0; i < count; i++) {
-							current.style.position = "relative";
 							current.style.transform = "translate(" + -paletteColorWidth +"px , 0)";
 							current = current.nextElementSibling;
 						}
 						
 						while(current) {
-							current.style.removeProperty("position");
 							current.style.removeProperty("transform");
 							current = current.nextElementSibling;
 						}
@@ -225,6 +253,8 @@
 				palette.addEventListener('mousemove', paletteColorMove);
 
 				function removePaletteColorMove() {
+					palette.style.removeProperty("cursor");
+					colorDrag.style.removeProperty("cursor");
 					palette.removeEventListener('mousemove', paletteColorMove);
 					//Removing palette colors in HTML DOM
 					function movePaletteColorTo(elem, direction, count) {
@@ -239,20 +269,33 @@
 					
 					
 					for(let i = 0; i < paletteColors.length; i++) {
-						paletteColors[i].style.removeProperty("z-index");
 						if(paletteColors[i] == paletteColor) {
 							paletteColor.style.transition = "left 0.3s ease-out 0s";
-							paletteColor.style.left = "0px";
+							paletteColor.style.left = -direction*paletteColorWidth*count + (count == 0 ? 0:1)*diff + "px";
 						}else {
 							paletteColors[i].style.transition = "none";
-							paletteColors[i].style.removeProperty("z-index");
-							paletteColors[i].style.removeProperty("position");
 							paletteColors[i].style.removeProperty("transform");
+							paletteColors[i].style.removeProperty("z-index");
 						}
 					}
 					
 				
 					movePaletteColorTo(paletteColor, direction, count);
+					
+					setTimeout(function() {
+						paletteColor.style.left="0px";
+					}, 10);
+					
+					setTimeout(function() {
+						for(let i = 0; i < paletteColors.length; i++) {
+							paletteColors[i].style.removeProperty("transition");
+							paletteColors[i].style.removeProperty("transform");
+							paletteColors[i].style.removeProperty("z-index");
+						}
+					}, 300);
+					
+
+					
 					
 					
 

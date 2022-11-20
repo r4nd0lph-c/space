@@ -1381,6 +1381,7 @@ pre code {
 }
 
 #palette-generator-card-result {
+	user-select: none;
 	display: flex;
 	white-space: nowrap;
 	overflow: hidden;
@@ -1407,7 +1408,8 @@ pre code {
 }
 
 .palette-generator-card-result-color {
-	transition: transform 0.3s ease-out 0s;
+	transition: all 0.3s ease-out 0s,
+				left 0s;
 }
 
 .palette-generator-card-result-color * {
