@@ -146,7 +146,7 @@
                 success: function (data) {
                     // got params for rendering are saved in data
                     let img_params = data.img_params;
-					
+					console.log(img_params);
 					//Pre-calculations for changing the size of color circles depending on the color contribution
 					//The change is distributed linearly, starting from the greatest contribution => max size (48px) to smallest contribution => min size (24px)
 					//Difference between the greatest and the smallest contribution
