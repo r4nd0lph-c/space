@@ -10,7 +10,7 @@ from django.views.generic.edit import FormView
 
 from .models import *
 from .forms import *
-from .services import color_clusters
+from .services import color_clusters, palette_generator
 
 from bs4 import BeautifulSoup
 
@@ -247,6 +247,18 @@ class PaletteGeneratorView(TemplateView):
         context['title'] = 'Palette Generator | SPACE'
         context['active_link'] = 'link-services'
         return context
+
+
+@csrf_exempt
+def change_palette(request):
+    """ FBV for palette_generator AJAX """
+
+    if request.method == 'POST':
+        palette_object = request.POST.getlist("palette_object[]", None)
+        palette_object = palette_generator.generate(palette_object)
+        return JsonResponse({"palette_object": palette_object})
+    else:
+        return JsonResponse({"message": "you don't have enough rights!"})
 
 
 class GradientGeneratorView(TemplateView):
