@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block body %}
@@ -13,7 +14,7 @@
             <h1 id="main_text"></h1>
             <script>
                 new TypeIt("#main_text", {
-                    strings: ["Powerful tools", "for your creativity"],
+                    strings: [ '{% trans "Powerful tools" %}', '{% trans "for your creativity" %}' ],
                     startDelay: 150,
                     speed: 100,
                     nextStringDelay: 300,
@@ -26,9 +27,9 @@
                 }).go();
             </script>
 
-            <h2>Limitless space for your ideas</h2>
+            <h2>{% trans "Limitless space for your ideas" %}</h2>
             <div class="d-flex">
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                <a href="#services" class="btn-get-started">{% trans "Get Started" %}</a>
             </div>
             <img id="scroll-icon" draggable="false" src="{% static 'main/graphics/main_page/scroll_icon.svg' %}"/>
         </div>
@@ -39,34 +40,30 @@
     <main id="main">
         <!-- -----  About Start  ----- -->
         <section id="about">
-            <h3 class="underline-white" data-aos="fade-down" data-aos-duration="1000">ABOUT</h3>
-            <p data-aos="fade-down" data-aos-duration="1000">SPACE is our bold attempt to create an aggregator of tools
-                that may be handy for web-designers or just people who have a sudden need of working with graphical
-                content. We collected all the different tools you will need in one place, so everything is set up for
-                you to work. There is no limit to what you can do, as there is no limit to space above your head!</p>
+            <h3 class="underline-white" data-aos="fade-down" data-aos-duration="1000">{% trans "ABOUT" %}</h3>
+            <p data-aos="fade-down" data-aos-duration="1000">
+                {% trans "SPACE is our bold attempt to create an aggregator of tools that may be handy for web-designers or just people who have a sudden need of working with graphical content. We collected all the different tools you will need in one place, so everything is set up for you to work. There is no limit to what you can do, as there is no limit to space above your head!" %}
+            </p>
         </section>
         <!-- -----  About End  ----- -->
         <!-- -----  Services Start  ----- -->
         <section id="services">
-            <h3 class="underline-black" data-aos="fade-down" data-aos-duration="1000">SERVICES</h3>
-            <p data-aos="fade-down" data-aos-duration="1000">We have a bunch of tools for working with colors and
-                graphics, including color generators with multiple settings, contrast checker to see if your content
-                adheres to WCAG 2.1 and more. Hover at an icon to get more information about each service. We also
-                develop and implement new tools, so stay tuned!</p>
+            <h3 class="underline-black" data-aos="fade-down" data-aos-duration="1000">{% trans "SERVICES" %}</h3>
+            <p data-aos="fade-down" data-aos-duration="1000">
+                {% trans "We have a bunch of tools for working with colors and graphics, including color generators with multiple settings, contrast checker to see if your content adheres to WCAG 2.1 and more. Hover at an icon to get more information about each service. We also develop and implement new tools, so stay tuned!" %}</p>
             <div id="services-box" data-aos="fade-down" data-aos-duration="1000">
                 <a href="{% url 'palette_generator' %}">
                     <div class="service-card">
                         <img class="service-card-icon"
                              src="{% static 'main/graphics/main_page/palette_generator_icon.svg' %}"/>
-                        <h4 class="service-card-heading">Palettes</h4>
+                        <h4 class="service-card-heading">{% trans "Palettes" %}</h4>
                         <div class="service-card-bottom">
                             <i class="bi bi-chevron-up"></i>
-                            <p>hover</p>
+                            <p>{% trans "hover" %}</p>
                         </div>
                         <div class="service-card-overlay">
-                            <p class="service-card-overlay-text">Create your own color palette in just one click! Use
-                                flexible settings to express all spectrum of your ideas.</p>
-                            <p class="service-card-overlay-text-action">try it</p>
+                            <p class="service-card-overlay-text">{% trans "Create your own color palette in just one click! Use flexible settings to express all spectrum of your ideas." %}</p>
+                            <p class="service-card-overlay-text-action">{% trans "try it" %}</p>
                         </div>
                     </div>
                 </a>
@@ -74,15 +71,14 @@
                     <div class="service-card">
                         <img class="service-card-icon" draggable="false"
                              src="{% static 'main/graphics/main_page/gradient_generator_icon.svg' %}"/>
-                        <h4 class="service-card-heading">Gradients</h4>
+                        <h4 class="service-card-heading">{% trans "Gradients" %}</h4>
                         <div class="service-card-bottom">
                             <i class="bi bi-chevron-up"></i>
-                            <p>hover</p>
+                            <p>{% trans "hover" %}</p>
                         </div>
                         <div class="service-card-overlay">
-                            <p class="service-card-overlay-text">Make your own art of soft and fluffy colors fluently
-                                flowing into each other. Be certain, everything will go smoothly.</p>
-                            <p class="service-card-overlay-text-action">try it</p>
+                            <p class="service-card-overlay-text">{% trans "Make your own art of soft and fluffy colors fluently flowing into each other. Be certain, everything will go smoothly." %}</p>
+                            <p class="service-card-overlay-text-action">{% trans "try it" %}</p>
                         </div>
                     </div>
                 </a>
@@ -90,15 +86,14 @@
                     <div class="service-card">
                         <img class="service-card-icon" draggable="false"
                              src="{% static 'main/graphics/main_page/color_picker_icon.svg' %}"/>
-                        <h4 class="service-card-heading">Color Pick</h4>
+                        <h4 class="service-card-heading">{% trans "Color Pick" %}</h4>
                         <div class="service-card-bottom">
                             <i class="bi bi-chevron-up"></i>
-                            <p>hover</p>
+                            <p>{% trans "hover" %}</p>
                         </div>
                         <div class="service-card-overlay">
-                            <p class="service-card-overlay-text">Life is filled with colors. You’ve always been
-                                wondering what color your life’s in? Upload your photo and learn in a sec.</p>
-                            <p class="service-card-overlay-text-action">try it</p>
+                            <p class="service-card-overlay-text">{% trans "Life is filled with colors. You’ve always been wondering what color your life’s in? Upload your photo and learn in a sec." %}</p>
+                            <p class="service-card-overlay-text-action">{% trans "try it" %}</p>
                         </div>
                     </div>
                 </a>
@@ -106,15 +101,14 @@
                     <div class="service-card">
                         <img class="service-card-icon" draggable="false"
                              src="{% static 'main/graphics/main_page/contrast_check_icon.svg' %}"/>
-                        <h4 class="service-card-heading">Contrast Check</h4>
+                        <h4 class="service-card-heading">{% trans "Contrast Check" %}</h4>
                         <div class="service-card-bottom">
                             <i class="bi bi-chevron-up"></i>
-                            <p>hover</p>
+                            <p>{% trans "hover" %}</p>
                         </div>
                         <div class="service-card-overlay">
-                            <p class="service-card-overlay-text">Check the contrast between the colors of the background
-                                and the text. Let your graphical content be in-SIGHT-ful.</p>
-                            <p class="service-card-overlay-text-action">try it</p>
+                            <p class="service-card-overlay-text">{% trans "Check the contrast between the colors of the background and the text. Let your graphical content be in-SIGHT-ful." %}</p>
+                            <p class="service-card-overlay-text-action">{% trans "try it" %}</p>
                         </div>
                     </div>
                 </a>
@@ -123,14 +117,15 @@
         <!-- -----  Services End  ----- -->
         <!-- -----  Recent Posts Start  ----- -->
         <section id="recent-posts">
-            <h4 class="underline-black" data-aos="fade-down" data-aos-duration="1000">Recent Posts</h4>
-            <a href="{% url 'blog' %}"><p data-aos="fade-down" data-aos-duration="1000">View all</p></a>
+            <h4 class="underline-black" data-aos="fade-down" data-aos-duration="1000">{% trans "Recent Articles" %}</h4>
+            <a href="{% url 'blog' %}"><p data-aos="fade-down" data-aos-duration="1000">{% trans "View all" %}</p></a>
             <div id="recent-posts-box" data-aos="fade-down" data-aos-duration="1000">
                 <!-- card 0 Start -->
                 <div class="recent-post-card">
                     <div class="recent-post-card-top">
                         <p class="recent-post-date">{{ recent_posts.0.created }}</p>
-                        <p class="recent-post-reading-time">Reading time ~ {{ recent_posts.0.reading }} min.</p>
+                        <p class="recent-post-reading-time">{% trans "Reading time" %}
+                            ~ {{ recent_posts.0.reading }} {% trans "min." %}</p>
                     </div>
                     <div class="recent-post-card-content">
                         <a href="{% url 'article' article_slug=recent_posts.0.slug %}" target="_blank">
@@ -152,7 +147,7 @@
 						</span>
                         <span class="{{ recent_posts.0.slug }} fav_mark recent-post-card-bottom-favourite">
                                 <i class="bi bi-bookmark"></i>
-                                <span>add to favourite</span>
+                                <span>{% trans "add to favourite" %}</span>
 						</span>
                         <span class="recent-post-card-bottom-rating">
                             <i class="{{ recent_posts.0.slug }} bi bi-chevron-down rating-down"></i>
@@ -167,7 +162,8 @@
                 <div class="recent-post-card">
                     <div class="recent-post-card-top">
                         <p class="recent-post-date">{{ recent_posts.1.created }}</p>
-                        <p class="recent-post-reading-time">Reading time ~ {{ recent_posts.1.reading }} min. </p>
+                        <p class="recent-post-reading-time">{% trans "Reading time" %}
+                            ~ {{ recent_posts.1.reading }} {% trans "min." %} </p>
                     </div>
                     <div class="recent-post-card-content">
                         <a href="{% url 'article' article_slug=recent_posts.1.slug %}" target="_blank">
@@ -189,7 +185,7 @@
 						</span>
                         <span class="{{ recent_posts.1.slug }} fav_mark recent-post-card-bottom-favourite">
 							<i class="bi bi-bookmark"></i>
-							<span>add to favourite</span>
+							<span>{% trans "add to favourite" %}</span>
 						</span>
                         <span class="recent-post-card-bottom-rating">
                             <i class="{{ recent_posts.1.slug }} bi bi-chevron-down rating-down"></i>

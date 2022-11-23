@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load blog_extract_imgs %}
 
@@ -9,34 +10,34 @@
         <form method="get" action="{% url 'blog' %}" name="filter_form">
             <div id="blog-header">
                 <div>
-                    <label for="blog-header-date">Date: </label>
+                    <label for="blog-header-date">{% trans "Date" %}: </label>
                     <select id="blog-header-date" name="filter_date">
-                        <option value="0">All time</option>
-                        <option value="1">Last day</option>
-                        <option value="2">Last week</option>
-                        <option value="3">Last month</option>
+                        <option value="0">{% trans "All time" %}</option>
+                        <option value="1">{% trans "Last day" %}</option>
+                        <option value="2">{% trans "Last week" %}</option>
+                        <option value="3">{% trans "Last month" %}</option>
                     </select>
                 </div>
 
                 <div>
-                    <label for="blog-header-sorting">Sorting: </label>
+                    <label for="blog-header-sorting">{% trans "Sorting" %}: </label>
                     <select id="blog-header-sorting" name="filter_sorting">
-                        <option value="0">By creation date (new first)</option>
-                        <option value="1">By creation date (old first)</option>
-                        <option value="2">By popularity (the best)</option>
-                        <option value="3">By popularity (worst)</option>
+                        <option value="0">{% trans "By creation date (new first)" %}</option>
+                        <option value="1">{% trans "By creation date (old first)" %}</option>
+                        <option value="2">{% trans "By popularity (the best)" %}</option>
+                        <option value="3">{% trans "By popularity (worst)" %}</option>
                     </select>
                 </div>
 
                 <div class="form-check form-check-reverse">
-                    <label class="form-check-label" for="blog-header-favorites-only">Favorites only: </label>
+                    <label class="form-check-label" for="blog-header-favorites-only">{% trans "Favorites only" %}: </label>
                     <input id="blog-header-favorites-only" class="form-check-input" type="checkbox"
                            name="filter_favourite">
                 </div>
 
                 <div id="blog-header-buttons">
-                    <button class="btn btn-primary" type="submit">Apply</button>
-                    <button style="border: 1px solid var(--secondary);" id="reset" class="btn btn-light">Reset</button>
+                    <button class="btn btn-primary" type="submit">{% trans "Apply" %}</button>
+                    <button style="border: 1px solid var(--secondary);" id="reset" class="btn btn-light">{% trans "Reset" %}</button>
                 </div>
             </div>
         </form>
@@ -88,7 +89,7 @@
                 <div class="blog-main-post-card">
                     <div class="blog-main-post-card-top">
                         <p class="blog-main-post-date">{{ article.created }}</p>
-                        <p class="blog-main-post-reading-time">Reading time ~ {{ article.reading }} min.</p>
+                        <p class="blog-main-post-reading-time">{% trans "Reading time" %} ~ {{ article.reading }} {% trans "min." %}</p>
                     </div>
                     <div class="blog-main-post-card-content">
                         <a href="{% url 'article' article_slug=article.slug %}" target="_blank">
@@ -108,7 +109,7 @@
 						</span>
                         <span class="{{ article.slug }} fav_mark blog-main-post-card-bottom-favourite">
                             <i class="bi bi-bookmark"></i>
-                            <span>add to favourite</span>
+                            <span>{% trans "add to favourite" %}</span>
 						</span>
                         <span class="blog-main-post-card-bottom-rating">
                             <i class="{{ article.slug }} bi bi-chevron-down rating-down"></i>
@@ -124,7 +125,7 @@
                 </div>
                 <!-- card End -->
             {% empty %}
-                <h4 style="color: var(--secondary);"> No articles (check filters)</h4>
+                <h4 style="color: var(--secondary);"> {% trans "No articles (check filters)" %}</h4>
             {% endfor %}
         </ul>
         <!-- Articles END -->
@@ -141,12 +142,12 @@
                 <li class="page-item">
                     <a class="page-link"
                        href="?page={{ page_obj.previous_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}&filter_favourite={{ filter_favourite }}">
-                        Previous
+                        {% trans "Previous" %}
                     </a>
                 </li>
             {% else %}
-                <li class="page-item disabled"><a class="page-link" href="#">&laquo;First</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a>
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;{% trans "First" %}</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#">{% trans "Previous" %}</a>
             {% endif %}
 
             <li class="page-link active">
@@ -157,18 +158,18 @@
                 <li class="page-item">
                     <a class="page-link"
                        href="?page={{ page_obj.next_page_number }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}&filter_favourite={{ filter_favourite }}">
-                        Next
+                        {% trans "Next" %}
                     </a>
                 </li>
                 <li class="page-item">
                     <a class="page-link"
                        href="?page={{ page_obj.paginator.num_pages }}&filter_date={{ filter_date }}&filter_sorting={{ filter_sorting }}&filter_favourite={{ filter_favourite }}">
-                        Last&raquo;
+                        {% trans "Last" %}&raquo;
                     </a>
                 </li>
             {% else %}
-                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                <li class="page-item disabled"><a class="page-link" href="#">Last&raquo;</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#">{% trans "Next" %}</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#">{% trans "Last" %}&raquo;</a></li>
             {% endif %}
         </ul>
         <!-- Pagination END -->

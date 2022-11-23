@@ -70,8 +70,8 @@
             <ul>
                 <li><a id="link-index" class="nav-link" href="{% url 'index' %}">{% trans "Home" %}</a></li>
                 <li><a id="link-about" class="nav-link" href="{% url 'about' %}">{% trans "About" %}</a></li>
-                <li><a id="link-services" class="nav-link" href="{% url 'services' %}">Services</a></li>
-                <li><a id="link-blog" class="nav-link" href="{% url 'blog' %}">Blog</a></li>
+                <li><a id="link-services" class="nav-link" href="{% url 'services' %}">{% trans "Services" %}</a></li>
+                <li><a id="link-blog" class="nav-link" href="{% url 'blog' %}">{% trans "Blog" %}</a></li>
                 <li style="color: white;">|</li>
                 <!--
                 <li id="#language" class="nav-link">
@@ -138,15 +138,15 @@
         </div>
         <div>
             <h4>Services</h4>
-            <a href="{% url 'palette_generator' %}">Palette generator</a>
-            <a href="{% url 'gradient_generator' %}">Gradient generator</a>
-            <a href="{% url 'color_picker' %}">Color picker</a>
-            <a href="{% url 'contrast_checker' %}">Contrast checker</a>
+            <a href="{% url 'palette_generator' %}">{% trans "Palette generator" %}</a>
+            <a href="{% url 'gradient_generator' %}">{% trans "Gradient generator" %}</a>
+            <a href="{% url 'color_picker' %}">{% trans "Color picker" %}</a>
+            <a href="{% url 'contrast_checker' %}">{% trans "Contrast checker" %}</a>
         </div>
         <div>
             <h4>Other</h4>
-            <a href="{% url 'blog' %}">Blog</a>
-            <a href="{% url 'about' %}">Contact us</a>
+            <a href="{% url 'blog' %}">{% trans "Blog" %}</a>
+            <a href="{% url 'about' %}">{% trans "Contact us" %}</a>
         </div>
         <div>
             <h4>Something</h4>
@@ -163,11 +163,11 @@
 
 <!-- Bootstrap-Cookie-Alert START-->
 <div class="alert text-center cookiealert" role="alert">
-    <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website.
-    <a href="https://cookiesandyou.com/" target="_blank" style="text-decoration: none;">Learn more</a>
+    <b>{% trans "Do you like cookies?" %}</b> &#x1F36A; {% trans "We use cookies to ensure you get the best experience on our website." %}
+    <a href="https://cookiesandyou.com/" target="_blank" style="text-decoration: none;">{% trans "Learn more" %}</a>
 
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
-        Accept
+        {% trans "Accept" %}
     </button>
 </div>
 <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>

@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block body %}
@@ -7,7 +8,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">COLOR INFO</h4>
+                    <h4 class="modal-title">{% trans "Color Info" %}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -21,9 +22,8 @@
     <!-- -----  Main Start  ----- -->
     <main class="tool-section">
         <div class="tool-description">
-            <h3 class="underline-black">PALETTE GENERATOR</h3>
-            <p>Create your own color palette in just one click! Use flexible settings to express all spectrum of your
-                ideas.</p>
+            <h3 class="underline-black">{% trans "PALETTE GENERATOR" %}</h3>
+            <p>{% trans "Create your own color palette in just one click! Use flexible settings to express all spectrum of your ideas." %}</p>
         </div>
 
         <div id="palette-generator-card">
@@ -154,7 +154,7 @@
                         <i class="bi bi-circle-half"></i>
                     </button>
                 </div>
-                <button id="palette-gen-export-button" type="button" class="btn btn-primary">EXPORT AS</button>
+                <button id="palette-gen-export-button" type="button" class="btn btn-primary">{% trans "EXPORT AS" %}</button>
             </div>
         </div>
     </main>

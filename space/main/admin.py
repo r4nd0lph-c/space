@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext as _
 from .translation import *
 from modeltranslation.admin import TranslationAdmin
 
@@ -38,4 +39,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 admin.site.site_title = 'SPACE'
 admin.site.site_header = 'SPACE'
-admin.site.index_title = 'Administration'
+admin.site.index_title = _('Administration')

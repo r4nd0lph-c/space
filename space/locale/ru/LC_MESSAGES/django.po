@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <r4nd0lphc>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-23 19:09+0300\n"
+"POT-Creation-Date: 2022-11-23 21:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,51 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: .\main\admin.py:42
+msgid "Administration"
+msgstr "Администрирование"
+
+#: .\main\forms.py:9
+msgid "Your nickname"
+msgstr "Ваше имя"
+
+#: .\main\forms.py:17
+msgid "Add a comment..."
+msgstr "Добавить комментарий..."
+
+#: .\main\models.py:27
+msgid "Article ID: "
+msgstr "ID Статьи"
+
+#: .\main\models.py:40
+msgid "Comment ID: "
+msgstr "ID Комментария"
+
+#: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:92
+#: .\main\templates\main\index.html:127 .\main\templates\main\index.html:165
+msgid "Reading time"
+msgstr "Время на чтение"
+
+#: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:92
+#: .\main\templates\main\index.html:128 .\main\templates\main\index.html:166
+msgid "min."
+msgstr "мин."
+
+#: .\main\templates\main\article.html:24 .\main\templates\main\blog.html:112
+#: .\main\templates\main\index.html:150 .\main\templates\main\index.html:188
+msgid "add to favourite"
+msgstr "добавить в избранное"
+
+#: .\main\templates\main\article.html:56
+msgid "Post"
+msgstr "Отправить"
+
+#: .\main\templates\main\article.html:65
+#, fuzzy
+#| msgid "Comment ID: "
+msgid "Comments"
+msgstr "ID Комментария"
+
 #: .\main\templates\main\base.html:71
 msgid "Home"
 msgstr "Главная"
@@ -28,7 +73,484 @@ msgstr "Главная"
 msgid "About"
 msgstr "О нас"
 
+#: .\main\templates\main\base.html:73
+msgid "Services"
+msgstr "Сервисы"
+
+#: .\main\templates\main\base.html:74 .\main\templates\main\base.html:148
+msgid "Blog"
+msgstr "Блог"
+
+#: .\main\templates\main\base.html:141
+#, fuzzy
+#| msgid "Palette Generator | SPACE"
+msgid "Palette generator"
+msgstr "Генератор палитр | SPACE"
+
+#: .\main\templates\main\base.html:142
+#, fuzzy
+#| msgid "Gradient Generator | SPACE"
+msgid "Gradient generator"
+msgstr "Генератор градиентов | SPACE"
+
+#: .\main\templates\main\base.html:143
+#, fuzzy
+#| msgid "Color Picker | SPACE"
+msgid "Color picker"
+msgstr "Извлечения цвета | SPACE"
+
+#: .\main\templates\main\base.html:144
+#, fuzzy
+#| msgid "Contrast Checker | SPACE"
+msgid "Contrast checker"
+msgstr "Проверка контрастности | SPACE"
+
+#: .\main\templates\main\base.html:149
+msgid "Contact us"
+msgstr "Обратная связь"
+
+#: .\main\templates\main\base.html:166
+msgid "Do you like cookies?"
+msgstr "Вам нравятся cookies?"
+
+#: .\main\templates\main\base.html:166
+msgid "We use cookies to ensure you get the best experience on our website."
+msgstr ""
+"Мы используем файлы cookie, чтобы обеспечить вам наилучший пользовательский "
+"опыт  на нашем веб-сайте."
+
+#: .\main\templates\main\base.html:167
+msgid "Learn more"
+msgstr "Подробнее"
+
+#: .\main\templates\main\base.html:170
+msgid "Accept"
+msgstr "Принять"
+
+#: .\main\templates\main\blog.html:13
+msgid "Date"
+msgstr "Дата"
+
+#: .\main\templates\main\blog.html:15
+msgid "All time"
+msgstr "Всё время"
+
+#: .\main\templates\main\blog.html:16
+msgid "Last day"
+msgstr "Последний день"
+
+#: .\main\templates\main\blog.html:17
+msgid "Last week"
+msgstr "Последняя неделя"
+
+#: .\main\templates\main\blog.html:18
+msgid "Last month"
+msgstr "Последний месяц"
+
+#: .\main\templates\main\blog.html:23
+msgid "Sorting"
+msgstr "Сортировать по"
+
+#: .\main\templates\main\blog.html:25
+msgid "By creation date (new first)"
+msgstr "Дата создания (сначала новые)"
+
+#: .\main\templates\main\blog.html:26
+msgid "By creation date (old first)"
+msgstr "Дата создания (сначала старые)"
+
+#: .\main\templates\main\blog.html:27
+msgid "By popularity (the best)"
+msgstr "По популярности (начиная с лучших)"
+
+#: .\main\templates\main\blog.html:28
+msgid "By popularity (worst)"
+msgstr "По популярности (начиная с худших)"
+
+#: .\main\templates\main\blog.html:33
+msgid "Favorites only"
+msgstr "Только избранное"
+
+#: .\main\templates\main\blog.html:39
+msgid "Apply"
+msgstr "Применить"
+
+#: .\main\templates\main\blog.html:40
+msgid "Reset"
+msgstr "Сбросить"
+
+#: .\main\templates\main\blog.html:128
+msgid "No articles (check filters)"
+msgstr "Статьи не найдены (проверьте фильтры)"
+
+#: .\main\templates\main\blog.html:145 .\main\templates\main\blog.html:150
+msgid "Previous"
+msgstr "Предыдущая"
+
+#: .\main\templates\main\blog.html:149
+msgid "First"
+msgstr "Первая"
+
+#: .\main\templates\main\blog.html:161 .\main\templates\main\blog.html:171
+msgid "Next"
+msgstr "Следующая"
+
+#: .\main\templates\main\blog.html:167 .\main\templates\main\blog.html:172
+msgid "Last"
+msgstr "Последняя"
+
+#: .\main\templates\main\color_picker.html:13
+#: .\main\templates\main\gradient_generator.html:13
+msgid "Export as..."
+msgstr "Экспортировать как..."
+
+#: .\main\templates\main\color_picker.html:25
+#: .\main\templates\main\gradient_generator.html:26
+msgid "Image"
+msgstr "Изображение"
+
+#: .\main\templates\main\color_picker.html:51
+#: .\main\templates\main\color_picker.html:81
+#: .\main\templates\main\color_picker.html:110
+#: .\main\templates\main\gradient_generator.html:38
+msgid "Export as "
+msgstr "Экспортировать как "
+
+#: .\main\templates\main\color_picker.html:64
+#: .\main\templates\main\color_picker.html:93
+#: .\main\templates\main\color_picker.html:122
+msgid "DOWNLOAD"
+msgstr "СКАЧАТЬ"
+
+#: .\main\templates\main\color_picker.html:69
+#: .\main\templates\main\color_picker.html:98
+#: .\main\templates\main\color_picker.html:127
+msgid "COPY"
+msgstr "КОПИРОВАТЬ"
+
+#: .\main\templates\main\color_picker.html:148
+msgid "COLOR PICKER"
+msgstr "ИЗВЛЕЧЕНИЕ ЦВЕТА"
+
+#: .\main\templates\main\color_picker.html:149
+#: .\main\templates\main\index.html:95 .\main\templates\main\services.html:32
+msgid ""
+"Life is filled with colors. You’ve always been wondering what color your "
+"life’s in? Upload your photo and learn in a sec."
+msgstr ""
+"Жизнь наполнена красками. Вам всегда было интересно, в каком цвете ваша "
+"жизнь? Загрузите свою фотографию и узнайте через секунду."
+
+#: .\main\templates\main\color_picker.html:155
+msgid "Most common colors"
+msgstr "Часто встречаемые цвета"
+
+#: .\main\templates\main\color_picker.html:263
+msgid "UPLOAD IMAGE"
+msgstr "ЗАГРУЗИТЬ ИЗОБРАЖЕНИЕ"
+
+#: .\main\templates\main\color_picker.html:265
+#: .\main\templates\main\gradient_generator.html:170
+#: .\main\templates\main\palette_generator.html:157
+msgid "EXPORT AS"
+msgstr "ЭКСПОРТИРОВАТЬ КАК"
+
+#: .\main\templates\main\contrast_checker.html:9
+msgid "CONTRAST CHECKER"
+msgstr "ПРОВЕРКА КОНТРАСТНОСТИ"
+
+#: .\main\templates\main\contrast_checker.html:10
+#: .\main\templates\main\index.html:110 .\main\templates\main\services.html:41
+msgid ""
+"Check the contrast between the colors of the background and the text. Let "
+"your graphical content be in-SIGHT-ful."
+msgstr ""
+"Проверьте контраст между цветами фона и текста.Пусть ваш графический контент "
+"будет содержательным."
+
+#: .\main\templates\main\contrast_checker.html:16
+msgid "Contrast Ratio"
+msgstr "Коэффициент контрастности"
+
+#: .\main\templates\main\contrast_checker.html:38
+msgid "Text color"
+msgstr "Цвет текста"
+
+#: .\main\templates\main\contrast_checker.html:53
+msgid "Background color"
+msgstr "Цвет фона"
+
+#: .\main\templates\main\contrast_checker.html:67
+msgid "for 17pt and below"
+msgstr "для 17pt и ниже"
+
+#: .\main\templates\main\contrast_checker.html:71
+msgid "for 18pt and above / 14pt bold and above"
+msgstr "для 18pt и выше / 14pt жирным начертанием и выше"
+
+#: .\main\templates\main\contrast_checker.html:75
+msgid "for icons and actionable graphics"
+msgstr "для иконок и полезной графики"
+
+#: .\main\templates\main\gradient_generator.html:60
+msgid "Export as image"
+msgstr "Экспортировать как изображение"
+
+#: .\main\templates\main\gradient_generator.html:90
+msgid "GRADIENT GENERATOR"
+msgstr "ГЕНЕРАТОР ГРАДИЕНТОВ"
+
+#: .\main\templates\main\gradient_generator.html:91
+#: .\main\templates\main\index.html:80 .\main\templates\main\services.html:23
+msgid ""
+"Make your own art of soft and fluffy colors fluently flowing into each "
+"other. Be certain, everything will go smoothly."
+msgstr ""
+"Создайте свое собственное искусство из мягких и пушистых цветов, плавно "
+"перетекающих друг в друга. Будьте уверены, все пройдет гладко."
+
+#: .\main\templates\main\gradient_generator.html:96
+msgid "Choose colors"
+msgstr "Выберите цвета"
+
+#: .\main\templates\main\gradient_generator.html:100
+msgid "First color"
+msgstr "Первый цвет"
+
+#: .\main\templates\main\gradient_generator.html:115
+msgid "Second color"
+msgstr "Второй цвет"
+
+#: .\main\templates\main\gradient_generator.html:125
+msgid "Gradient type"
+msgstr "Тип градиента"
+
+#: .\main\templates\main\gradient_generator.html:134
+msgid "Radial gradient"
+msgstr "Радиальный градиент"
+
+#: .\main\templates\main\gradient_generator.html:138
+msgid "Direction"
+msgstr "Направление"
+
+#: .\main\templates\main\gradient_generator.html:141
+msgid "Top to Bottom"
+msgstr "Сверху вниз"
+
+#: .\main\templates\main\gradient_generator.html:142
+msgid "Top-Right to Bottom-Left"
+msgstr "Правый верхний угол - Левый нижний угол"
+
+#: .\main\templates\main\gradient_generator.html:143
+msgid "Right to Left"
+msgstr "Справа налево"
+
+#: .\main\templates\main\gradient_generator.html:144
+msgid "Bottom-Right to Top-Left"
+msgstr "Правый нижний угол - Верхний левый угол"
+
+#: .\main\templates\main\gradient_generator.html:145
+msgid "Bottom to Top"
+msgstr "Снизу вверх"
+
+#: .\main\templates\main\gradient_generator.html:146
+msgid "Bottom-Left to Top-Right"
+msgstr "Левый нижний угол - Правый верхний угол"
+
+#: .\main\templates\main\gradient_generator.html:147
+msgid "Left to Right"
+msgstr "Слева направо"
+
+#: .\main\templates\main\gradient_generator.html:148
+msgid "Top-Left to Bottom-Right"
+msgstr "Верхний левый угол - Правй нижний угол"
+
+#: .\main\templates\main\gradient_generator.html:152
+msgid "Position"
+msgstr "Расположение"
+
+#: .\main\templates\main\gradient_generator.html:155
+msgid "Center"
+msgstr "Центр"
+
+#: .\main\templates\main\gradient_generator.html:156
+msgid "Top"
+msgstr "Вверху"
+
+#: .\main\templates\main\gradient_generator.html:157
+msgid "Top-Right"
+msgstr "Правый верхний угол"
+
+#: .\main\templates\main\gradient_generator.html:158
+msgid "Right"
+msgstr "Справа"
+
+#: .\main\templates\main\gradient_generator.html:159
+msgid "Bottom-Right"
+msgstr "Правый нижний угол"
+
+#: .\main\templates\main\gradient_generator.html:160
+msgid "Bottom"
+msgstr "Внизу"
+
+#: .\main\templates\main\gradient_generator.html:161
+msgid "Bottom-Left"
+msgstr "Левый нижний угол"
+
+#: .\main\templates\main\gradient_generator.html:162
+msgid "Left"
+msgstr "Слева"
+
+#: .\main\templates\main\gradient_generator.html:163
+msgid "Top-Left"
+msgstr "Левый верхний угол"
+
+#: .\main\templates\main\gradient_generator.html:168
+msgid "RANDOM"
+msgstr "СЛУЧАЙНО"
+
+#: .\main\templates\main\index.html:17
+msgid "Powerful tools"
+msgstr "Мощные инструменты"
+
+#: .\main\templates\main\index.html:17
+msgid "for your creativity"
+msgstr "для вашего творчества"
+
+#: .\main\templates\main\index.html:30
+msgid "Limitless space for your ideas"
+msgstr "Безграничное пространство для ваших идей"
+
+#: .\main\templates\main\index.html:32
+msgid "Get Started"
+msgstr "Начать"
+
+#: .\main\templates\main\index.html:43
+msgid "ABOUT"
+msgstr "О НАС"
+
+#: .\main\templates\main\index.html:45
+msgid ""
+"SPACE is our bold attempt to create an aggregator of tools that may be handy "
+"for web-designers or just people who have a sudden need of working with "
+"graphical content. We collected all the different tools you will need in one "
+"place, so everything is set up for you to work. There is no limit to what "
+"you can do, as there is no limit to space above your head!"
+msgstr ""
+"SPACE - это наша смелая попытка создать агрегатор инструментов, который "
+"может быть удобен веб-дизайнерам или просто людям, у которых внезапно "
+"возникла необходимость работать с графическим контентом. Мы собрали все "
+"различные инструменты, которые вам понадобятся, в одном месте, так что все "
+"готово для вашей работы. Нет предела тому, что вы можете сделать, как и нет "
+"предела пространству над вашей головой!"
+
+#: .\main\templates\main\index.html:51 .\main\templates\main\services.html:7
+msgid "SERVICES"
+msgstr "СЕРВИСЫ"
+
+#: .\main\templates\main\index.html:53
+msgid ""
+"We have a bunch of tools for working with colors and graphics, including "
+"color generators with multiple settings, contrast checker to see if your "
+"content adheres to WCAG 2.1 and more. Hover at an icon to get more "
+"information about each service. We also develop and implement new tools, so "
+"stay tuned!"
+msgstr ""
+"У нас есть множество инструментов для работы с цветами и графикой, включая "
+"генераторы цветов с несколькими настройками, средство проверки "
+"контрастности, чтобы увидеть, соответствует ли ваш контент  стандарту WCAG "
+"2.1, и многое другое. Наведите курсор на значок, чтобы получить "
+"дополнительную информацию о каждом инструменте. Мы также разрабатываем и "
+"внедряем новые инструменты, так что следите за обновлениями!"
+
+#: .\main\templates\main\index.html:59 .\main\templates\main\services.html:13
+msgid "Palettes"
+msgstr "Палитры"
+
+#: .\main\templates\main\index.html:62 .\main\templates\main\index.html:77
+#: .\main\templates\main\index.html:92 .\main\templates\main\index.html:107
+msgid "hover"
+msgstr "наведитесь"
+
+#: .\main\templates\main\index.html:65
+#: .\main\templates\main\palette_generator.html:26
+#: .\main\templates\main\services.html:14
+msgid ""
+"Create your own color palette in just one click! Use flexible settings to "
+"express all spectrum of your ideas."
+msgstr ""
+"Создайте свою собственную цветовую палитру. "
+"Используйте гибкие настройки, чтобы выразить весь спектр ваших идей."
+
+#: .\main\templates\main\index.html:66 .\main\templates\main\index.html:81
+#: .\main\templates\main\index.html:96 .\main\templates\main\index.html:111
+msgid "try it"
+msgstr "попробовать"
+
+#: .\main\templates\main\index.html:74 .\main\templates\main\services.html:22
+msgid "Gradients"
+msgstr "Градиенты"
+
+#: .\main\templates\main\index.html:89 .\main\templates\main\services.html:31
+#, fuzzy
+#| msgid "Color Picker | SPACE"
+msgid "Color Pick"
+msgstr "Извлечения цвета | SPACE"
+
+#: .\main\templates\main\index.html:104 .\main\templates\main\services.html:40
+#, fuzzy
+#| msgid "Contrast Checker | SPACE"
+msgid "Contrast Check"
+msgstr "Проверка контрастности | SPACE"
+
+#: .\main\templates\main\index.html:120
+msgid "Recent Articles"
+msgstr "Свежие статьи"
+
+#: .\main\templates\main\index.html:121
+msgid "View all"
+msgstr "Посмотреть все"
+
+#: .\main\templates\main\palette_generator.html:11
+msgid "Color Info"
+msgstr "Информация о цвете"
+
+#: .\main\templates\main\palette_generator.html:25
+msgid "PALETTE GENERATOR"
+msgstr "ГЕНЕРАТОР ПАЛТИР"
+
 #: .\main\views.py:29
 msgid "Home | SPACE"
-msgstr ""
+msgstr "Главная | SPACE"
 
+#: .\main\views.py:59
+msgid "About | SPACE"
+msgstr "О нас | SPACE"
+
+#: .\main\views.py:77
+msgid "Services | SPACE"
+msgstr "Сервисы | SPACE"
+
+#: .\main\views.py:141
+msgid "Blog | SPACE"
+msgstr "Блог | SPACE"
+
+#: .\main\views.py:177
+msgid "Article | SPACE"
+msgstr "Статья | SPACE"
+
+#: .\main\views.py:248
+msgid "Palette Generator | SPACE"
+msgstr "Генератор палитр | SPACE"
+
+#: .\main\views.py:274
+msgid "Gradient Generator | SPACE"
+msgstr "Генератор градиентов | SPACE"
+
+#: .\main\views.py:288
+msgid "Color Picker | SPACE"
+msgstr "Извлечения цвета | SPACE"
+
+#: .\main\views.py:314
+msgid "Contrast Checker | SPACE"
+msgstr "Проверка контрастности | SPACE"

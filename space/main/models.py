@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django.db import models
 from django.core.validators import MinValueValidator
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -23,7 +24,7 @@ class Article(models.Model):
     published = models.BooleanField(default=True)
 
     def __str__(self):
-        return 'Article ID: ' + str(self.id)
+        return _('Article ID: ' + str(self.id))
 
     def get_absolute_url(self):
         return reverse('article', kwargs={'slug': self.slug})
@@ -36,4 +37,4 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Comment ID: ' + str(self.id)
+        return _('Comment ID: ' + str(self.id))

@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block body %}
@@ -9,7 +10,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">EXPORT AS...</h4>
+                        <h4 class="modal-title">{% trans "Export as..." %}</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -22,7 +23,7 @@
                             <button data-bs-toggle="modal" data-bs-dismiss="modal"
                                     data-bs-target="#gradient-export-image-modal">
                                 <i class="bi bi-image"></i>
-                                <div>Image</div>
+                                <div>{% trans "Image" %}</div>
                             </button>
                         </div>
                     </div>
@@ -34,7 +35,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">EXPORT AS CSS</h4>
+                        <h4 class="modal-title">{% trans "Export as " %} CSS</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -56,7 +57,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">EXPORT AS IMAGE</h4>
+                        <h4 class="modal-title">{% trans "Export as image" %}</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -86,18 +87,17 @@
 
 
         <div class="tool-description">
-            <h3 class="underline-black">GRADIENT GENERATOR</h3>
-            <p>Make your own art of soft and fluffy colors fluently flowing into each other. Be certain, everything will
-                go smoothly.</p>
+            <h3 class="underline-black">{% trans "GRADIENT GENERATOR" %}</h3>
+            <p>{% trans "Make your own art of soft and fluffy colors fluently flowing into each other. Be certain, everything will go smoothly." %}</p>
         </div>
         <div id="gradient-gen-card">
             <div id="gradient-gen-card-settings">
 
-                <h4>Choose colors</h4>
+                <h4>{% trans "Choose colors" %}</h4>
 
                 <div class="color-input-flexbox">
                     <div>
-                        <p>First color</p>
+                        <p>{% trans "First color" %}</p>
                         <div class="color-input" data-bs-custom-class="invalid-input-tooltip" data-bs-placement="bottom"
                              title="Invalid input">
                             <input class="color-input-first-color-text" type="text" maxlength="7"/>
@@ -112,7 +112,7 @@
                         </svg>
                     </button>
                     <div>
-                        <p>Second color</p>
+                        <p>{% trans "Second color" %}</p>
                         <div class="color-input" data-bs-custom-class="invalid-input-tooltip" data-bs-placement="bottom"
                              title="Invalid input">
                             <input class="color-input-second-color-text" type="text" maxlength="7"/>
@@ -122,7 +122,7 @@
                 </div>
 
                 <div id="gradient-type">
-                    <h4>Gradient type</h4>
+                    <h4>{% trans "Gradient type" %}</h4>
                     <div style="margin-bottom: 8px;">
                         <input class="form-check-input" type="radio" name="gradient-type" id="gradient-type-linear"
                                value="linear" checked>
@@ -131,43 +131,43 @@
                     <div>
                         <input class="form-check-input" type="radio" name="gradient-type" id="gradient-type-radial"
                                value="radial">
-                        <label class="form-check-label" for="gradient-type-radial">Radial gradient</label>
+                        <label class="form-check-label" for="gradient-type-radial">{% trans "Radial gradient" %}</label>
                     </div>
                 </div>
                 <div id="gradient-direction">
-                    <h4>Direction</h4>
+                    <h4>{% trans "Direction" %}</h4>
                     <select class="form-select">
                         <!-- Value represents the degree of gradient-->
-                        <option value="180" selected>↓ Top to Bottom</option>
-                        <option value="225">↙ Top-Right to Bottom-Left</option>
-                        <option value="270">← Right to Left</option>
-                        <option value="315">↖ Bottom-Right to Top-Left</option>
-                        <option value="0">↑ Bottom to Top</option>
-                        <option value="45">↗ Bottom-Left to Top-Right</option>
-                        <option value="90">→ Left to Right</option>
-                        <option value="135">↘ Top-Left to Bottom-Right</option>
+                        <option value="180" selected>↓ {% trans "Top to Bottom" %}</option>
+                        <option value="225">↙ {% trans "Top-Right to Bottom-Left" %}</option>
+                        <option value="270">← {% trans "Right to Left" %}</option>
+                        <option value="315">↖ {% trans "Bottom-Right to Top-Left" %}</option>
+                        <option value="0">↑ {% trans "Bottom to Top" %}</option>
+                        <option value="45">↗ {% trans "Bottom-Left to Top-Right" %}</option>
+                        <option value="90">→ {% trans "Left to Right" %}</option>
+                        <option value="135">↘ {% trans "Top-Left to Bottom-Right" %}</option>
                     </select>
                 </div>
                 <div id="gradient-position" hidden="">
-                    <h4>Position</h4>
+                    <h4>{% trans "Position" %}</h4>
                     <select class="form-select">
                         <!-- Value represents the position of gradient-->
-                        <option value="circle at center" selected>Center</option>
-                        <option value="circle at top">Top</option>
-                        <option value="circle at right top">Top-Right</option>
-                        <option value="circle at right">Right</option>
-                        <option value="circle at right bottom">Bottom-Right</option>
-                        <option value="circle at bottom">Bottom</option>
-                        <option value="circle at left bottom">Bottom-Left</option>
-                        <option value="circle at left">Left</option>
-                        <option value="circle at left top">Top-Left</option>
+                        <option value="circle at center" selected>{% trans "Center" %}</option>
+                        <option value="circle at top">{% trans "Top" %}</option>
+                        <option value="circle at right top">{% trans "Top-Right" %}</option>
+                        <option value="circle at right">{% trans "Right" %}</option>
+                        <option value="circle at right bottom">{% trans "Bottom-Right" %}</option>
+                        <option value="circle at bottom">{% trans "Bottom" %}</option>
+                        <option value="circle at left bottom">{% trans "Bottom-Left" %}</option>
+                        <option value="circle at left">{% trans "Left" %}</option>
+                        <option value="circle at left top">{% trans "Top-Left" %} </option>
                     </select>
                 </div>
 
                 <div id="gradient-gen-card-settings-bottom">
-                    <button id="gradient-gen-random-button" type="button" class="btn btn-light">RANDOM</button>
+                    <button id="gradient-gen-random-button" type="button" class="btn btn-light">{% trans "RANDOM" %}</button>
                     <button id="gradient-gen-export-button" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#gradient-export-modal">EXPORT AS
+                            data-bs-target="#gradient-export-modal">{% trans "EXPORT AS" %}
                     </button>
                 </div>
             </div>

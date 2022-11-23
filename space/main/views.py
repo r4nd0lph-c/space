@@ -56,7 +56,7 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'About | SPACE'
+        context['title'] = _('About | SPACE')
         context['active_link'] = 'link-about'
         return context
 
@@ -74,7 +74,7 @@ class ServicesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Services | SPACE'
+        context['title'] = _('Services | SPACE')
         context['active_link'] = 'link-services'
         return context
 
@@ -138,7 +138,7 @@ class BlogListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Blog | SPACE'
+        context['title'] = _('Blog | SPACE')
         context['active_link'] = 'link-blog'
         posts_images = {}
         posts_clear_content = {}
@@ -174,7 +174,7 @@ class ArticleDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Article | SPACE'
+        context['title'] = _('Article | SPACE')
         context['active_link'] = 'link-blog'
         context['form'] = CommentForm
         context['comments_queryset'] = Comment.objects.filter(
@@ -245,7 +245,7 @@ class PaletteGeneratorView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Palette Generator | SPACE'
+        context['title'] = _('Palette Generator | SPACE')
         context['active_link'] = 'link-services'
         return context
 
@@ -271,7 +271,7 @@ class GradientGeneratorView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Gradient Generator | SPACE'
+        context['title'] = _('Gradient Generator | SPACE')
         context['active_link'] = 'link-services'
         return context
 
@@ -285,7 +285,7 @@ class ColorPickerView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Color Picker | SPACE'
+        context['title'] = _('Color Picker | SPACE')
         context['active_link'] = 'link-services'
         return context
 
@@ -311,7 +311,7 @@ class ContrastCheckerView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Contrast Checker | SPACE'
+        context['title'] = _('Contrast Checker | SPACE')
         context['active_link'] = 'link-services'
         return context
 
