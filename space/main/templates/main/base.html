@@ -88,7 +88,7 @@
                 <li>
                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select name="language">
+                        <select name="language" onchange="this.form.submit()">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
@@ -99,7 +99,6 @@
                                 </option>
                             {% endfor %}
                         </select>
-                        <input type="submit" value="Go">
                     </form>
                 </li>
             </ul>
@@ -163,7 +162,8 @@
 
 <!-- Bootstrap-Cookie-Alert START-->
 <div class="alert text-center cookiealert" role="alert">
-    <b>{% trans "Do you like cookies?" %}</b> &#x1F36A; {% trans "We use cookies to ensure you get the best experience on our website." %}
+    <b>{% trans "Do you like cookies?" %}</b>
+    &#x1F36A; {% trans "We use cookies to ensure you get the best experience on our website." %}
     <a href="https://cookiesandyou.com/" target="_blank" style="text-decoration: none;">{% trans "Learn more" %}</a>
 
     <button type="button" class="btn btn-primary btn-sm acceptcookies">
