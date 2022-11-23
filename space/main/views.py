@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView
 from django.http import JsonResponse
 from django.views.generic.edit import FormView
+from django.utils.translation import gettext as _
 
 from .models import *
 from .forms import *
@@ -25,7 +26,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Home | SPACE'
+        context['title'] = _('Home | SPACE')
         context['active_link'] = 'link-index'
         context['is_index'] = True
         recent_posts = list(Article.objects.filter(published=True).order_by('-created')[0:2])

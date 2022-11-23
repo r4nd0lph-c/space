@@ -1,16 +1,18 @@
 from django.contrib import admin
+from .translation import *
+from modeltranslation.admin import TranslationAdmin
 
 from .models import *
 
 
 @admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
+class TagAdmin(TranslationAdmin):
     list_display = ('id', 'name',)
     list_display_links = ('name',)
 
 
 @admin.register(Article)
-class ArticleAdmin(admin.ModelAdmin):
+class ArticleAdmin(TranslationAdmin):
     list_display = ('id', 'title', 'reading', 'rating', 'created', 'updated', 'published')
     list_display_links = ('title',)
 

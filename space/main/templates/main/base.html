@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -67,11 +68,12 @@
         <h1 class="logo"><a href="{% url 'index' %}">SPACE</a></h1>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a id="link-index" class="nav-link" href="{% url 'index' %}">Home</a></li>
-                <li><a id="link-about" class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li><a id="link-index" class="nav-link" href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                <li><a id="link-about" class="nav-link" href="{% url 'about' %}">{% trans "About" %}</a></li>
                 <li><a id="link-services" class="nav-link" href="{% url 'services' %}">Services</a></li>
                 <li><a id="link-blog" class="nav-link" href="{% url 'blog' %}">Blog</a></li>
                 <li style="color: white;">|</li>
+                <!--
                 <li id="#language" class="nav-link">
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown"
@@ -82,7 +84,26 @@
                         </ul>
                     </div>
                 </li>
+                -->
+                <li>
+                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <select name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                        selected{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Go">
+                    </form>
+                </li>
             </ul>
+
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
     </div>
