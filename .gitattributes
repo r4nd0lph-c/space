@@ -1,2 +1,2 @@
 # Exclusion of ckeditor files in the language statistics for a repository
-space/static/ckeditor/ckeditor/** linguist-vendored
+space/static/ckeditor/** linguist-vendored=True
