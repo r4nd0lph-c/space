@@ -47,7 +47,7 @@
             <!-- Comments START -->
             <div id="block_comments">
                 <div id="section_add">
-                    <h3> Add comment</h3>
+                    <h3>{% trans "Add a comment" %}</h3>
                     <form method="post" action="{% url 'article_form' %}" name="add_comm_form">
                         {% csrf_token %}
                         {{ form.nickname }}

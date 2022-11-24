@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 10:17+0300\n"
+"POT-Creation-Date: 2022-11-24 12:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,15 +55,17 @@ msgstr "мин."
 msgid "add to favourite"
 msgstr "добавить в избранное"
 
+#: .\main\templates\main\article.html:50
+msgid "Add a comment"
+msgstr "Добавить комментарий"
+
 #: .\main\templates\main\article.html:56
 msgid "Post"
 msgstr "Отправить"
 
 #: .\main\templates\main\article.html:65
-#, fuzzy
-#| msgid "Comment ID: "
 msgid "Comments"
-msgstr "ID Комментария"
+msgstr "Комментарии"
 
 #: .\main\templates\main\base.html:71
 msgid "Home"
@@ -219,6 +221,7 @@ msgstr "Экспортировать как "
 #: .\main\templates\main\color_picker.html:64
 #: .\main\templates\main\color_picker.html:93
 #: .\main\templates\main\color_picker.html:122
+#: .\main\templates\main\gradient_generator.html:80
 msgid "DOWNLOAD"
 msgstr "СКАЧАТЬ"
 
@@ -247,13 +250,13 @@ msgstr "Часто встречаемые цвета"
 
 #: .\main\templates\main\color_picker.html:263
 msgid "UPLOAD IMAGE"
-msgstr "ЗАГРУЗИТЬ ИЗОБРАЖЕНИЕ"
+msgstr "ЗАГРУЗИТЬ"
 
 #: .\main\templates\main\color_picker.html:265
 #: .\main\templates\main\gradient_generator.html:170
-#: .\main\templates\main\palette_generator.html:157
+#: .\main\templates\main\palette_generator.html:243
 msgid "EXPORT AS"
-msgstr "ЭКСПОРТИРОВАТЬ КАК"
+msgstr "ЭКСПОРТИРОВАТЬ"
 
 #: .\main\templates\main\contrast_checker.html:9
 msgid "CONTRAST CHECKER"
@@ -265,8 +268,8 @@ msgid ""
 "Check the contrast between the colors of the background and the text. Let "
 "your graphical content be in-SIGHT-ful."
 msgstr ""
-"Проверьте контраст между цветами фона и текста.Пусть ваш графический контент "
-"будет содержательным."
+"Проверьте контраст между цветами фона и текста. Пусть ваш графический "
+"контент будет содержательным."
 
 #: .\main\templates\main\contrast_checker.html:16
 msgid "Contrast Ratio"
@@ -324,6 +327,10 @@ msgstr "Второй цвет"
 #: .\main\templates\main\gradient_generator.html:125
 msgid "Gradient type"
 msgstr "Тип градиента"
+
+#: .\main\templates\main\gradient_generator.html:129
+msgid "Linear gradient"
+msgstr "Линейный градиент"
 
 #: .\main\templates\main\gradient_generator.html:134
 msgid "Radial gradient"
