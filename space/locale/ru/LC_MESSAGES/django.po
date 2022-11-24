@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <r4nd0lphc>, 2022.
+# FIRST AUTHOR <r4nd0lph-c>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-23 21:43+0300\n"
+"POT-Creation-Date: 2022-11-24 10:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,43 +73,43 @@ msgstr "Главная"
 msgid "About"
 msgstr "О нас"
 
-#: .\main\templates\main\base.html:73
+#: .\main\templates\main\base.html:73 .\main\templates\main\base.html:139
 msgid "Services"
 msgstr "Сервисы"
 
-#: .\main\templates\main\base.html:74 .\main\templates\main\base.html:148
+#: .\main\templates\main\base.html:74 .\main\templates\main\base.html:147
 msgid "Blog"
 msgstr "Блог"
 
-#: .\main\templates\main\base.html:141
-#, fuzzy
-#| msgid "Palette Generator | SPACE"
+#: .\main\templates\main\base.html:129
+msgid "A great artist can come from anywhere"
+msgstr "Великий творец может прийти откуда угодно"
+
+#: .\main\templates\main\base.html:140
 msgid "Palette generator"
-msgstr "Генератор палитр | SPACE"
+msgstr "Генератор палитр"
+
+#: .\main\templates\main\base.html:141
+msgid "Gradient generator"
+msgstr "Генератор градиентов"
 
 #: .\main\templates\main\base.html:142
-#, fuzzy
-#| msgid "Gradient Generator | SPACE"
-msgid "Gradient generator"
-msgstr "Генератор градиентов | SPACE"
+msgid "Color picker"
+msgstr "Извлечения цвета"
 
 #: .\main\templates\main\base.html:143
-#, fuzzy
-#| msgid "Color Picker | SPACE"
-msgid "Color picker"
-msgstr "Извлечения цвета | SPACE"
-
-#: .\main\templates\main\base.html:144
-#, fuzzy
-#| msgid "Contrast Checker | SPACE"
 msgid "Contrast checker"
-msgstr "Проверка контрастности | SPACE"
+msgstr "Проверка контрастности"
 
-#: .\main\templates\main\base.html:149
+#: .\main\templates\main\base.html:146
+msgid "Other"
+msgstr "Прочее"
+
+#: .\main\templates\main\base.html:148
 msgid "Contact us"
 msgstr "Обратная связь"
 
-#: .\main\templates\main\base.html:166
+#: .\main\templates\main\base.html:165
 msgid "Do you like cookies?"
 msgstr "Вам нравятся cookies?"
 
@@ -479,8 +479,8 @@ msgid ""
 "Create your own color palette in just one click! Use flexible settings to "
 "express all spectrum of your ideas."
 msgstr ""
-"Создайте свою собственную цветовую палитру. "
-"Используйте гибкие настройки, чтобы выразить весь спектр ваших идей."
+"Создайте свою собственную цветовую палитру. Используйте гибкие настройки, "
+"чтобы выразить весь спектр ваших идей."
 
 #: .\main\templates\main\index.html:66 .\main\templates\main\index.html:81
 #: .\main\templates\main\index.html:96 .\main\templates\main\index.html:111

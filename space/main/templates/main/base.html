@@ -126,7 +126,7 @@
     <div id="footer-main" class="underline-white">
         <div>
             <h2>SPACE</h2>
-            <p>A great artist can come from anywhere</p>
+            <p>{% trans "A great artist can come from anywhere" %}</p>
             <div id="footer-icons">
                 <a href="https://twitter.com/"><i class="bi bi-twitter"></i></a>
                 <a href="https://facebook.com/"><i class="bi bi-facebook"></i></a>
@@ -136,14 +136,14 @@
             </div>
         </div>
         <div>
-            <h4>Services</h4>
+            <h4>{% trans "Services" %}</h4>
             <a href="{% url 'palette_generator' %}">{% trans "Palette generator" %}</a>
             <a href="{% url 'gradient_generator' %}">{% trans "Gradient generator" %}</a>
             <a href="{% url 'color_picker' %}">{% trans "Color picker" %}</a>
             <a href="{% url 'contrast_checker' %}">{% trans "Contrast checker" %}</a>
         </div>
         <div>
-            <h4>Other</h4>
+            <h4>{% trans "Other" %}</h4>
             <a href="{% url 'blog' %}">{% trans "Blog" %}</a>
             <a href="{% url 'about' %}">{% trans "Contact us" %}</a>
         </div>
