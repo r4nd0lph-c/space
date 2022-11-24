@@ -203,7 +203,6 @@
                         filter(type, hex) {
                             if (Object.keys(ColorBlindness.#color_coefficients).includes(type)) {
                                 let rgb = ColorBlindness.#hex2rgb(hex);
-                                console.log(rgb);
                                 let filter_m = ColorBlindness.#color_coefficients[type];
                                 return ColorBlindness.#rgb2hex(
                                     Math.round(filter_m["r"][0] * rgb["r"] / 100) + Math.round(filter_m["r"][1] * rgb["g"] / 100) + Math.round(filter_m["r"][2] * rgb["b"] / 100),
