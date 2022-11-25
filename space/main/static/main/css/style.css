@@ -1585,8 +1585,8 @@ pre code {
     height: 50px;
 }
 
-#palette-gen-generate-button,
-#palette-gen-export-button {
+#palette-generator-generate-button,
+#palette-generator-export-button {
     border: 1px solid var(--secondary);
     height: 50px;
 	min-width: 160px;
@@ -1599,6 +1599,29 @@ pre code {
 	margin-bottom: 16px;
 	border-radius: 0.375rem;
 	border: 1px solid var(--secondary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#palette-generator-color-info-modal-list {
+	display: flex;
+    flex-flow: column;
+    list-style-type: none;
+	gap: 16px;
+    padding: 0;
+	margin: 0;
+}
+
+#palette-generator-color-info-modal-list li {
+	display: flex;
+	gap: 8px;
+	flex-flow: row nowrap;
+	align-items: center;
+}
+
+#palette-generator-color-info-modal-color p {
+	opacity: calc(100% * 2 / 3);
 }
 
 #palette-generator-color-info-modal pre code {

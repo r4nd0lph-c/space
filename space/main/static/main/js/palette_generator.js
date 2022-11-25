@@ -32,74 +32,168 @@
 	
 	//Converts from RGB to HSV
 	function rgbToHsv(r, g, b) {
-		r /= 255, g /= 255, b /= 255;
-		
-		var max = Math.max(r, g, b), min = Math.min(r, g, b);
-		var h, s, v = max;
+		var computedH = 0;
+		var computedS = 0;
+		var computedV = 0;
 
-		var d = max - min;
-		s = max == 0 ? 0 : d / max;
+		//remove spaces from input RGB values, convert to int
+		var r = parseInt( (''+r).replace(/\s/g,''),10 );
+		var g = parseInt( (''+g).replace(/\s/g,''),10 );
+		var b = parseInt( (''+b).replace(/\s/g,''),10 );
 		
-		if (max == min) {
-			h = 0; // achromatic
-		} else {
-			switch (max) {
-				case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-				case g: h = (b - r) / d + 2; break;
-				case b: h = (r - g) / d + 4; break;
-			}
-			h /= 6;
+		
+		r=r/255; g=g/255; b=b/255;
+		var minRGB = Math.min(r,Math.min(g,b));
+		var maxRGB = Math.max(r,Math.max(g,b));
+
+
+		// Black-gray-white
+		if (minRGB==maxRGB) {
+			computedV = minRGB;
+			return { 
+				h: 0,
+				s: 0,
+				v: parseFloat(computedV)
+			};
 		}
+
+		// Colors other than black-gray-white:
+		var d = (r==minRGB) ? g-b : ((b==minRGB) ? r-g : b-r);
+		var h = (r==minRGB) ? 3 : ((b==minRGB) ? 1 : 5);
+		computedH = 60*(h - d/(maxRGB - minRGB))/100;
+		computedS = (maxRGB - minRGB)/maxRGB;
+		computedV = maxRGB;
 		
 		return { 
-			h: parseFloat(h),
-			s: parseFloat(s),
-			v: parseFloat(v)
+			h: parseFloat(computedH),
+			s: parseFloat(computedS),
+			v: parseFloat(computedV)
 		};
 	}
 	
 	//Converts from RGB to HSL
 	function rgbToHsl(r, g, b) {
-		r /= 255, g /= 255, b /= 255;
-
-		var max = Math.max(r, g, b), min = Math.min(r, g, b);
-		var h, s, l = (max + min) / 2;
-
-		if (max == min) {
-			h = s = 0; // achromatic
-		} else {
-			var d = max - min;
-			s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-
-			switch (max) {
-				case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-				case g: h = (b - r) / d + 2; break;
-				case b: h = (r - g) / d + 4; break;
-			}
-			
-			h /= 6;
-		}
+		r /= 255;
+		g /= 255;
+		b /= 255;
+		const l = Math.max(r, g, b);
+		const s = l - Math.min(r, g, b);
+		const h = s 
+			? l === r
+			? (g - b) / s
+			: l === g
+			? 2 + (b - r) / s
+			: 4 + (r - g) / s
+			: 0;
+		const computedH = 60 * h < 0 ? 60 * h + 360 : 60 * h;
+		const computedS = 100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0);
+		const computedL = (100 * (2 * l - s)) / 2;
 		
 		return { 
-			h: parseFloat(h),
-			s: parseFloat(s),
-			l: parseFloat(l)
+			h: parseFloat(computedH/100),
+			s: parseFloat(computedS/100),
+			l: parseFloat(computedL/100)
 		};
 	}
+	
+	
+	/* Script filter for colorblind people */
+	class ColorBlindnessFilter {
+		static #color_coefficients = {
+			"normal": {
+				"r": [100, 0, 0],
+				"g": [0, 100, 0],
+				"b": [0, 0, 100]
+			},
+			"protanopia": {
+				"r": [56.667, 43.333, 0],
+				"g": [55.833, 44.167, 0],
+				"b": [0, 24.167, 75.833]
+			},
+			"protanomaly": {
+				"r": [81.667, 18.333, 0],
+				"g": [33.333, 66.667, 0],
+				"b": [0, 12.5, 87.5]
+			},
+			"deuteranopia": {
+				"r": [62.5, 37.5, 0],
+				"g": [70, 30, 0],
+				"b": [0, 30, 70]
+			},
+			"deuteranomaly": {
+				"r": [80, 20, 0],
+				"g": [25.833, 74.167, 0],
+				"b": [0, 14.167, 85.833]
+			},
+			"tritanopia": {
+				"r": [95, 5, 0],
+				"g": [0, 43.333, 56.667],
+				"b": [0, 47.5, 52.5]
+			},
+			"tritanomaly": {
+				"r": [96.667, 3.333, 0],
+				"g": [0, 73.333, 26.667],
+				"b": [0, 18.333, 81.667]
+			},
+			"achromatopsia": {
+				"r": [29.9, 58.7, 11.4],
+				"g": [29.9, 58.7, 11.4],
+				"b": [29.9, 58.7, 11.4]
+			},
+			"achromatomaly": {
+				"r": [61.8, 32, 6.2],
+				"g": [16.3, 77.5, 6.2],
+				"b": [16.3, 32.0, 51.6]
+			}
+		}
+
+		static #hex2rgb(hex) {
+			let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+			return result ? {
+				r: parseInt(result[1], 16),
+				g: parseInt(result[2], 16),
+				b: parseInt(result[3], 16)
+			} : null;
+		}
+
+		static #rgb2hex(r, g, b) {
+			return ("#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)).toUpperCase();
+		}
+
+		filter(type, hex) {
+			if (Object.keys(ColorBlindnessFilter.#color_coefficients).includes(type)) {
+				let rgb = ColorBlindnessFilter.#hex2rgb(hex);
+				let filter_m = ColorBlindnessFilter.#color_coefficients[type];
+				return ColorBlindnessFilter.#rgb2hex(
+					Math.round(filter_m["r"][0] * rgb["r"] / 100) + Math.round(filter_m["r"][1] * rgb["g"] / 100) + Math.round(filter_m["r"][2] * rgb["b"] / 100),
+					Math.round(filter_m["g"][0] * rgb["r"] / 100) + Math.round(filter_m["g"][1] * rgb["g"] / 100) + Math.round(filter_m["g"][2] * rgb["b"] / 100),
+					Math.round(filter_m["b"][0] * rgb["r"] / 100) + Math.round(filter_m["b"][1] * rgb["g"] / 100) + Math.round(filter_m["b"][2] * rgb["b"] / 100)
+				)
+			}
+			return hex
+		}
+	}
+	
 	
 	
 	function startup() {
 		
 		//Array containing HEX-codes of all palette colors
 		//This array will be interacting with back-end
-		let hexPaletteColors;
+		let paletteColorsArray;
 		
 		//TODO: Doubly linked list containing history of colors
-		let hexPaletteColorsHistory;
+		let paletteColorsHistory;
 		
 		//Palette - div containing all colors
 		const palette = select("#palette-generator-card-result");
 		const paletteColors = select("#palette-generator-card-result").children;
+		
+		const colorBlindnessFilter = new ColorBlindnessFilter();
+		const colorBlindnessType = select("#color-blindness-type");
+		
+		const brightnessButton = select("#palette-generator-brightness-button");
+		const contrastButton = select("#palette-generator-contrast-button");
 		
 		
 		//Checks the contrast between text and background color and changes colors if necessary
@@ -210,6 +304,7 @@
 				paletteColor.style.backgroundColor = colorH3Input.value;
 				colorH3.textContent = colorH3Input.value;
 				checkBrightness();
+				applyColorBlindness();
 			});
 			
 			
@@ -253,6 +348,7 @@
 				//Checking brightness and remove icons
 				CheckAndToggleRemoveIcons();
 				checkBrightness();
+				applyColorBlindness();
 			});
 			
 			
@@ -285,20 +381,33 @@
 			//When clicked on color info icon - change the modal components according to the color
 			colorInfo.addEventListener("click", function () {
 				const hexColor = colorH3.textContent;
-				const hexLine = "HEX: " + hexColor;
+				const hexLine = hexColor;
 				document.querySelector("#palette-generator-color-info-modal-color").style.backgroundColor = hexColor;
+				document.querySelector("#palette-generator-color-info-modal-color p").style.color = getComputedStyle(colorH3).color;
+				document.querySelector("#palette-generator-color-info-modal-color p").textContent = paletteColor.querySelector("p").textContent;
 				const rgbColor = hexToRgb(hexColor);
-				const rgbLine = "RGB: rgb(" + rgbColor.r + ", " + rgbColor.g + ", " + rgbColor.b + ");";
+				const rgbLine = "rgb(" + rgbColor.r + ", " + rgbColor.g + ", " + rgbColor.b + ");";
 				const hsvColor = rgbToHsv(rgbColor.r, rgbColor.g, rgbColor.b);
-				const hsvLine = "HSV: hsv(" + (hsvColor.h*100).toFixed(0) + "%, " + (hsvColor.s*100).toFixed(0) + "%, " + (hsvColor.v*100).toFixed(0) + "%);";
+				const hsvLine = "hsv(" + (hsvColor.h*100).toFixed(0) + "%, " + (hsvColor.s*100).toFixed(0) + "%, " + (hsvColor.v*100).toFixed(0) + "%);";
 				const hslColor = rgbToHsl(rgbColor.r, rgbColor.g, rgbColor.b);
-				const hslLine = "HSL: hsl(" + (hslColor.h*100).toFixed(0) + "%, " + (hslColor.s*100).toFixed(0) + "%, " + (hslColor.l*100).toFixed(0) + "%);";
+				const hslLine = "hsl(" + (hslColor.h*100).toFixed(0) + "%, " + (hslColor.s*100).toFixed(0) + "%, " + (hslColor.l*100).toFixed(0) + "%);";
 				
-				const result = [hexLine, rgbLine, hsvLine, hslLine].join("\r\n");
 				
-				const preCode = document.querySelector("#palette-generator-color-info-modal pre code");
-				preCode.innerHTML = result;
-				hljs.highlightElement(preCode);
+				const preCodeHex = document.querySelector("#palette-generator-color-info-modal-list-hex code");
+				preCodeHex.innerHTML = hexLine;
+				hljs.highlightElement(preCodeHex);
+				
+				const preCodeRgb = document.querySelector("#palette-generator-color-info-modal-list-rgb code");
+				preCodeRgb.innerHTML = rgbLine;
+				hljs.highlightElement(preCodeRgb);
+				
+				const preCodeHsv = document.querySelector("#palette-generator-color-info-modal-list-hsv code");
+				preCodeHsv.innerHTML = hsvLine;
+				hljs.highlightElement(preCodeHsv);
+				
+				const preCodeHsl = document.querySelector("#palette-generator-color-info-modal-list-hsl code");
+				preCodeHsl.innerHTML = hslLine;
+				hljs.highlightElement(preCodeHsl);
 			});
 			
 			
@@ -387,7 +496,6 @@
 							current = current.previousElementSibling;
 						}
 					}
-					// console.log(diff);
 				}
 			
 			
@@ -466,6 +574,66 @@
 				paletteColor.classList.remove("hovered");
 			}
 		}
+		
+		//Prevents scrolling when spacebar is pressed
+		document.addEventListener("keydown", (e) => {
+			if(e.code == "Space" || e.keyCode == 32) {
+				e.preventDefault();
+			}
+		});
+		
+		document.addEventListener("keyup", (e) => {
+			if(e.code == "Space" || e.keyCode == 32) {
+				e.preventDefault();
+				//TODO
+				document.getElementById("palette-generator-generate-button").click();
+			}
+		});
+		
+		function applyColorBlindness() {
+			for(let i = 0; i < paletteColors.length; i++) {
+				const oldColor = paletteColors[i].querySelector("h3").textContent;
+				const newColor = colorBlindnessFilter.filter(colorBlindnessType.value, oldColor);
+				paletteColors[i].style.backgroundColor = newColor;
+			}
+		}
+		
+		colorBlindnessType.addEventListener("change", applyColorBlindness);
+		
+		
+		
+		// Creating tooltips for all copy-to-clipboard buttons
+		select("button[data-bs-title='Copy to clipboard']", true).forEach(btn => {
+			// Creating tooltip for copy-to-clipboard button
+			const tooltip = new bootstrap.Tooltip(btn, {
+				animation: false,
+				trigger: "hover",
+				title: "Copy to clipboard"
+			});
+			
+			// Copy text to clipboard library
+			const clipboard = new ClipboardJS(btn);
+			clipboard.on("success", function(e) {
+				const btn = select("button[data-bs-title='Copy to clipboard']");
+				tooltip.hide();
+				tooltip._config.title = "Copied!";
+				tooltip.show();
+				tooltip._config.title = "Copy to clipboard";
+			});
+		});
+		
+		brightnessButton.addEventListener("click", e => {
+			if(!brightnessButton.style.backgroundColor)
+				brightnessButton.style.backgroundColor = "var(--primary)";
+			else
+				brightnessButton.style.removeProperty("background-color");
+		});
+		
+		
+		
+		
+		
+		
 		
 		
 		for(let i = 0; i < paletteColors.length; i++) {
