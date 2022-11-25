@@ -72,19 +72,7 @@
                 <li><a id="link-about" class="nav-link" href="{% url 'about' %}">{% trans "About" %}</a></li>
                 <li><a id="link-services" class="nav-link" href="{% url 'services' %}">{% trans "Services" %}</a></li>
                 <li><a id="link-blog" class="nav-link" href="{% url 'blog' %}">{% trans "Blog" %}</a></li>
-                <li style="color: white;">|</li>
-                <!--
-                <li id="#language" class="nav-link">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                           aria-expanded="false">English</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">English</a></li>
-                            <li><a class="dropdown-item" href="#">Русский</a></li>
-                        </ul>
-                    </div>
-                </li>
-                -->
+                <li id="language-separator" style="color: white;">|</li>
                 <li>
                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}">

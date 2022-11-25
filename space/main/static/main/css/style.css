@@ -455,6 +455,7 @@ footer a:hover {
 	border: none;
 	color: rgba(255, 255, 255, 0.9);
 	background-color: transparent;
+	white-space: nowrap;
 }
 
 #language option{
@@ -477,6 +478,17 @@ footer a:hover {
 	box-shadow: none;
 }
 
+/* Language select for mobile navigation */
+@media (max-width: 991px) {
+	#language {
+		color: black;
+		padding: 10px 20px;
+	}
+	
+	#language-separator {
+		display: none;
+	}
+}
 
 @media (max-width: 1366px) {
     .navbar .dropdown .dropdown ul {
