@@ -71,6 +71,21 @@
             </div>
         </div>
     </div>
+	
+	<!-- Palette Colors Contrast Modal -->
+    <div class="modal fade" tabindex="-1" id="palette-generator-contrast-modal">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{% trans "Color Contrast" %}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="display: flex; flex-flow: column; gap: 32px;">
+					
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- -----  Main Start  ----- -->
     <main class="tool-section">
@@ -209,7 +224,8 @@
                     <button id="palette-generator-brightness-button" type="button" class="btn btn-light">
                         <i class="bi bi-sun"></i>
                     </button>
-                    <button id="palette-generator-contrast-button" type="button" class="btn btn-light">
+                    <button id="palette-generator-contrast-button" type="button" class="btn btn-light"
+							data-bs-toggle="modal" data-bs-target="#palette-generator-contrast-modal">
                         <i class="bi bi-circle-half"></i>
                     </button>
                 </div>

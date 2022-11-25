@@ -1628,6 +1628,23 @@ pre code {
 	height: auto;
 }
 
+/* Palette Colors Contrast Modal */
+.palette-generator-contrast-modal-row {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 32px;
+}
+
+.palette-generator-contrast-modal-row div {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	padding: 16px;
+	text-align: center;
+	border-radius: 16px;
+}
+
 /* Adaptation for mobile devices */
 @media (max-width: 1120px) {
 	

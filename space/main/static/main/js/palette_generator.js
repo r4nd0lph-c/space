@@ -222,8 +222,10 @@
 		
 		const brightnessButton = select("#palette-generator-brightness-button");
 		const contrastButton = select("#palette-generator-contrast-button");
+		const generateButton = select("#palette-generator-generate-button");
+		const exportButton = select("#palette-generator-export-button");
 		
-		let setColorNameTimeout;
+		// let setColorNameTimeout;
 		
 		
 		//Checks the contrast between text and background color and changes colors if necessary
@@ -248,18 +250,27 @@
 		
 		// Script for getting color names by hex
 		function setColorName(hex, colorP) {
-			clearTimeout(setColorNameTimeout);
-			setColorNameTimeout = setTimeout( function() {
-				$.ajax({
-					url: "get_color_name/",
-					type: "POST",
-					dataType: "json",
-					data: {"hex": hex},
-					success: function (data) {
-						colorP.textContent = data.color_name;
-					}
-				});
-			}, 100);
+			// clearTimeout(setColorNameTimeout);
+			// setColorNameTimeout = setTimeout( function() {
+				// $.ajax({
+					// url: "get_color_name/",
+					// type: "POST",
+					// dataType: "json",
+					// data: {"hex": hex},
+					// success: function (data) {
+						// colorP.textContent = data.color_name;
+					// }
+				// });
+			// }, 100);
+			$.ajax({
+				url: "get_color_name/",
+				type: "POST",
+				dataType: "json",
+				data: {"hex": hex},
+				success: function (data) {
+					colorP.textContent = data.color_name;
+				}
+			});
 		}
 		
 		
@@ -738,9 +749,29 @@
 		
 		
 		
+		contrastButton.addEventListener("click", function () {
+			const modal = document.getElementById("palette-generator-contrast-modal").getElementsByClassName("modal-body")[0];
+			modal.innerHTML = "";
+			for(let i = 0; i < paletteColors.length; i++) {
+				const divContainer = document.createElement("div");
+				divContainer.classList.add("palette-generator-contrast-modal-row");
+				for(let j = 0; j < paletteColors.length; j++) {
+					const div = document.createElement("div");
+					div.innerHTML = "Text";
+					div.style.backgroundColor = paletteColors[i].style.backgroundColor;
+					div.style.color = paletteColors[j].style.backgroundColor;
+					divContainer.appendChild(div);
+				}
+				modal.appendChild(divContainer);
+			}
+		});
 		
-		
-		
+		document.getElementById("palette-generator-contrast-modal").addEventListener("shown.bs.modal", e => {
+			const divContainers = document.querySelectorAll("#palette-generator-contrast-modal .palette-generator-contrast-modal-row");
+			const width = getComputedStyle(divContainers[0].children[0]).width;
+			for(let i = 0; i < divContainers.length; i++)
+				divContainers[i].style.height = width;
+		});
 		
 		
 		for(let i = 0; i < paletteColors.length; i++) {
