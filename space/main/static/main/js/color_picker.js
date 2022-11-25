@@ -24,6 +24,11 @@
         const colorRangeTitle = select("#color-picker-range-title");
         const uploadImageButton = select("#color-picker-upload-button");
         let colorRangeTimeOut;
+		//Variable where colors come from back-end are stored
+		let batches;
+		//Count of batches
+		let count;
+		let currentCount;
 
 
         /* Adding animation when color circle is clicked */
@@ -43,6 +48,8 @@
         ['change', 'input', 'mousedown'].forEach(function (e) {
             colorRange.addEventListener(e, (event) => {
                 clearTimeout(colorRangeTimeOut);
+				currentCount = colorRange.value;
+				updateResults();
                 let i = 0;
                 for (i = 0; i < colorRange.value; i++) {
                     colorList[i].hidden = false;
@@ -110,7 +117,48 @@
             }
         }
 
-
+		function updateResults() {
+			//Pre-calculations for changing the size of color circles depending on the color contribution
+			//The change is distributed linearly, starting from the greatest contribution => max size (48px) to smallest contribution => min size (24px)
+			//Difference between the greatest and the smallest contribution
+			const greatestContr = batches[currentCount-1][0].contribution.slice(0, -1);
+			const smallestContr = batches[currentCount-1][currentCount-1].contribution.slice(0, -1);
+			const diffContr = greatestContr - smallestContr;
+			//Difference between the max size and min size of a color circle
+			const maxSize = getComputedStyle(colorCircles[0]).maxWidth.slice(0, -2);
+			const minSize = getComputedStyle(colorCircles[0]).minWidth.slice(0, -2);
+			const diffSize = maxSize - minSize;
+			//Quotient - amount of pixels per percent
+			const quotient = diffSize / diffContr;
+			//Figuring out the offset
+			const offset = minSize - smallestContr * quotient;
+			
+			
+			//Showing results up to currentCount
+			for(let i = 0; i < currentCount; i++) {
+				//Updating the table
+				colorList[i].style.backgroundColor = batches[currentCount-1][i].hex;
+				colorList[i].getElementsByTagName("h3")[0].innerHTML = batches[currentCount-1][i].hex;
+				colorList[i].getElementsByTagName("p")[0].innerHTML = batches[currentCount-1][i].name;
+				colorList[i].getElementsByTagName("p")[1].innerHTML = batches[currentCount-1][i].contribution;
+				checkBrightness();
+				
+				//Updating color circles on the image
+				
+				//Changing color
+				colorCircles[i].style.backgroundColor = batches[currentCount-1][i].hex;
+				
+				//Changing size
+				const newColorCircleSize = batches[currentCount-1][i].contribution.slice(0, -1) * quotient + offset;
+				colorCircles[i].style.width = newColorCircleSize + "px";
+				colorCircles[i].style.height = newColorCircleSize + "px";
+				
+				//Changing position
+				//Subtracting color circle's width divided by 2 in order to shift the pivot point to the center of the circle
+				colorCircles[i].style.left = "calc(" + batches[currentCount-1][i].coords[0] * 100 + "% - " + colorCircles[i].style.width + " / 2)";
+				colorCircles[i].style.top = "calc(" + batches[currentCount-1][i].coords[1] * 100 + "% - " + colorCircles[i].style.height + " / 2)";
+			}
+		}
 
 
 
@@ -145,46 +193,26 @@
                 processData: false,
                 success: function (data) {
                     // got params for rendering are saved in data
-                    let img_params = data.img_params;
-					console.log(img_params);
-					//Pre-calculations for changing the size of color circles depending on the color contribution
-					//The change is distributed linearly, starting from the greatest contribution => max size (48px) to smallest contribution => min size (24px)
-					//Difference between the greatest and the smallest contribution
-					const greatestContr = img_params[0].contribution.slice(0, -1);
-					const smallestContr = img_params[img_params.length-1].contribution.slice(0, -1);
-					const diffContr = greatestContr - smallestContr;
-					//Difference between the max size and min size of a color circle
-					const maxSize = getComputedStyle(colorCircles[0]).maxWidth.slice(0, -2);
-					const minSize = getComputedStyle(colorCircles[0]).minWidth.slice(0, -2);
-					const diffSize = maxSize - minSize;
-					//Quotient - amount of pixels per percent
-					const quotient = diffSize / diffContr;
-					//Figuring out the offset
-					const offset = minSize - smallestContr * quotient;
-					
-					for(let i = 0; i < img_params.length; i++) {
-						//Updating the table
-						colorList[i].style.backgroundColor = img_params[i].hex;
-						colorList[i].getElementsByTagName("h3")[0].innerHTML = img_params[i].hex;
-						colorList[i].getElementsByTagName("p")[0].innerHTML = img_params[i].name;
-						colorList[i].getElementsByTagName("p")[1].innerHTML = img_params[i].contribution;
-						checkBrightness();
-						
-						//Updating color circles on the image
-						
-						//Changing color
-						colorCircles[i].style.backgroundColor = img_params[i].hex;
-						
-						//Changing size
-						const newColorCircleSize = img_params[i].contribution.slice(0, -1) * quotient + offset;
-						colorCircles[i].style.width = newColorCircleSize + "px";
-						colorCircles[i].style.height = newColorCircleSize + "px";
-						
-						//Changing position
-						//Subtracting color circle's width divided by 2 in order to shift the pivot point to the center of the circle
-						colorCircles[i].style.left = "calc(" + img_params[i].coords[0] * 100 + "% - " + colorCircles[i].style.width + " / 2)";
-						colorCircles[i].style.top = "calc(" + img_params[i].coords[1] * 100 + "% - " + colorCircles[i].style.height + " / 2)";
+					batches = data.img_params.batches;
+					count = data.img_params.count;
+					currentCount = Math.ceil(count/2);
+					console.log(batches);
+					//Changing color range properties
+					colorRange.value = currentCount;
+					colorRange.dispatchEvent(new Event("change"));
+					//If count = 1 - hide the range
+					if(count == 1) {
+						document.querySelector("#color-picker-card-colors-count").hidden = true;
 					}
+					else {
+						document.querySelector("#color-picker-card-colors-count").hidden = false;
+						colorRange.max = count;
+						//Changing max range title
+						colorRange.parentElement.nextElementSibling.textContent = count;
+					}
+					//Updating table and the color circles
+					updateResults();
+					
                 },
                 error: function (error) {
                     console.log(error);
