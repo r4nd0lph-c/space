@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from django.views.generic.edit import FormView
 from django.utils.translation import gettext as _
 
+from .services import get_name
 from .models import *
 from .forms import *
 from .services import color_clusters, palette_generator
@@ -258,6 +259,20 @@ def change_palette(request):
         palette_object = request.POST.getlist("palette_object[]", None)
         palette_object = palette_generator.generate(palette_object)
         return JsonResponse({"palette_object": palette_object})
+    else:
+        return JsonResponse({"message": "you don't have enough rights!"})
+
+
+@csrf_exempt
+def get_color_name(request):
+    """ FBV for palette_generator AJAX """
+
+    if request.method == 'POST':
+        color_name = "#______"
+        hex_color = request.POST.get("hex", None)
+        if not (hex_color is None):
+            color_name = get_name.get_color_name(hex_color)
+        return JsonResponse({"color_name": color_name})
     else:
         return JsonResponse({"message": "you don't have enough rights!"})
 

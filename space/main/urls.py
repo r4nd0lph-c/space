@@ -17,6 +17,7 @@ urlpatterns = [
     path('blog/article/<slug:article_slug>/remove_rating/', remove_rating, name="remove_rating_article"),
     path('palette_generator/', PaletteGeneratorView.as_view(), name='palette_generator'),
     path('palette_generator/change_palette/', change_palette, name="change_palette"),
+    path('palette_generator/get_color_name/', get_color_name, name="get_color_name"),
     path('gradient_generator/', GradientGeneratorView.as_view(), name='gradient_generator'),
     path('color_picker/', ColorPickerView.as_view(), name='color_picker'),
     path('color_picker/get_params', color_picker_get_params, name='get_params'),
