@@ -253,10 +253,10 @@
 	function startup() {
 		
 		
-		const tooltipTriggerList = document.querySelectorAll('#palette-generator-card-settings [data-bs-toggle="tooltip"]')
+		const tooltipTriggerList = document.querySelectorAll('#palette-generator-card-settings [data-bs-toggle="tooltip"]');
 		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
 			trigger: "hover"
-		}))
+		}));
 		
 		
 		//Array containing HEX-codes of all palette colors
@@ -282,7 +282,8 @@
 		const generateButton = select("#palette-generator-generate-button");
 		const exportButton = select("#palette-generator-export-button");
 		
-		// let setColorNameTimeout;
+		const maxColorCount = 10;
+		let setColorNameTimeout;
 		
 		
 		//Checks the contrast between text and background color and changes colors if necessary
@@ -389,6 +390,25 @@
 			paletteColors[i].getElementsByClassName("palette-generator-card-result-color-add")[0].style.display = "none";
 		}
 		
+		//Goes through all palette colors and switches off all add icons
+		function hideAllPaletteColorAdd() {
+			for(let i = 0; i < paletteColors.length; i++) {
+				paletteColors[i].getElementsByClassName("palette-generator-card-result-color-add")[0].style.display = "none";
+			}
+		}
+		
+		function adaptFontSize() {
+			for(let i = 0; i < paletteColors.length; i++) {
+				if(paletteColors.length > 5) {
+					paletteColors[i].querySelector("h3").style.fontSize = "1rem";
+					paletteColors[i].querySelector("p").style.display = "none";
+				}else {
+					paletteColors[i].querySelector("h3").style.removeProperty("font-size");
+					paletteColors[i].querySelector("p").style.removeProperty("display");
+				}
+			}
+		}
+		
 		
 		//Adds all functionality to palette color div
 		function addAllListeners(paletteColor) {
@@ -419,7 +439,10 @@
 				if(colorBlindnessType.value == "normal") {
 					paletteColor.style.backgroundColor = colorH3Input.value;
 					colorH3.textContent = colorH3Input.value;
-					setColorName(colorH3Input.value, colorP);
+					clearTimeout(setColorNameTimeout)
+					setColorNameTimeout = setTimeout(function() {
+						setColorName(colorH3Input.value, colorP)
+					}, 100);
 				} else {
 					colorP.textContent = colorH3Input.value;
 				}
@@ -485,6 +508,12 @@
 				applyColorBlindness();
 				applyBrightness();
 				checkBrightness();
+				adaptFontSize();
+				
+				if(paletteColors.length >= maxColorCount) {
+					hideAllPaletteColorAdd();
+				}
+				
 			});
 			
 			
@@ -499,6 +528,7 @@
 				setTimeout(function() {
 					paletteColor.remove();
 					hideLastPaletteColorAdd();
+					adaptFontSize();
 				}, 300);
 			});
 			
@@ -667,7 +697,8 @@
 					setTimeout(function() {
 						movePaletteColorTo(paletteColor, direction, count);
 						//If the color was dragged to the last position, we will hide its add color icon
-						hideLastPaletteColorAdd();
+						if(paletteColors.length != maxColorCount)
+							hideLastPaletteColorAdd();
 						
 						
 						//Removing all properties that were set while dragging
@@ -857,9 +888,7 @@
 			return contrastRatio;
         }
 		
-		
-		
-		
+
 		
 		contrastButton.addEventListener("click", function () {
 			const modal = document.getElementById("palette-generator-contrast-modal").getElementsByClassName("modal-body")[0];
@@ -908,6 +937,7 @@
 				modal.appendChild(divContainer);
 			}
 		});
+		
 		
 		// document.getElementById("palette-generator-contrast-modal").addEventListener("shown.bs.modal", e => {
 			// const divContainers = document.querySelectorAll("#palette-generator-contrast-modal .palette-generator-contrast-modal-row");
@@ -978,6 +1008,13 @@
 			collageColorList.innerHTML = "";
 			for(let i = 0; i < paletteColors.length; i++) {
 				const newNode = document.createElement("li");
+				newNode.style.display = "flex";
+				newNode.style.justifyContent = "flex-end";
+				newNode.style.writingMode = "vertical-lr";
+				newNode.style.textOrientation = "upright";
+				newNode.innerHTML = paletteColors[i].querySelector("h3").textContent.split("").join(" ");
+				newNode.style.color = paletteColors[i].querySelector("h3").style.color;
+				newNode.style.fontSize = "1.25rem";
 				newNode.style.backgroundColor = paletteColors[i].style.backgroundColor;
 				collageColorList.appendChild(newNode);
 			}
