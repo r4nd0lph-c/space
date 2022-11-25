@@ -128,8 +128,10 @@ def clustering(image):
             rgb_coord[num_cl - 1][rgb[pix_clt_count[i][0]]] = (x, y)
 
         # прекращение кластеризации
-        if (flag):
+        if flag:
             break
+        if num_cl == 10 and flag == False:
+            up_lim = 10
 
     # изначально создаётся 10 словарей, нужно убрать все незаполненные словари до up_lim
     j = len(rgb_percent) - 1
