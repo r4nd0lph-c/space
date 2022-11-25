@@ -80,7 +80,7 @@
                     <h4 class="modal-title">{% trans "Color Contrast" %}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" style="display: flex; flex-flow: column; gap: 32px;">
+                <div class="modal-body" style="display: flex; flex-flow: column; gap: 8px;">
 					
                 </div>
             </div>
@@ -204,7 +204,8 @@
                     };
                 </script>
                 Script for palette-information exchange END -->
-                <div class="input-group">
+                <div class="input-group" data-bs-toggle="tooltip" data-bs-placement="bottom"
+						data-bs-title="Text">
 					<span class="input-group-text">
 						<i class="bi bi-eyeglasses"></i>
 					</span>
@@ -221,11 +222,12 @@
                     </select>
                 </div>
                 <div>
-                    <button id="palette-generator-brightness-button" type="button" class="btn btn-light">
+                    <button id="palette-generator-brightness-button" type="button" class="btn btn-light" data-bs-toggle="tooltip" 
+					data-bs-placement="bottom" data-bs-title="Text">
                         <i class="bi bi-sun"></i>
                     </button>
-                    <button id="palette-generator-contrast-button" type="button" class="btn btn-light"
-							data-bs-toggle="modal" data-bs-target="#palette-generator-contrast-modal">
+                    <button id="palette-generator-contrast-button" type="button" class="btn btn-light"  data-bs-toggle="modal"
+							data-bs-target="#palette-generator-contrast-modal">
                         <i class="bi bi-circle-half"></i>
                     </button>
                 </div>

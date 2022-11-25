@@ -206,6 +206,13 @@
 	
 	function startup() {
 		
+		
+		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+			trigger: "hover"
+		}))
+		
+		
 		//Array containing HEX-codes of all palette colors
 		//This array will be interacting with back-end
 		let paletteColorsArray;
@@ -222,6 +229,10 @@
 		
 		const brightnessButton = select("#palette-generator-brightness-button");
 		const contrastButton = select("#palette-generator-contrast-button");
+		new bootstrap.Tooltip(contrastButton, {
+			placement: "bottom",
+			title: "Text"
+		});
 		const generateButton = select("#palette-generator-generate-button");
 		const exportButton = select("#palette-generator-export-button");
 		
@@ -749,29 +760,107 @@
 		
 		
 		
+		//Calculates contrast ratio
+        function calculateContrastRatio(firstColorHex, secondColorHex){
+            let rgb1 = hexToRgb(firstColorHex);
+            let rgb1_rs = rgb1.r/255.0;
+            let rgb1_gs = rgb1.g/255.0;
+            let rgb1_bs = rgb1.b/255.0;
+            let rgb1_r, rgb1_g, rgb1_b;
+            if(rgb1_rs <= 0.03928)
+                rgb1_r = rgb1_rs/12.92;
+            else
+                rgb1_r = Math.pow((rgb1_rs+0.055)/1.055, 2.4);
+            if(rgb1_gs <= 0.03928)
+                rgb1_g = rgb1_gs/12.92;
+            else
+                rgb1_g = Math.pow((rgb1_gs+0.055)/1.055, 2.4);
+            if(rgb1_bs <= 0.03928)
+                rgb1_b = rgb1_bs/12.92;
+            else
+                rgb1_b = Math.pow((rgb1_bs+0.055)/1.055, 2.4);
+            
+            let textLuminance = 0.2126 * rgb1_r + 0.7152 * rgb1_g + 0.0722 * rgb1_b;
+            
+            
+            let rgb2 = hexToRgb(secondColorHex);
+            let rgb2_rs = rgb2.r/255.0;
+            let rgb2_gs = rgb2.g/255.0;
+            let rgb2_bs = rgb2.b/255.0;
+            let rgb2_r, rgb2_g, rgb2_b;
+            if(rgb2_rs <= 0.03928)
+                rgb2_r = rgb2_rs/12.92;
+            else
+                rgb2_r = Math.pow((rgb2_rs+0.055)/1.055, 2.4);
+            if(rgb2_gs <= 0.03928)
+                rgb2_g = rgb2_gs/12.92;
+            else
+                rgb2_g = Math.pow((rgb2_gs+0.055)/1.055, 2.4);
+            if(rgb2_bs <= 0.03928)
+                rgb2_b = rgb2_bs/12.92;
+            else
+                rgb2_b = Math.pow((rgb2_bs+0.055)/1.055, 2.4);
+            
+            let backgroundLuminance = 0.2126 * rgb2_r + 0.7152 * rgb2_g + 0.0722 * rgb2_b;
+            
+            
+            let contrastRatio = ((textLuminance + 0.05) / (backgroundLuminance + 0.05));
+            if(contrastRatio < 1)
+                contrastRatio = 1/contrastRatio;
+			
+			return contrastRatio;
+        }
+		
+		
+		
+		
+		
 		contrastButton.addEventListener("click", function () {
 			const modal = document.getElementById("palette-generator-contrast-modal").getElementsByClassName("modal-body")[0];
 			modal.innerHTML = "";
-			for(let i = 0; i < paletteColors.length; i++) {
+			for(let i = -1; i <= paletteColors.length; i++) {
 				const divContainer = document.createElement("div");
 				divContainer.classList.add("palette-generator-contrast-modal-row");
+				let firstColor;
+				if(i == -1) {
+					firstColor = "#FFFFFF";
+				}else if(i == paletteColors.length) {
+					firstColor = "#000000";
+				}else {
+					firstColor = getRgbFromCssStyle(paletteColors[i].style.backgroundColor);
+					firstColor = rgbToHex(firstColor[0], firstColor[1], firstColor[2]);
+				}
 				for(let j = 0; j < paletteColors.length; j++) {
 					const div = document.createElement("div");
-					div.innerHTML = "Text";
-					div.style.backgroundColor = paletteColors[i].style.backgroundColor;
+					div.innerHTML = "<p>Text</p>";
+					div.style.backgroundColor = firstColor;
 					div.style.color = paletteColors[j].style.backgroundColor;
+					let secondColor = getRgbFromCssStyle(paletteColors[j].style.backgroundColor);
+					secondColor = rgbToHex(secondColor[0], secondColor[1], secondColor[2]);
+					const contrastRatio = calculateContrastRatio(firstColor, secondColor);
+					const icon = document.createElement("i");
+					icon.classList.add("bi");
+					icon.style.fontSize = "1.25rem";
+					if(contrastRatio >= 4.5) {
+						icon.classList.add("bi-check-circle");
+						icon.style.color = "var(--success)";
+					}else {
+						icon.classList.add("bi-x-circle");
+						icon.style.color = "var(--danger)";
+					}
+					div.appendChild(icon);
 					divContainer.appendChild(div);
 				}
 				modal.appendChild(divContainer);
 			}
 		});
 		
-		document.getElementById("palette-generator-contrast-modal").addEventListener("shown.bs.modal", e => {
-			const divContainers = document.querySelectorAll("#palette-generator-contrast-modal .palette-generator-contrast-modal-row");
-			const width = getComputedStyle(divContainers[0].children[0]).width;
-			for(let i = 0; i < divContainers.length; i++)
-				divContainers[i].style.height = width;
-		});
+		// document.getElementById("palette-generator-contrast-modal").addEventListener("shown.bs.modal", e => {
+			// const divContainers = document.querySelectorAll("#palette-generator-contrast-modal .palette-generator-contrast-modal-row");
+			// const width = getComputedStyle(divContainers[0].children[0]).width;
+			// for(let i = 0; i < divContainers.length; i++)
+				// divContainers[i].style.height = width;
+		// });
 		
 		
 		for(let i = 0; i < paletteColors.length; i++) {

@@ -1632,17 +1632,19 @@ pre code {
 .palette-generator-contrast-modal-row {
 	display: flex;
 	flex-flow: row nowrap;
-	gap: 32px;
+	gap: 8px;
 }
 
 .palette-generator-contrast-modal-row div {
 	display: flex;
 	flex: 1;
+	gap: 8px;
 	justify-content: center;
 	align-items: center;
 	padding: 16px;
 	text-align: center;
 	border-radius: 16px;
+	border: 1px solid var(--secondary);
 }
 
 /* Adaptation for mobile devices */
