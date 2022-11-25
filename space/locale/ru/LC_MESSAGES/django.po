@@ -64,7 +64,7 @@ msgstr "Дата"
 #: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:94
 #: .\main\templates\main\index.html:127 .\main\templates\main\index.html:165
 msgid "Reading time"
-msgstr "Время на чтение"
+msgstr "Чтение"
 
 #: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:95
 #: .\main\templates\main\index.html:128 .\main\templates\main\index.html:166
@@ -277,8 +277,8 @@ msgid ""
 "Life is filled with colors. You’ve always been wondering what color your "
 "life’s in? Upload your photo and learn in a sec."
 msgstr ""
-"Жизнь наполнена красками. Вам всегда было интересно, в каком цвете ваша "
-"жизнь? Загрузите свою фотографию и узнайте через секунду."
+"Вам всегда было интересно, в каком цвете ваша жизнь? "
+"Загрузите фотографию и узнайте через секунду."
 
 #: .\main\templates\main\color_picker.html:155
 msgid "Most common colors"
@@ -380,8 +380,8 @@ msgid ""
 "Make your own art of soft and fluffy colors fluently flowing into each "
 "other. Be certain, everything will go smoothly."
 msgstr ""
-"Создайте свое собственное искусство из мягких и пушистых цветов, плавно "
-"перетекающих друг в друга. Будьте уверены, все пройдет гладко."
+"Создайте своё искусство из цветов, плавно перетекающих друг в друга. "
+"Будьте уверены, всё пройдет гладко."
 
 #: .\main\templates\main\gradient_generator.html:96
 msgid "Choose colors"
@@ -542,7 +542,7 @@ msgid ""
 "Create your own color palette in just one click! Use flexible settings to "
 "express all spectrum of your ideas."
 msgstr ""
-"Создайте свою собственную цветовую палитру. Используйте гибкие настройки, "
+"Создайте свою цветовую палитру. Используйте настройки, "
 "чтобы выразить весь спектр ваших идей."
 
 #: .\main\templates\main\index.html:66 .\main\templates\main\index.html:81
