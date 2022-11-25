@@ -3,6 +3,75 @@
 {% load static %}
 
 {% block body %}
+	<!-- Export Modal -->
+	<div class="modal fade" tabindex="-1" id="palette-generator-export-modal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">{% trans "Export as..." %}</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="export-modal-icons">
+						<button data-bs-toggle="modal" data-bs-dismiss="modal"
+								data-bs-target="#color-picker-export-css-modal">
+							<i class="bi bi-filetype-css"></i>
+							<div>CSS</div>
+						</button>
+						<button id="color-picker-export-collage-png-button" data-bs-dismiss="modal">
+							<i class="bi bi-image"></i>
+							<div>{% trans "Image" %}</div>
+						</button>
+						<button id="color-picker-export-collage-pdf-button" data-bs-dismiss="modal">
+							<i class="bi bi-file-earmark-pdf"></i>
+							<div>PDF</div>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Export As Collage -->
+	<div id="color-picker-export-collage">
+		<div>
+			<ul id="color-picker-export-collage-color-list" style="flex-flow: row;">
+			</ul>
+		</div>
+	</div>
+	
+	<!-- Export As CSS Modal -->
+        <div class="modal fade" tabindex="-1" id="color-picker-export-css-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans "Export as " %} CSS</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+						<pre>
+							<code id="color-picker-export-css-code" class="language-scss">
+								You should not see this text
+							</code>
+						</pre>
+                        <div style="display: flex; justify-content: space-between; gap: 32px;">
+                            <a id="color-picker-export-css-modal-download-button" href="" download="palette.scss"
+                               style="height: 50px; flex: 1;">
+                                <button style="width: 100%; height: 50px; border: 1px solid var(--secondary);"
+                                        class="btn">{% trans "DOWNLOAD" %}
+                                </button>
+                            </a>
+                            <button style="height: 50px; flex: 1;" class="btn btn-primary" data-bs-placement="bottom"
+                                    data-bs-toggle="tooltip" data-bs-title="Copied!"
+                                    data-clipboard-target="#color-picker-export-css-code">{% trans "COPY" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     <!-- Palette Color Additional Info Modal -->
     <div class="modal fade" tabindex="-1" id="palette-generator-color-info-modal">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -231,8 +300,8 @@
                         <i class="bi bi-circle-half"></i>
                     </button>
                 </div>
-                <button id="palette-generator-export-button" type="button"
-                        class="btn btn-primary">{% trans "EXPORT AS" %}</button>
+                <button id="palette-generator-export-button" type="button" class="btn btn-primary"
+						data-bs-toggle="modal" data-bs-target="#palette-generator-export-modal">{% trans "EXPORT AS" %}</button>
             </div>
         </div>
     </main>

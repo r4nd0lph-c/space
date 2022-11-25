@@ -12,6 +12,52 @@
         } : null;
     }
 	
+	//Converts HEX to HSL
+	function hexToHSL(H) {
+		// Convert hex to RGB first
+		let r = 0, g = 0, b = 0;
+		if (H.length == 4) {
+			r = "0x" + H[1] + H[1];
+			g = "0x" + H[2] + H[2];
+			b = "0x" + H[3] + H[3];
+		} else if (H.length == 7) {
+			r = "0x" + H[1] + H[2];
+			g = "0x" + H[3] + H[4];
+			b = "0x" + H[5] + H[6];
+		}
+		// Then to HSL
+		r /= 255;
+		g /= 255;
+		b /= 255;
+		let cmin = Math.min(r,g,b),
+			cmax = Math.max(r,g,b),
+			delta = cmax - cmin,
+			h = 0,
+			s = 0,
+			l = 0;
+
+		if (delta == 0)
+			h = 0;
+		else if (cmax == r)
+			h = ((g - b) / delta) % 6;
+		else if (cmax == g)
+			h = (b - r) / delta + 2;
+		else
+			h = (r - g) / delta + 4;
+
+		h = Math.round(h * 60);
+
+		if (h < 0)
+			h += 360;
+
+		l = (cmax + cmin) / 2;
+		s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+		s = +(s * 100).toFixed(1);
+		l = +(l * 100).toFixed(1);
+
+		return "hsl(" + h + "," + s + "%," + l + "%)";
+	}
+	
 	//Converts from RGB to HEX
 	function componentToHex(c) {
 		var hex = c.toString(16);
@@ -207,7 +253,7 @@
 	function startup() {
 		
 		
-		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+		const tooltipTriggerList = document.querySelectorAll('#palette-generator-card-settings [data-bs-toggle="tooltip"]')
 		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
 			trigger: "hover"
 		}))
@@ -727,8 +773,8 @@
 		
 		
 		
-		// Creating tooltips for all copy-to-clipboard buttons
-		select("button[data-bs-title='Copy to clipboard']", true).forEach(btn => {
+		// Creating tooltips for all copy-to-clipboard buttons in info modal
+		select("#palette-generator-color-info-modal button[data-bs-title='Copy to clipboard']", true).forEach(btn => {
 			// Creating tooltip for copy-to-clipboard button
 			const tooltip = new bootstrap.Tooltip(btn, {
 				animation: false,
@@ -830,13 +876,21 @@
 					firstColor = getRgbFromCssStyle(paletteColors[i].style.backgroundColor);
 					firstColor = rgbToHex(firstColor[0], firstColor[1], firstColor[2]);
 				}
-				for(let j = 0; j < paletteColors.length; j++) {
+				for(let j = -1; j <= paletteColors.length; j++) {
 					const div = document.createElement("div");
 					div.innerHTML = "<p>Text</p>";
 					div.style.backgroundColor = firstColor;
-					div.style.color = paletteColors[j].style.backgroundColor;
-					let secondColor = getRgbFromCssStyle(paletteColors[j].style.backgroundColor);
-					secondColor = rgbToHex(secondColor[0], secondColor[1], secondColor[2]);
+					let secondColor;
+					if(j == -1) {
+						secondColor = "#FFFFFF";
+					}else if (j == paletteColors.length) {
+						secondColor = "#000000";
+					}else {
+						secondColor = getRgbFromCssStyle(paletteColors[j].style.backgroundColor);
+						secondColor = rgbToHex(secondColor[0], secondColor[1], secondColor[2]);
+					}
+					
+					div.style.color = secondColor;
 					const contrastRatio = calculateContrastRatio(firstColor, secondColor);
 					const icon = document.createElement("i");
 					icon.classList.add("bi");
@@ -861,6 +915,126 @@
 			// for(let i = 0; i < divContainers.length; i++)
 				// divContainers[i].style.height = width;
 		// });
+		
+		
+		/* Handling exports */
+		
+		//Converts text to css-style
+		//Removes all text in parentheses, removes punctuation from a string and replaces accented characters to normal characters (e.g. è to e), sets lowercase and replaces all spaces to '-'
+		function stringToCssStyle(str) {
+			return str.replace(/\s*\(.*?\)\s*/g, '').replace(/['.,\/#!$%\^&\*;:{}=\_`~()]/g,"").replace(/\s{2,}/g," ").normalize("NFKD").replace(/\p{Diacritic}/gu, "").replace(/ /g, '-').toLowerCase();
+		}
+		
+		//CSS
+		document.querySelector('#color-picker-export-css-modal').addEventListener('show.bs.modal', (event) => {
+			let cssResult = "";
+			
+			let cssHexResult = "/* CSS HEX */\r\n";
+			let cssHSLResult = "/* CSS HSL */\r\n";
+			let scssHEXResult = "/* SCSS HEX */\r\n";
+			let scssHSLResult = "/* SCSS HSL */\r\n";
+			for(let i = 0; i < paletteColors.length; i++) {
+				let colorName = stringToCssStyle(paletteColors[i].querySelector("p").textContent);
+				let colorHex = paletteColors[i].querySelector("h3").textContent;
+				cssHexResult += "--" + colorName + ": " + colorHex + ";\r\n";
+				cssHSLResult += "--" + colorName + ": " + hexToHSL(colorHex) + ";\r\n";
+				scssHEXResult += "$" + colorName + ": " + colorHex + ";\r\n";
+				scssHSLResult += "$" + colorName + ": " + hexToHSL(colorHex) + ";\r\n";
+			}
+			
+			//Joining everything in one result
+			cssResult = [cssHexResult, cssHSLResult, scssHEXResult, scssHSLResult].join("\r\n");
+			
+			const preCode = select("#color-picker-export-css-modal pre code");
+			preCode.innerHTML = cssResult;
+			hljs.highlightElement(preCode);
+		});
+		
+		// Creating tooltips for all copy-to-clipboard buttons in export modals
+		select("button[data-bs-title='Copied!']", true).forEach(btn => {
+			// Creating tooltip for copy-to-clipboard button
+			const tooltip = new bootstrap.Tooltip(btn, {
+				animation: false,
+				trigger: "manual",
+				title: "Copied!"
+			});
+			
+			// Copy text to clipboard library
+			const clipboard = new ClipboardJS(btn);
+			clipboard.on("success", function(e) {
+				tooltip.show();
+				setTimeout(function() {
+					tooltip.hide();
+				}, 1000);
+			});
+		});
+		
+		
+		//Auxiliar function used in both PNG and PDF export
+		//Copy colors from palette
+		function copyColorsToCollage() {
+			//Copying color list from color picker card to the collage
+			const collageColorList = select("#color-picker-export-collage-color-list");
+			collageColorList.innerHTML = "";
+			for(let i = 0; i < paletteColors.length; i++) {
+				const newNode = document.createElement("li");
+				newNode.style.backgroundColor = paletteColors[i].style.backgroundColor;
+				collageColorList.appendChild(newNode);
+			}
+		}
+		
+		
+		//PNG
+		//Downloading collage on click
+		select("#color-picker-export-collage-png-button").onclick = function() {
+			copyColorsToCollage();
+			//Making screenshot of the collage
+			html2canvas(select("#color-picker-export-collage"), {
+				width: "1920",
+				height: "1080",
+				timeout: 0,
+				onclone: function (clonedDoc) {
+					clonedDoc.getElementById('color-picker-export-collage').style.display = 'block';
+				}
+			}).then((canvas)=>{
+				let a = document.createElement("a");
+				a.download = "palette.png";
+				a.href = canvas.toDataURL('image/png');
+				a.click();
+			});
+		};
+		
+		//PDF
+		//Downloading collage on click
+		select("#color-picker-export-collage-pdf-button").onclick = function() {
+			copyColorsToCollage();
+			//Making screenshot of the collage
+			html2canvas(select("#color-picker-export-collage"), {
+				width: "1920",
+				height: "1080",
+				timeout: 0,
+				onclone: function (clonedDoc) {
+					clonedDoc.getElementById('color-picker-export-collage').style.display = 'block';
+				}
+			}).then((canvas)=>{
+				//Using jsPDF to save collage
+				const imgData = canvas.toDataURL("image/jpeg", 1.0);
+				//Without this line we get an error - jsPDF not found
+				window.jsPDF = window.jspdf.jsPDF;
+				let pdf = new jsPDF({
+					orientation: "landscape",
+					format: [1280, 720]
+				});
+				//Calculating width and height of a PDF page to fit the image
+				const width = pdf.internal.pageSize.getWidth();
+				const height = pdf.internal.pageSize.getHeight();
+				pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+				pdf.save("palette.pdf");
+			});
+		};
+		
+		
+		
 		
 		
 		for(let i = 0; i < paletteColors.length; i++) {
