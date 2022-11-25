@@ -90,7 +90,7 @@ class BlogListView(ListView):
     """
 
     template_name = 'main/blog.html'
-    paginate_by = 1
+    paginate_by = 3
 
     model = Article
 

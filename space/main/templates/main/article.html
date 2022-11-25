@@ -72,7 +72,7 @@
                     {% for comment in comments_queryset %}
                         <div>
                             <h4> {{ comment.nickname }}</h4>
-                            <span> {{ comment.created }}</span>
+                            <span> {{ comment.created|date:"d.m.Y H:i" }}</span>
                             <p> {{ comment.content }}</p>
                         </div>
                     {% endfor %}
