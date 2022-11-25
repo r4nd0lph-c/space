@@ -1016,6 +1016,7 @@
 				newNode.style.color = paletteColors[i].querySelector("h3").style.color;
 				newNode.style.fontSize = "1.25rem";
 				newNode.style.backgroundColor = paletteColors[i].style.backgroundColor;
+				newNode.style.textTransform = "uppercase";
 				collageColorList.appendChild(newNode);
 			}
 		}
