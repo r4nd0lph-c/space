@@ -450,6 +450,34 @@ footer a:hover {
     visibility: visible;
 }
 
+/* Language select */
+#language {
+	border: none;
+	color: rgba(255, 255, 255, 0.9);
+	background-color: transparent;
+}
+
+#language option{
+	color: black;
+}
+
+#language,
+#language option {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 600;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+#language:focus,
+#language:focus-visible {
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
+
+
 @media (max-width: 1366px) {
     .navbar .dropdown .dropdown ul {
         left: -90%;
