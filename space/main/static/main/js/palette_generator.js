@@ -175,6 +175,34 @@
 	}
 	
 	
+	/* Returns a value from 0 (black) to 100 (white) where 50 is the perceptual "middle grey". */
+	function getBrightness(hex) {
+		const rgb = hexToRgb(hex);
+		rgb.r /= 255;
+		rgb.g /= 255;
+		rgb.b /= 255;
+		
+		function sRGBtoLin(colorChannel) {
+			// Send this function a decimal sRGB gamma encoded color value
+			// between 0.0 and 1.0, and it returns a linearized value.
+
+			if ( colorChannel <= 0.04045 ) {
+				return colorChannel / 12.92;
+			} else {
+				return Math.pow(((colorChannel + 0.055)/1.055), 2.4);
+			}
+		}
+		
+		
+		const luminance = (0.2126 * sRGBtoLin(rgb.r) + 0.7152 * sRGBtoLin(rgb.g) + 0.0722 * sRGBtoLin(rgb.b));
+			if (luminance <= (216/24389)) {       // The CIE standard states 0.008856 but 216/24389 is the intent for 0.008856451679036
+				return luminance * (24389/27);  // The CIE standard states 903.3, but 24389/27 is the intent, making 903.296296296296296
+        } else {
+            return Math.pow(luminance,(1/3)) * 116 - 16;
+        }
+	}
+	
+	
 	
 	function startup() {
 		
@@ -195,6 +223,8 @@
 		const brightnessButton = select("#palette-generator-brightness-button");
 		const contrastButton = select("#palette-generator-contrast-button");
 		
+		let setColorNameTimeout;
+		
 		
 		//Checks the contrast between text and background color and changes colors if necessary
 		function checkBrightness() {
@@ -214,6 +244,22 @@
 				paletteColor.querySelector("h3").style.color = textColor;
 				paletteColor.querySelector("p").style.color = textColor;
 			}
+		}
+		
+		// Script for getting color names by hex
+		function setColorName(hex, colorP) {
+			clearTimeout(setColorNameTimeout);
+			setColorNameTimeout = setTimeout( function() {
+				$.ajax({
+					url: "get_color_name/",
+					type: "POST",
+					dataType: "json",
+					data: {"hex": hex},
+					success: function (data) {
+						colorP.textContent = data.color_name;
+					}
+				});
+			}, 100);
 		}
 		
 		
@@ -280,6 +326,7 @@
 		function addAllListeners(paletteColor) {
 			const colorH3 = paletteColor.querySelector("h3");
 			const colorH3Input = paletteColor.querySelector("input");
+			const colorP = paletteColor.querySelector("p");
 			//Add new color icon
 			const colorAdd = paletteColor.querySelector(".palette-generator-card-result-color-add i");
 			//Drag colors icon
@@ -301,10 +348,18 @@
 			
 			//When color input value changed - change color of text and background
 			colorH3Input.addEventListener("input", function() {
-				paletteColor.style.backgroundColor = colorH3Input.value;
-				colorH3.textContent = colorH3Input.value;
-				checkBrightness();
+				if(colorBlindnessType.value == "normal") {
+					paletteColor.style.backgroundColor = colorH3Input.value;
+					colorH3.textContent = colorH3Input.value;
+					setColorName(colorH3Input.value, colorP);
+				} else {
+					colorP.textContent = colorH3Input.value;
+				}
+				
+				
 				applyColorBlindness();
+				applyBrightness();
+				checkBrightness();
 			});
 			
 			
@@ -327,15 +382,27 @@
 			//When clicked on add color icon - create new color div with constructor, set the color to the mean of two adjacent colors
 			colorAdd.addEventListener("click", function() {
 				const newColor = createNewPaletteColor();
-				const firstColor = getRgbFromCssStyle(paletteColor.style.backgroundColor);
-				const secondColor = getRgbFromCssStyle(paletteColor.nextElementSibling.style.backgroundColor);
-				const r = Math.round((firstColor[0] + secondColor[0])/2);
-				const g = Math.round((firstColor[1] + secondColor[1])/2);
-				const b = Math.round((firstColor[2] + secondColor[2])/2);
-				const middleColor = rgbToHex(r, g, b);
-				newColor.style.backgroundColor = middleColor;
+				let middleColor;
+				if(colorBlindnessType.value == "normal") {
+					const firstColor = hexToRgb(colorH3.textContent);
+					const secondColor = hexToRgb(paletteColor.nextElementSibling.querySelector("h3").textContent);
+					const r = Math.round((firstColor.r + secondColor.r)/2);
+					const g = Math.round((firstColor.g + secondColor.g)/2);
+					const b = Math.round((firstColor.b + secondColor.b)/2);
+					middleColor = rgbToHex(r, g, b);
+					setColorName(middleColor, newColor.querySelector("p"));
+				}else {
+					let firstColor = colorP.textContent;
+					let secondColor = paletteColor.nextElementSibling.querySelector("p").textContent;
+					firstColor = hexToRgb(firstColor);
+					secondColor = hexToRgb(secondColor);
+					const r = Math.round((firstColor.r + secondColor.r)/2);
+					const g = Math.round((firstColor.g + secondColor.g)/2);
+					const b = Math.round((firstColor.b + secondColor.b)/2);
+					middleColor = rgbToHex(r, g, b);
+				}
+				
 				newColor.querySelector("h3").textContent = middleColor;
-				newColor.querySelector("input").value = middleColor;
 				//Smooth animtaion of appearing
 				newColor.style.flex = "0";
 				newColor.style.padding = "0";
@@ -347,8 +414,9 @@
 				
 				//Checking brightness and remove icons
 				CheckAndToggleRemoveIcons();
-				checkBrightness();
 				applyColorBlindness();
+				applyBrightness();
+				checkBrightness();
 			});
 			
 			
@@ -590,15 +658,50 @@
 			}
 		});
 		
+		
 		function applyColorBlindness() {
 			for(let i = 0; i < paletteColors.length; i++) {
-				const oldColor = paletteColors[i].querySelector("h3").textContent;
-				const newColor = colorBlindnessFilter.filter(colorBlindnessType.value, oldColor);
-				paletteColors[i].style.backgroundColor = newColor;
+				if(colorBlindnessType.value == "normal" && paletteColors[i].querySelector("p").textContent.startsWith("#")) {
+					//Restoring old color
+					const newColor = paletteColors[i].querySelector("p").textContent;
+					paletteColors[i].style.backgroundColor = newColor;
+					paletteColors[i].querySelector("h3").textContent = newColor;
+					setColorName(newColor, paletteColors[i].querySelector("p"));
+				}else if (colorBlindnessType.value != "normal") {
+					if(paletteColors[i].querySelector("p").textContent.startsWith("#")) {
+						const oldColor = paletteColors[i].querySelector("p").textContent;
+						const newColor = colorBlindnessFilter.filter(colorBlindnessType.value, oldColor);
+						paletteColors[i].style.backgroundColor = newColor;
+						paletteColors[i].querySelector("h3").textContent = newColor;
+					}else {
+						const oldColor = paletteColors[i].querySelector("h3").textContent;
+						const newColor = colorBlindnessFilter.filter(colorBlindnessType.value, oldColor);
+						paletteColors[i].querySelector("p").textContent = oldColor;
+						paletteColors[i].style.backgroundColor = newColor;
+						paletteColors[i].querySelector("h3").textContent = newColor;
+					}
+				}
 			}
+			
+			if(brightnessButton.style.backgroundColor)
+				applyBrightness();
 		}
 		
 		colorBlindnessType.addEventListener("change", applyColorBlindness);
+		
+		
+		function applyBrightness() {
+			if(!brightnessButton.style.backgroundColor) {
+				for(let i = 0; i < paletteColors.length; i++) {
+					paletteColors[i].style.backgroundColor = paletteColors[i].querySelector("h3").textContent;
+				}
+			}else {
+				for(let i = 0; i < paletteColors.length; i++) {
+					const brightness = parseInt(getBrightness(paletteColors[i].querySelector("h3").textContent));
+					paletteColors[i].style.backgroundColor = rgbToHex(brightness, brightness, brightness);
+				}
+			}
+		}	
 		
 		
 		
@@ -623,10 +726,14 @@
 		});
 		
 		brightnessButton.addEventListener("click", e => {
-			if(!brightnessButton.style.backgroundColor)
+			if(!brightnessButton.style.backgroundColor) {
 				brightnessButton.style.backgroundColor = "var(--primary)";
-			else
+			}
+			else {
 				brightnessButton.style.removeProperty("background-color");
+			}
+			applyBrightness();
+			checkBrightness();
 		});
 		
 		

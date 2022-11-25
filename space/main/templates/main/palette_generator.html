@@ -162,26 +162,6 @@
             <div id="palette-generator-card-settings">
                 <button id="palette-generator-generate-button" type="button"
                         class="btn btn-light">{% trans "GENERATE" %}</button>
-                <!-- Script for getting color names by hex START -->
-                <script>
-                    function get_color_name(hex) {
-                        let color_name = "______";
-                        $.ajax({
-                            url: "get_color_name/",
-                            type: "POST",
-                            dataType: "json",
-                            data: {"hex": hex},
-                            success: function (data) {
-                                color_name = data.color_name;
-                                console.log(data);
-                            }
-                        });
-                        return color_name
-                    }
-                </script>
-                <!-- Script for getting color names by hex END -->
-
-
                 <!-- Script for palette-information exchange START
                 <script>
                     // default palette (first loading)
