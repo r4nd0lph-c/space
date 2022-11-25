@@ -14,7 +14,7 @@
             <h1 id="main_text"></h1>
             <script>
                 new TypeIt("#main_text", {
-                    strings: [ '{% trans "Powerful tools" %}', '{% trans "for your creativity" %}' ],
+                    strings: ['{% trans "Powerful tools" %}', '{% trans "for your creativity" %}'],
                     startDelay: 150,
                     speed: 100,
                     nextStringDelay: 300,
@@ -123,7 +123,7 @@
                 <!-- card 0 Start -->
                 <div class="recent-post-card">
                     <div class="recent-post-card-top">
-                        <p class="recent-post-date">{{ recent_posts.0.created }}</p>
+                        <p class="recent-post-date">{% trans "Date" %}: {{ recent_posts.0.created|date:"d.m.Y" }}</p>
                         <p class="recent-post-reading-time">{% trans "Reading time" %}
                             ~ {{ recent_posts.0.reading }} {% trans "min." %}</p>
                     </div>
@@ -161,7 +161,7 @@
                 <!-- card 1 Start -->
                 <div class="recent-post-card">
                     <div class="recent-post-card-top">
-                        <p class="recent-post-date">{{ recent_posts.1.created }}</p>
+                        <p class="recent-post-date">{% trans "Date" %}: {{ recent_posts.1.created|date:"d.m.Y" }}</p>
                         <p class="recent-post-reading-time">{% trans "Reading time" %}
                             ~ {{ recent_posts.1.reading }} {% trans "min." %} </p>
                     </div>
@@ -203,6 +203,11 @@
 {% endblock %}
 
 {% block script %}
+    <script>
+        // language *consts
+        var ADD_TO_FAV = "{% trans 'add to favourite' %}";
+        var REMOVE_FROM_FAV = "{% trans 'remove from favourite' %}";
+    </script>
     <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
     <script src="{% static 'main/js/index.js' %}"></script>
 {% endblock %}

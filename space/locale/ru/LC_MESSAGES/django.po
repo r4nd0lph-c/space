@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 16:50+0300\n"
+"POT-Creation-Date: 2022-11-25 17:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,6 @@ msgstr ""
 #: .\main\admin.py:42
 msgid "Administration"
 msgstr "Администрирование"
-
-#: .\main\forms.py:9
-msgid "Your nickname"
-msgstr "Ваше имя"
-
-#: .\main\forms.py:17
-msgid "Add a comment..."
-msgstr "Добавить комментарий..."
 
 #: .\main\models.py:27
 msgid "Article ID: "
@@ -63,20 +55,32 @@ msgstr ""
 msgid "Contact us"
 msgstr "Обратная связь"
 
-#: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:92
+#: .\main\templates\main\article.html:11 .\main\templates\main\blog.html:13
+#: .\main\templates\main\blog.html:93 .\main\templates\main\index.html:126
+#: .\main\templates\main\index.html:164
+msgid "Date"
+msgstr "Дата"
+
+#: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:94
 #: .\main\templates\main\index.html:127 .\main\templates\main\index.html:165
 msgid "Reading time"
 msgstr "Время на чтение"
 
-#: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:92
+#: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:95
 #: .\main\templates\main\index.html:128 .\main\templates\main\index.html:166
 msgid "min."
 msgstr "мин."
 
-#: .\main\templates\main\article.html:24 .\main\templates\main\blog.html:112
+#: .\main\templates\main\article.html:24 .\main\templates\main\article.html:90
+#: .\main\templates\main\blog.html:115 .\main\templates\main\blog.html:183
 #: .\main\templates\main\index.html:150 .\main\templates\main\index.html:188
+#: .\main\templates\main\index.html:208
 msgid "add to favourite"
 msgstr "добавить в избранное"
+
+#: .\main\templates\main\article.html:32
+msgid "Tags"
+msgstr "Теги"
 
 #: .\main\templates\main\article.html:50
 msgid "Add a comment"
@@ -86,9 +90,22 @@ msgstr "Добавить комментарий"
 msgid "Post"
 msgstr "Отправить"
 
+#: .\main\templates\main\article.html:62
+msgid "Your nickname"
+msgstr "Ваше имя"
+
 #: .\main\templates\main\article.html:65
+msgid "Add a comment..."
+msgstr "Добавить комментарий..."
+
+#: .\main\templates\main\article.html:71
 msgid "Comments"
 msgstr "Комментарии"
+
+#: .\main\templates\main\article.html:91 .\main\templates\main\blog.html:184
+#: .\main\templates\main\index.html:209
+msgid "remove from favourite"
+msgstr "удалить из избранного"
 
 #: .\main\templates\main\base.html:71
 msgid "Home"
@@ -152,10 +169,6 @@ msgstr "Подробнее"
 msgid "Accept"
 msgstr "Принять"
 
-#: .\main\templates\main\blog.html:13
-msgid "Date"
-msgstr "Дата"
-
 #: .\main\templates\main\blog.html:15
 msgid "All time"
 msgstr "Всё время"
@@ -192,35 +205,35 @@ msgstr "По популярности (начиная с лучших)"
 msgid "By popularity (worst)"
 msgstr "По популярности (начиная с худших)"
 
-#: .\main\templates\main\blog.html:33
+#: .\main\templates\main\blog.html:34
 msgid "Favorites only"
 msgstr "Только избранное"
 
-#: .\main\templates\main\blog.html:39
+#: .\main\templates\main\blog.html:40
 msgid "Apply"
 msgstr "Применить"
 
-#: .\main\templates\main\blog.html:40
+#: .\main\templates\main\blog.html:42
 msgid "Reset"
 msgstr "Сбросить"
 
-#: .\main\templates\main\blog.html:128
+#: .\main\templates\main\blog.html:131
 msgid "No articles (check filters)"
 msgstr "Статьи не найдены (проверьте фильтры)"
 
-#: .\main\templates\main\blog.html:145 .\main\templates\main\blog.html:150
+#: .\main\templates\main\blog.html:148 .\main\templates\main\blog.html:153
 msgid "Previous"
 msgstr "Предыдущая"
 
-#: .\main\templates\main\blog.html:149
+#: .\main\templates\main\blog.html:152
 msgid "First"
 msgstr "Первая"
 
-#: .\main\templates\main\blog.html:161 .\main\templates\main\blog.html:171
+#: .\main\templates\main\blog.html:164 .\main\templates\main\blog.html:174
 msgid "Next"
 msgstr "Следующая"
 
-#: .\main\templates\main\blog.html:167 .\main\templates\main\blog.html:172
+#: .\main\templates\main\blog.html:170 .\main\templates\main\blog.html:175
 msgid "Last"
 msgstr "Последняя"
 

@@ -8,8 +8,8 @@
         <div class="article-container">
             <!-- Articles START -->
             <div class="article">
-                <span class="article-date">{{ article.created }}</span>
-                <span class="article-reading-time">{% trans "Reading time"%} ~ {{ article.reading }} {% trans "min." %}</span>
+                <span class="article-date">{% trans "Date" %}: {{ article.created|date:"d.m.Y" }}</span>
+                <span class="article-reading-time">{% trans "Reading time" %} ~ {{ article.reading }} {% trans "min." %}</span>
                 <h1 class="article-title">{{ article.title }}</h1>
                 {{ article.content|safe }}
                 <div class="article-bottom">
@@ -29,7 +29,7 @@
 						<i class="{{ article.slug }} bi bi-chevron-up rating-up"></i>
 					</span>
                     <span class="blog-main-post-card-bottom-tags">
-						Tags:
+						{% trans "Tags" %}:
                         {% for tag in article.tags.all %}
                             <span>#{{ tag.name }}</span>
                         {% endfor %}
@@ -57,6 +57,12 @@
                         <script>
                             var hidden_slug_field = document.getElementById("id_article_slug");
                             hidden_slug_field.value = "{{ article.slug }}";
+
+                            var nickname_field = document.getElementById("id_nickname");
+                            nickname_field.placeholder = "{% trans 'Your nickname' %}";
+
+                            var content_field = document.getElementById("id_content");
+                            content_field.placeholder = "{% trans 'Add a comment...' %}";
                         </script>
                     </form>
                 </div>
@@ -79,6 +85,11 @@
 {% endblock %}
 
 {% block script %}
+    <script>
+        // language *consts
+        var ADD_TO_FAV = "{% trans 'add to favourite' %}";
+        var REMOVE_FROM_FAV = "{% trans 'remove from favourite' %}";
+    </script>
     <script src="{% static 'main/js/blog_post_cookies.js' %}"></script>
     <script src="{% static 'main/js/save_nickname.js' %}"></script>
 {% endblock %}

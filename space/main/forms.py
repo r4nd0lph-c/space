@@ -1,4 +1,3 @@
-from django.utils.translation import gettext as _
 from django import forms
 
 
@@ -6,7 +5,7 @@ class CommentForm(forms.Form):
     nickname = forms.CharField(widget=forms.TextInput(
                                    attrs={
                                        "class": "form-control",
-                                       "placeholder": _("Your nickname")
+                                       "placeholder": "Your nickname"
                                    }
                                ))
 
@@ -14,7 +13,7 @@ class CommentForm(forms.Form):
                                   attrs={
                                       "rows": "3",
                                       "class": "form-control",
-                                      "placeholder": _("Add a comment...")
+                                      "placeholder": "Add a comment..."
                                   }
                               ))
 

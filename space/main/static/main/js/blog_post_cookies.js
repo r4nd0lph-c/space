@@ -53,9 +53,9 @@ function remove_cookie(name, value) {
 function redraw(element) {
     let post_slug = element.classList[0];
     if (user_favs.includes(post_slug)) {
-        element.innerHTML = `<i class="bi bi-bookmark" style="color: var(--primary)"></i><span>remove from favourite</span>`;
+        element.innerHTML = `<i class="bi bi-bookmark" style="color: var(--primary)"></i><span style="padding-left: 4px">${REMOVE_FROM_FAV}</span>`;
     } else {
-        element.innerHTML = `<i class="bi bi-bookmark"></i><span>add to favourite</span>`;
+        element.innerHTML = `<i class="bi bi-bookmark"></i><span style="padding-left: 4px">${ADD_TO_FAV}</span>`;
     }
 }
 
