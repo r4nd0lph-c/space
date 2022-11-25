@@ -268,7 +268,7 @@ def get_color_name(request):
     """ FBV for palette_generator AJAX """
 
     if request.method == 'POST':
-        color_name = "#______"
+        color_name = "______"
         hex_color = request.POST.get("hex", None)
         if not (hex_color is None):
             color_name = get_name.get_color_name(hex_color)
