@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-24 12:33+0300\n"
+"POT-Creation-Date: 2022-11-25 16:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,29 @@ msgstr "ID Статьи"
 #: .\main\models.py:40
 msgid "Comment ID: "
 msgstr "ID Комментария"
+
+#: .\main\templates\main\about.html:9
+msgid "About us"
+msgstr "О нас"
+
+#: .\main\templates\main\about.html:10 .\main\templates\main\index.html:45
+msgid ""
+"SPACE is our bold attempt to create an aggregator of tools that may be handy "
+"for web-designers or just people who have a sudden need of working with "
+"graphical content. We collected all the different tools you will need in one "
+"place, so everything is set up for you to work. There is no limit to what "
+"you can do, as there is no limit to space above your head!"
+msgstr ""
+"SPACE - это наша смелая попытка создать агрегатор инструментов, который "
+"может быть удобен веб-дизайнерам или просто людям, у которых внезапно "
+"возникла необходимость работать с графическим контентом. Мы собрали все "
+"различные инструменты, которые вам понадобятся, в одном месте, так что все "
+"готово для вашей работы. Нет предела тому, что вы можете сделать, как и нет "
+"предела пространству над вашей головой!"
+
+#: .\main\templates\main\about.html:12 .\main\templates\main\base.html:136
+msgid "Contact us"
+msgstr "Обратная связь"
 
 #: .\main\templates\main\article.html:12 .\main\templates\main\blog.html:92
 #: .\main\templates\main\index.html:127 .\main\templates\main\index.html:165
@@ -75,57 +98,57 @@ msgstr "Главная"
 msgid "About"
 msgstr "О нас"
 
-#: .\main\templates\main\base.html:73 .\main\templates\main\base.html:139
+#: .\main\templates\main\base.html:73 .\main\templates\main\base.html:127
 msgid "Services"
 msgstr "Сервисы"
 
-#: .\main\templates\main\base.html:74 .\main\templates\main\base.html:147
+#: .\main\templates\main\base.html:74 .\main\templates\main\base.html:135
 msgid "Blog"
 msgstr "Блог"
 
-#: .\main\templates\main\base.html:129
+#: .\main\templates\main\base.html:117
 msgid "A great artist can come from anywhere"
 msgstr "Великий творец может прийти откуда угодно"
 
-#: .\main\templates\main\base.html:140
+#: .\main\templates\main\base.html:128
 msgid "Palette generator"
 msgstr "Генератор палитр"
 
-#: .\main\templates\main\base.html:141
+#: .\main\templates\main\base.html:129
 msgid "Gradient generator"
 msgstr "Генератор градиентов"
 
-#: .\main\templates\main\base.html:142
+#: .\main\templates\main\base.html:130
 msgid "Color picker"
 msgstr "Извлечения цвета"
 
-#: .\main\templates\main\base.html:143
+#: .\main\templates\main\base.html:131
 msgid "Contrast checker"
 msgstr "Проверка контрастности"
 
-#: .\main\templates\main\base.html:146
+#: .\main\templates\main\base.html:134
 msgid "Other"
 msgstr "Прочее"
 
-#: .\main\templates\main\base.html:148
-msgid "Contact us"
-msgstr "Обратная связь"
+#: .\main\templates\main\base.html:139
+msgid "Information"
+msgstr "Информация"
 
-#: .\main\templates\main\base.html:165
+#: .\main\templates\main\base.html:153
 msgid "Do you like cookies?"
 msgstr "Вам нравятся cookies?"
 
-#: .\main\templates\main\base.html:166
+#: .\main\templates\main\base.html:154
 msgid "We use cookies to ensure you get the best experience on our website."
 msgstr ""
 "Мы используем файлы cookie, чтобы обеспечить вам наилучший пользовательский "
 "опыт  на нашем веб-сайте."
 
-#: .\main\templates\main\base.html:167
+#: .\main\templates\main\base.html:155
 msgid "Learn more"
 msgstr "Подробнее"
 
-#: .\main\templates\main\base.html:170
+#: .\main\templates\main\base.html:158
 msgid "Accept"
 msgstr "Принять"
 
@@ -248,13 +271,30 @@ msgstr ""
 msgid "Most common colors"
 msgstr "Часто встречаемые цвета"
 
-#: .\main\templates\main\color_picker.html:263
+#: .\main\templates\main\color_picker.html:158
+msgid "Common colors"
+msgstr "Часто встречаемые цвета"
+
+#: .\main\templates\main\color_picker.html:160
+msgid ""
+"Use the tool to find out the most common colors in image, determined using K-"
+"means clustering algorithm."
+msgstr ""
+"Используйте инструмент для определения наиболее распространенных цветов на "
+"изображении, вычисленных с помощью алгоритма кластеризации K-средних."
+
+#: .\main\templates\main\color_picker.html:162
+#: .\main\templates\main\contrast_checker.html:24
+msgid "Read more..."
+msgstr "Подробнее"
+
+#: .\main\templates\main\color_picker.html:262
 msgid "UPLOAD IMAGE"
 msgstr "ЗАГРУЗИТЬ"
 
-#: .\main\templates\main\color_picker.html:265
+#: .\main\templates\main\color_picker.html:264
 #: .\main\templates\main\gradient_generator.html:170
-#: .\main\templates\main\palette_generator.html:243
+#: .\main\templates\main\palette_generator.html:237
 msgid "EXPORT AS"
 msgstr "ЭКСПОРТИРОВАТЬ"
 
@@ -272,32 +312,50 @@ msgstr ""
 "контент будет содержательным."
 
 #: .\main\templates\main\contrast_checker.html:16
+#: .\main\templates\main\contrast_checker.html:20
 msgid "Contrast Ratio"
 msgstr "Коэффициент контрастности"
 
-#: .\main\templates\main\contrast_checker.html:38
+#: .\main\templates\main\contrast_checker.html:22
+msgid ""
+"Ensure your color choices are visually accessible by checking the contrast "
+"ratio of your background and text colors. Based on WCAG 2.1 guidelines."
+msgstr ""
+"Убедитесь, что выбранные вами цвета визуально удобны, проверив коэффициент "
+"контрастности цветов фона и текста. Основано на руководящих принципах WCAG "
+"2.1."
+
+#: .\main\templates\main\contrast_checker.html:37
 msgid "Text color"
 msgstr "Цвет текста"
 
-#: .\main\templates\main\contrast_checker.html:53
+#: .\main\templates\main\contrast_checker.html:52
 msgid "Background color"
 msgstr "Цвет фона"
 
-#: .\main\templates\main\contrast_checker.html:67
+#: .\main\templates\main\contrast_checker.html:66
 msgid "for 17pt and below"
 msgstr "для 17pt и ниже"
 
-#: .\main\templates\main\contrast_checker.html:71
+#: .\main\templates\main\contrast_checker.html:70
 msgid "for 18pt and above / 14pt bold and above"
 msgstr "для 18pt и выше / 14pt жирным начертанием и выше"
 
-#: .\main\templates\main\contrast_checker.html:75
+#: .\main\templates\main\contrast_checker.html:74
 msgid "for icons and actionable graphics"
 msgstr "для иконок и полезной графики"
 
 #: .\main\templates\main\gradient_generator.html:60
 msgid "Export as image"
 msgstr "Экспортировать как изображение"
+
+#: .\main\templates\main\gradient_generator.html:67
+msgid "Width"
+msgstr "Ширина"
+
+#: .\main\templates\main\gradient_generator.html:71
+msgid "Height"
+msgstr "Высота"
 
 #: .\main\templates\main\gradient_generator.html:90
 msgid "GRADIENT GENERATOR"
@@ -436,21 +494,6 @@ msgstr "Начать"
 msgid "ABOUT"
 msgstr "О НАС"
 
-#: .\main\templates\main\index.html:45
-msgid ""
-"SPACE is our bold attempt to create an aggregator of tools that may be handy "
-"for web-designers or just people who have a sudden need of working with "
-"graphical content. We collected all the different tools you will need in one "
-"place, so everything is set up for you to work. There is no limit to what "
-"you can do, as there is no limit to space above your head!"
-msgstr ""
-"SPACE - это наша смелая попытка создать агрегатор инструментов, который "
-"может быть удобен веб-дизайнерам или просто людям, у которых внезапно "
-"возникла необходимость работать с графическим контентом. Мы собрали все "
-"различные инструменты, которые вам понадобятся, в одном месте, так что все "
-"готово для вашей работы. Нет предела тому, что вы можете сделать, как и нет "
-"предела пространству над вашей головой!"
-
 #: .\main\templates\main\index.html:51 .\main\templates\main\services.html:7
 msgid "SERVICES"
 msgstr "СЕРВИСЫ"
@@ -480,7 +523,7 @@ msgid "hover"
 msgstr "наведитесь"
 
 #: .\main\templates\main\index.html:65
-#: .\main\templates\main\palette_generator.html:26
+#: .\main\templates\main\palette_generator.html:79
 #: .\main\templates\main\services.html:14
 msgid ""
 "Create your own color palette in just one click! Use flexible settings to "
@@ -518,42 +561,82 @@ msgstr "Посмотреть все"
 msgid "Color Info"
 msgstr "Информация о цвете"
 
-#: .\main\templates\main\palette_generator.html:25
+#: .\main\templates\main\palette_generator.html:78
 msgid "PALETTE GENERATOR"
 msgstr "ГЕНЕРАТОР ПАЛТИР"
 
-#: .\main\views.py:29
+#: .\main\templates\main\palette_generator.html:164
+msgid "GENERATE"
+msgstr "СЛУЧАЙНО"
+
+#: .\main\templates\main\palette_generator.html:217
+msgid "Normal"
+msgstr "Без изменений"
+
+#: .\main\templates\main\palette_generator.html:218
+msgid "Protanopia"
+msgstr "Протанопия"
+
+#: .\main\templates\main\palette_generator.html:219
+msgid "Protanomaly"
+msgstr "Протаномалия"
+
+#: .\main\templates\main\palette_generator.html:220
+msgid "Deuteranopia"
+msgstr "Дейтеранопия"
+
+#: .\main\templates\main\palette_generator.html:221
+msgid "Deuteranomaly"
+msgstr "Дейтераномалия"
+
+#: .\main\templates\main\palette_generator.html:222
+msgid "Tritanopia"
+msgstr "Тританопия"
+
+#: .\main\templates\main\palette_generator.html:223
+msgid "Tritanomaly"
+msgstr "Тританомалия"
+
+#: .\main\templates\main\palette_generator.html:224
+msgid "Achromatopsia"
+msgstr "Ахроматопсия"
+
+#: .\main\templates\main\palette_generator.html:225
+msgid "Achromatomaly"
+msgstr "Ахроматомалия"
+
+#: .\main\views.py:30
 msgid "Home | SPACE"
 msgstr "Главная | SPACE"
 
-#: .\main\views.py:59
+#: .\main\views.py:60
 msgid "About | SPACE"
 msgstr "О нас | SPACE"
 
-#: .\main\views.py:77
+#: .\main\views.py:78
 msgid "Services | SPACE"
 msgstr "Сервисы | SPACE"
 
-#: .\main\views.py:141
+#: .\main\views.py:142
 msgid "Blog | SPACE"
 msgstr "Блог | SPACE"
 
-#: .\main\views.py:177
+#: .\main\views.py:178
 msgid "Article | SPACE"
 msgstr "Статья | SPACE"
 
-#: .\main\views.py:248
+#: .\main\views.py:249
 msgid "Palette Generator | SPACE"
 msgstr "Генератор палитр | SPACE"
 
-#: .\main\views.py:274
+#: .\main\views.py:289
 msgid "Gradient Generator | SPACE"
 msgstr "Генератор градиентов | SPACE"
 
-#: .\main\views.py:288
+#: .\main\views.py:303
 msgid "Color Picker | SPACE"
 msgstr "Извлечения цвета | SPACE"
 
-#: .\main\views.py:314
+#: .\main\views.py:329
 msgid "Contrast Checker | SPACE"
 msgstr "Проверка контрастности | SPACE"

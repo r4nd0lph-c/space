@@ -160,7 +160,8 @@
             </div>
             <button id="palette-generator-card-result-next-button"><i class="bi bi-arrow-right"></i></button>
             <div id="palette-generator-card-settings">
-                <button id="palette-generator-generate-button" type="button" class="btn btn-light">GENERATE</button>
+                <button id="palette-generator-generate-button" type="button"
+                        class="btn btn-light">{% trans "GENERATE" %}</button>
                 <!-- Script for getting color names by hex START -->
                 <script>
                     function get_color_name(hex) {
@@ -213,15 +214,15 @@
 						<i class="bi bi-eyeglasses"></i>
 					</span>
                     <select id="color-blindness-type" class="form-select">
-                        <option value="normal" selected>Normal</option>
-                        <option value="protanopia">Protanopia</option>
-                        <option value="protanomaly">Protanomaly</option>
-                        <option value="deuteranopia">Deuteranopia</option>
-                        <option value="deuteranomaly">Deuteranomaly</option>
-                        <option value="tritanopia">Tritanopia</option>
-                        <option value="tritanomaly">Tritanomaly</option>
-                        <option value="achromatopsia">Achromatopsia</option>
-                        <option value="achromatomaly">Achromatomaly</option>
+                        <option value="normal" selected>{% trans "Normal" %}</option>
+                        <option value="protanopia">{% trans "Protanopia" %}</option>
+                        <option value="protanomaly">{% trans "Protanomaly" %}</option>
+                        <option value="deuteranopia">{% trans "Deuteranopia" %}</option>
+                        <option value="deuteranomaly">{% trans "Deuteranomaly" %}</option>
+                        <option value="tritanopia">{% trans "Tritanopia" %}</option>
+                        <option value="tritanomaly">{% trans "Tritanomaly" %}</option>
+                        <option value="achromatopsia">{% trans "Achromatopsia" %}</option>
+                        <option value="achromatomaly">{% trans "Achromatomaly" %}</option>
                     </select>
                 </div>
                 <div>

@@ -24,8 +24,7 @@ def NN(A, start):
 
     for i in range(N - 1):
         last = path[-1]
-        # find minimum of remaining locations
-        next_ind = np.argmin(A[last][mask])
+        next_ind = np.argmin(A[last][mask])  # find minimum of remaining locations
         next_loc = np.arange(N)[mask][next_ind]  # convert to original location
         path.append(next_loc)
         mask[next_loc] = False
@@ -35,7 +34,7 @@ def NN(A, start):
 
 
 def clustering(image):
-    # image = cv2.imread(str)
+    # работа с изображением
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     mr = 64 * 64
@@ -46,20 +45,23 @@ def clustering(image):
     else:
         nh = h
         nw = w
+
     image = cv2.resize(image, (nw, nh))
     image_array = image.reshape((image.shape[0] * image.shape[1], 3))
 
-    up_lim = 0
+    # создание переменных и словарей
+    up_lim = 0  # макс. число кластеров
     flag = False
-
     rgb_percent = [dict() for i in range(10)]
     rgb_coord = [dict() for i in range(10)]
 
+    # начало многократной кластеризации
     for num_cl in range(1, 11):
 
         clt = KMeans(n_clusters=num_cl)
         clt.fit(image_array)
 
+        # проверка на одноцветность изображения (число пикселей одного цвета > 75%)
         if (num_cl == 1):
             image_array2 = tuple(map(tuple, image_array))
             one_col = Counter(image_array2)
@@ -68,25 +70,35 @@ def clustering(image):
                 up_lim = 1
                 flag = True
 
+        # содание массива цветов и подсчёта кол-ва пикселей с каждым кластером
         rgb = tuple(map(tuple, (np.round(clt.cluster_centers_).astype(int))))
 
         img_pix = clt.labels_.tolist()
         coun = Counter(img_pix)
         pix_clt_count = coun.most_common()
 
+        # создание массива rgb_percent
         for i in range(num_cl):
+
             percent = round(pix_clt_count[i][1] / len(img_pix) * 100, 2)
-            if (percent < 9.0):
+
+            # изменение процента для окончания кластеризации
+            if (percent < 5.0):
                 up_lim = num_cl - 1
                 flag = True
+
             rgb_percent[num_cl - 1][rgb[pix_clt_count[i][0]]] = percent
 
+        # создание массива rgb_coord
         for i in range(num_cl):
+
+            # рандомная точка начала поиска координаты
             ran_orig = random.randint(0, len(img_pix) - 1)
             ran = ran_orig
 
+            # вправо от начальной точки
             while (ran < len(img_pix)):
-                if (img_pix[ran] == i):
+                if (img_pix[ran] == pix_clt_count[i][0]):
                     break
                 else:
                     ran += 1
@@ -94,31 +106,40 @@ def clustering(image):
             if (ran == len(img_pix)):
                 ran -= 1
 
-            if (img_pix[ran] != i):
+            # влево от начальной точки
+            if (img_pix[ran] != pix_clt_count[i][0]):
 
                 ran = ran_orig
                 while (ran >= 0):
-                    if (img_pix[ran] == i):
+                    if (img_pix[ran] == pix_clt_count[i][0]):
                         break
                     else:
                         ran -= 1
 
-            if (img_pix[ran] != i):
-                print("wtf")
+            # преобразование координаты
+            y = int(ran / nw)
+            y = (y * h / nh)
+            y = round(y)
 
-            x = int(round((ran % nw) * w / nw))
-            y = int(int(ran / nw) * h / nh)
+            x = (ran) % nw
+            x = (x * w / nw)
+            x = round(x)
 
             rgb_coord[num_cl - 1][rgb[pix_clt_count[i][0]]] = (x, y)
+
+        # прекращение кластеризации
         if (flag):
             break
 
+    # изначально создаётся 10 словарей, нужно убрать все незаполненные словари до up_lim
     j = len(rgb_percent) - 1
 
     for i in range(10 - up_lim):
         rgb_percent.pop(j)
         rgb_coord.pop(j)
         j -= 1
+
+    # сортировка цветов в словарях по алгоритму сортировки цветов
 
     if (up_lim > 2):
         for i in range(2, up_lim):
