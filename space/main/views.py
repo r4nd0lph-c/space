@@ -257,7 +257,8 @@ def change_palette(request):
 
     if request.method == 'POST':
         palette_object = request.POST.getlist("palette_object[]", None)
-        palette_object = palette_generator.generate(palette_object)
+        # palette_object = palette_generator.generate(palette_object)
+        palette_object = palette_generator.generation_preset(palette_object)
         return JsonResponse({"palette_object": palette_object})
     else:
         return JsonResponse({"message": "you don't have enough rights!"})
