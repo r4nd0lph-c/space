@@ -261,10 +261,14 @@
 		
 		//Array containing HEX-codes of all palette colors
 		//This array will be interacting with back-end
-		let paletteColorsArray;
+		let paletteColorsArray = [];
+		
+		//Mask
+		let paletteMask = [];
 		
 		//TODO: Doubly linked list containing history of colors
-		let paletteColorsHistory;
+		let paletteHistory = [];
+		let paletteHistoryCurrent = -1;
 		
 		//Palette - div containing all colors
 		const palette = select("#palette-generator-card-result");
@@ -276,11 +280,15 @@
 		const brightnessButton = select("#palette-generator-brightness-button");
 		const contrastButton = select("#palette-generator-contrast-button");
 		new bootstrap.Tooltip(contrastButton, {
+			trigger: "hover",
 			placement: "bottom",
-			title: "Text"
+			title: "Toggle color contrast checker"
 		});
 		const generateButton = select("#palette-generator-generate-button");
 		const exportButton = select("#palette-generator-export-button");
+		
+		const nextButton = select("#palette-generator-card-result-next-button");
+		const previousButton = select("#palette-generator-card-result-previous-button");
 		
 		const maxColorCount = 10;
 		let setColorNameTimeout;
@@ -410,6 +418,85 @@
 		}
 		
 		
+		function updateColorOnAjax(paletteColor, hexColor) {
+			paletteColor.querySelector("input").value = hexColor;
+			if(colorBlindnessType.value == "normal") {
+				paletteColor.style.backgroundColor = paletteColor.querySelector("input").value;
+				paletteColor.querySelector("h3").textContent = paletteColor.querySelector("input").value;
+				setColorName(paletteColor.querySelector("input").value, paletteColor.querySelector("p"));
+			} else {
+				paletteColor.querySelector("p").textContent = paletteColor.querySelector("input").value
+			}
+			
+			
+			applyColorBlindness();
+			applyBrightness();
+			checkBrightness();
+		}
+		
+		function renderColorsFromArray(position) {
+			const pltColors = paletteHistory[position]["paletteColorsArray"];
+			const pltMask = paletteHistory[position]["paletteMask"];
+			
+			palette.innerHTML = "";
+			for(let i = 0; i < pltColors.length; i++) {
+				let newColor = createNewPaletteColor();
+				newColor.querySelector("h3").textContent = pltColors[i];
+				if(colorBlindnessType.value == "normal")
+					setColorName(pltColors[i], newColor.querySelector("p"));
+				newColor.querySelector("input").value = pltColors[i];
+				newColor.style.backgroundColor = pltColors[i];
+				if(pltMask[i]) {
+					const icon = newColor.querySelector(".bi.bi-unlock-fill");
+					icon.classList.remove("bi-unlock-fill");
+					icon.classList.add("bi-lock-fill");
+				}
+				
+				
+				palette.appendChild(newColor);
+			}
+			
+			applyColorBlindness();
+			applyBrightness();
+			checkBrightness();
+			adaptFontSize();
+			hideLastPaletteColorAdd();
+			
+			if(paletteColors.length >= maxColorCount) {
+				hideAllPaletteColorAdd();
+			}
+		}
+		
+		function saveToHistory() {
+			const previousValue = paletteHistory.length;
+			for(let i = 0; i < previousValue-2-paletteHistoryCurrent; i++) {
+				paletteHistory.pop();
+			}
+			console.dir(paletteHistory);
+			console.log((paletteHistory.length));
+			paletteHistory.push();
+			paletteHistoryCurrent++;
+			for(let i = 0; i < paletteColors.length; i++) {
+				paletteColorsArray.push(paletteColors[i].querySelector("h3").textContent);
+				if(paletteColors[i].querySelector(".palette-generator-card-result-color-tools .bi-unlock-fill")) {
+					paletteMask.push(false);
+				}else {
+					paletteMask.push(true);
+				}
+			}
+			paletteHistory[paletteHistoryCurrent] = [];
+			paletteHistory[paletteHistoryCurrent]["paletteColorsArray"] = paletteColorsArray;
+			paletteHistory[paletteHistoryCurrent]["paletteMask"] = paletteMask;
+			paletteColorsArray = [];
+			paletteMask = [];
+			nextButton.disabled = true;
+			
+			if(previousValue >= 0 && paletteHistory.length == 2) {
+				previousButton.removeAttribute("disabled");
+			}
+		}
+		
+		
 		//Adds all functionality to palette color div
 		function addAllListeners(paletteColor) {
 			const colorH3 = paletteColor.querySelector("h3");
@@ -441,7 +528,8 @@
 					colorH3.textContent = colorH3Input.value;
 					clearTimeout(setColorNameTimeout)
 					setColorNameTimeout = setTimeout(function() {
-						setColorName(colorH3Input.value, colorP)
+						setColorName(colorH3Input.value, colorP);
+						saveToHistory();
 					}, 100);
 				} else {
 					colorP.textContent = colorH3Input.value;
@@ -509,6 +597,7 @@
 				applyBrightness();
 				checkBrightness();
 				adaptFontSize();
+				saveToHistory();
 				
 				if(paletteColors.length >= maxColorCount) {
 					hideAllPaletteColorAdd();
@@ -529,6 +618,7 @@
 					paletteColor.remove();
 					hideLastPaletteColorAdd();
 					adaptFontSize();
+					saveToHistory();
 				}, 300);
 			});
 			
@@ -542,6 +632,8 @@
 					colorUnlock.classList.remove("bi-lock-fill");
 					colorUnlock.classList.add("bi-unlock-fill");
 				}
+				
+				saveToHistory();
 			});
 			
 			//When clicked on color info icon - change the modal components according to the color
@@ -718,6 +810,8 @@
 								paletteColors[i].style.removeProperty("transform");
 							}
 						}, 10);
+						
+						saveToHistory();
 					}, 300);
 					
 					
@@ -752,8 +846,7 @@
 		document.addEventListener("keyup", (e) => {
 			if(e.code == "Space" || e.keyCode == 32) {
 				e.preventDefault();
-				//TODO
-				document.getElementById("palette-generator-generate-button").click();
+				generateButton.click();
 			}
 		});
 		
@@ -782,8 +875,8 @@
 				}
 			}
 			
-			if(brightnessButton.style.backgroundColor)
-				applyBrightness();
+			// if(brightnessButton.style.backgroundColor)
+				// applyBrightness();
 		}
 		
 		colorBlindnessType.addEventListener("change", applyColorBlindness);
@@ -1072,13 +1165,75 @@
 		};
 		
 		
+		// Script for palette-information exchange
+		generateButton.addEventListener("click", function() {
+			let paletteToSend = [];
+			if(paletteHistory.length == 0) {
+				paletteToSend.push(null);
+				paletteToSend.push(null);
+				paletteToSend.push(null);
+				paletteToSend.push(null);
+				
+			} else {
+				for(let i = 0; i < paletteHistory[paletteHistoryCurrent]["paletteColorsArray"].length; i++) {
+					if(paletteHistory[paletteHistoryCurrent]["paletteMask"][i]) {
+						paletteToSend.push(paletteHistory[paletteHistoryCurrent]["paletteColorsArray"][i]);
+					}else {
+						paletteToSend.push(null);
+					}
+				}
+			}
+			
+			
+			$.ajax({
+				url: "change_palette/",
+				type: "POST",
+				dataType: "json",
+				data: {"palette_object": paletteToSend},
+				success: function (data) {
+					const newColors = data.palette_object;
+					for(let i = 0; i < newColors.length; i++) {
+						updateColorOnAjax(paletteColors[i], newColors[i]);
+					}
+					
+					saveToHistory();
+					console.log(paletteHistory);
+				}
+			});
+		});
+		
+		
+		nextButton.addEventListener("click", e => {
+			previousButton.removeAttribute('disabled');
+			paletteHistoryCurrent++;
+			if(paletteHistoryCurrent == paletteHistory.length-1) {
+				nextButton.disabled = true;
+			}
+			
+			renderColorsFromArray(paletteHistoryCurrent);
+		});
+		
+		
+		previousButton.addEventListener("click", e => {
+			nextButton.removeAttribute("disabled");
+			paletteHistoryCurrent--;
+			if(paletteHistoryCurrent == 0) {
+				previousButton.disabled = true;
+			}
+			
+			renderColorsFromArray(paletteHistoryCurrent);
+		});
 		
 		
 		
 		for(let i = 0; i < paletteColors.length; i++) {
 			addAllListeners(paletteColors[i]);
 		}
-			
+		
+		
+		generateButton.click();
+		
+		
 		
 		hideLastPaletteColorAdd();
 		checkBrightness();

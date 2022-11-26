@@ -322,7 +322,9 @@
 			let cssHSLResult = "/* CSS HSL */\r\n";
 			let scssHEXResult = "/* SCSS HEX */\r\n";
 			let scssHSLResult = "/* SCSS HSL */\r\n";
-			for(let i = 0; i < colorList.length; i++) {
+			colorRange.value = colorRange.max;
+			colorRange.dispatchEvent(new Event("change"));
+			for(let i = 0; i < colorRange.max; i++) {
 				let colorName = stringToCssStyle(colorList[i].getElementsByTagName("p")[0].innerHTML);
 				let colorHex = colorList[i].getElementsByTagName("h3")[0].innerHTML;
 				cssHexResult += "--" + colorName + ": " + colorHex + ";\r\n";
@@ -351,7 +353,9 @@
 			//Headers
 			let csvResult = "Hex,Name,Contribution\r\n";
 			
-			for(let i = 0; i < colorList.length; i++) {
+			colorRange.value = colorRange.max;
+			colorRange.dispatchEvent(new Event("change"));
+			for(let i = 0; i < colorRange.max; i++) {
 				let colorHex = colorList[i].getElementsByTagName("h3")[0].innerHTML;
 				let colorName = '\"' + colorList[i].getElementsByTagName("p")[0].innerHTML + '\"';
 				let colorContribution = colorList[i].getElementsByTagName("p")[1].innerHTML;
@@ -375,7 +379,9 @@
 			//Headers
 			let jsonResult = "[\r\n";
 			
-			for(let i = 0; i < colorList.length; i++) {
+			colorRange.value = colorRange.max;
+			colorRange.dispatchEvent(new Event("change"));
+			for(let i = 0; i < colorRange.max; i++) {
 				let colorHex = "    {\"hex\": \"" + colorList[i].getElementsByTagName("h3")[0].innerHTML + "\", ";
 				let colorName = "\"name\": \"" + colorList[i].getElementsByTagName("p")[0].innerHTML + "\", ";
 				let colorContribution = "\"contribution\": \"" + colorList[i].getElementsByTagName("p")[1].innerHTML + "\"}";
@@ -408,7 +414,9 @@
 			//Copying color list from color picker card to the collage
 			const collageColorList = select("#color-picker-export-collage-color-list");
 			collageColorList.innerHTML = "";
-			for(let i = 0; i < colorList.length; i++) {
+			colorRange.value = colorRange.max;
+			colorRange.dispatchEvent(new Event("change"));
+			for(let i = 0; i < colorRange.max; i++) {
 				const newNode = colorList[i].cloneNode(true);
 				newNode.removeAttribute("hidden");
 				collageColorList.appendChild(newNode);

@@ -164,7 +164,7 @@
         </div>
 
         <div id="palette-generator-card">
-            <button id="palette-generator-card-result-previous-button"><i class="bi bi-arrow-left"></i></button>
+            <button id="palette-generator-card-result-previous-button" disabled><i class="bi bi-arrow-left"></i></button>
             <div id="palette-generator-card-result">
                 <div class="palette-generator-card-result-color" style="background-color: #A2C6CB">
 					<span class="palette-generator-card-result-color-tools">
@@ -242,39 +242,12 @@
                     </div>
                 </div>
             </div>
-            <button id="palette-generator-card-result-next-button"><i class="bi bi-arrow-right"></i></button>
+            <button id="palette-generator-card-result-next-button" disabled><i class="bi bi-arrow-right"></i></button>
             <div id="palette-generator-card-settings">
                 <button id="palette-generator-generate-button" type="button"
                         class="btn btn-light">{% trans "GENERATE" %}</button>
-                <!-- Script for palette-information exchange START
-                <script>
-                    // default palette (first loading)
-                    var palette_object = ["#FFFFFF", "#000000", "#FFFFFF", "#000000", "#FFFFFF"];
-                    var mask_is_fixed = [false, true, false, true, false];
-
-                    var btn_generate = document.getElementById("palette-gen-generate-button");
-                    btn_generate.onclick = function () {
-                        let palette_for_sending = [];
-                        for (let i = 0; i < palette_object.length; i++)
-                            if (mask_is_fixed[i])
-                                palette_for_sending.push(palette_object[i]);
-                            else
-                                palette_for_sending.push(null);
-                        $.ajax({
-                            url: "change_palette/",
-                            type: "POST",
-                            dataType: "json",
-                            data: {"palette_object": palette_for_sending},
-                            success: function (data) {
-                                console.log(data);
-                                palette_object = data.palette_object;
-                            }
-                        });
-                    };
-                </script>
-                Script for palette-information exchange END -->
                 <div class="input-group" data-bs-toggle="tooltip" data-bs-placement="bottom"
-						data-bs-title="Text">
+						data-bs-title="Color mode for colorblind people">
 					<span class="input-group-text">
 						<i class="bi bi-eyeglasses"></i>
 					</span>
@@ -292,7 +265,7 @@
                 </div>
                 <div>
                     <button id="palette-generator-brightness-button" type="button" class="btn btn-light" data-bs-toggle="tooltip" 
-					data-bs-placement="bottom" data-bs-title="Text">
+					data-bs-placement="bottom" data-bs-title="Toggle luminance filter">
                         <i class="bi bi-sun"></i>
                     </button>
                     <button id="palette-generator-contrast-button" type="button" class="btn btn-light"  data-bs-toggle="modal"

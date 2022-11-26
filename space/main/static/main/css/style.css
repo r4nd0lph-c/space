@@ -1437,7 +1437,7 @@ pre code {
 	border: 0;
 	background: transparent;
 	font-size: 3em;
-	color: var(--secondary);
+	/* color: var(--secondary); */
 }
 
 .palette-generator-card-result-color {
@@ -1631,7 +1631,7 @@ pre code {
 /* Palette Colors Contrast Modal */
 .palette-generator-contrast-modal-row {
 	display: flex;
-	flex-flow: row nowrap;
+	flex-flow: row wrap;
 	gap: 8px;
 }
 
@@ -1643,7 +1643,7 @@ pre code {
 	align-items: center;
 	padding: 16px;
 	text-align: center;
-	border-radius: 16px;
+	border-radius: 8px;
 	border: 1px solid var(--secondary);
 }
 
@@ -1677,6 +1677,11 @@ pre code {
 	.palette-generator-card-result-color h3,
 	.palette-generator-card-result-color p {
 		display: none;
+	}
+	
+	#palette-generator-card-settings div:nth-child(3) {
+		padding: 0;
+		border-right: none;
 	}
 }
 
