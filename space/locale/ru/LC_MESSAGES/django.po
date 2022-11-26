@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 17:12+0300\n"
+"POT-Creation-Date: 2022-11-26 08:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,11 +239,13 @@ msgstr "Последняя"
 
 #: .\main\templates\main\color_picker.html:13
 #: .\main\templates\main\gradient_generator.html:13
+#: .\main\templates\main\palette_generator.html:11
 msgid "Export as..."
 msgstr "Экспортировать как..."
 
 #: .\main\templates\main\color_picker.html:25
 #: .\main\templates\main\gradient_generator.html:26
+#: .\main\templates\main\palette_generator.html:23
 msgid "Image"
 msgstr "Изображение"
 
@@ -251,6 +253,7 @@ msgstr "Изображение"
 #: .\main\templates\main\color_picker.html:81
 #: .\main\templates\main\color_picker.html:110
 #: .\main\templates\main\gradient_generator.html:38
+#: .\main\templates\main\palette_generator.html:48
 msgid "Export as "
 msgstr "Экспортировать как "
 
@@ -258,12 +261,14 @@ msgstr "Экспортировать как "
 #: .\main\templates\main\color_picker.html:93
 #: .\main\templates\main\color_picker.html:122
 #: .\main\templates\main\gradient_generator.html:80
+#: .\main\templates\main\palette_generator.html:61
 msgid "DOWNLOAD"
 msgstr "СКАЧАТЬ"
 
 #: .\main\templates\main\color_picker.html:69
 #: .\main\templates\main\color_picker.html:98
 #: .\main\templates\main\color_picker.html:127
+#: .\main\templates\main\palette_generator.html:66
 msgid "COPY"
 msgstr "КОПИРОВАТЬ"
 
@@ -277,8 +282,8 @@ msgid ""
 "Life is filled with colors. You’ve always been wondering what color your "
 "life’s in? Upload your photo and learn in a sec."
 msgstr ""
-"Вам всегда было интересно, в каком цвете ваша жизнь? "
-"Загрузите фотографию и узнайте через секунду."
+"Вам всегда было интересно, в каком цвете ваша жизнь? Загрузите фотографию и "
+"узнайте через секунду."
 
 #: .\main\templates\main\color_picker.html:155
 msgid "Most common colors"
@@ -307,7 +312,7 @@ msgstr "ЗАГРУЗИТЬ"
 
 #: .\main\templates\main\color_picker.html:264
 #: .\main\templates\main\gradient_generator.html:170
-#: .\main\templates\main\palette_generator.html:237
+#: .\main\templates\main\palette_generator.html:277
 msgid "EXPORT AS"
 msgstr "ЭКСПОРТИРОВАТЬ"
 
@@ -380,8 +385,8 @@ msgid ""
 "Make your own art of soft and fluffy colors fluently flowing into each "
 "other. Be certain, everything will go smoothly."
 msgstr ""
-"Создайте своё искусство из цветов, плавно перетекающих друг в друга. "
-"Будьте уверены, всё пройдет гладко."
+"Создайте своё искусство из цветов, плавно перетекающих друг в друга. Будьте "
+"уверены, всё пройдет гладко."
 
 #: .\main\templates\main\gradient_generator.html:96
 msgid "Choose colors"
@@ -536,14 +541,14 @@ msgid "hover"
 msgstr "наведитесь"
 
 #: .\main\templates\main\index.html:65
-#: .\main\templates\main\palette_generator.html:79
+#: .\main\templates\main\palette_generator.html:163
 #: .\main\templates\main\services.html:14
 msgid ""
 "Create your own color palette in just one click! Use flexible settings to "
 "express all spectrum of your ideas."
 msgstr ""
-"Создайте свою цветовую палитру. Используйте настройки, "
-"чтобы выразить весь спектр ваших идей."
+"Создайте свою цветовую палитру. Используйте настройки, чтобы выразить весь "
+"спектр ваших идей."
 
 #: .\main\templates\main\index.html:66 .\main\templates\main\index.html:81
 #: .\main\templates\main\index.html:96 .\main\templates\main\index.html:111
@@ -570,53 +575,69 @@ msgstr "Свежие статьи"
 msgid "View all"
 msgstr "Посмотреть все"
 
-#: .\main\templates\main\palette_generator.html:11
+#: .\main\templates\main\palette_generator.html:80
 msgid "Color Info"
 msgstr "Информация о цвете"
 
-#: .\main\templates\main\palette_generator.html:78
+#: .\main\templates\main\palette_generator.html:149
+msgid "Color Contrast"
+msgstr ""
+
+#: .\main\templates\main\palette_generator.html:162
 msgid "PALETTE GENERATOR"
 msgstr "ГЕНЕРАТОР ПАЛТИР"
 
-#: .\main\templates\main\palette_generator.html:164
+#: .\main\templates\main\palette_generator.html:248
 msgid "GENERATE"
 msgstr "СЛУЧАЙНО"
 
-#: .\main\templates\main\palette_generator.html:217
+#: .\main\templates\main\palette_generator.html:250
+msgid "Color mode for emulate color blindness"
+msgstr "Цветовой режим для имитации дальтонизма"
+
+#: .\main\templates\main\palette_generator.html:255
 msgid "Normal"
 msgstr "Без изменений"
 
-#: .\main\templates\main\palette_generator.html:218
+#: .\main\templates\main\palette_generator.html:256
 msgid "Protanopia"
 msgstr "Протанопия"
 
-#: .\main\templates\main\palette_generator.html:219
+#: .\main\templates\main\palette_generator.html:257
 msgid "Protanomaly"
 msgstr "Протаномалия"
 
-#: .\main\templates\main\palette_generator.html:220
+#: .\main\templates\main\palette_generator.html:258
 msgid "Deuteranopia"
 msgstr "Дейтеранопия"
 
-#: .\main\templates\main\palette_generator.html:221
+#: .\main\templates\main\palette_generator.html:259
 msgid "Deuteranomaly"
 msgstr "Дейтераномалия"
 
-#: .\main\templates\main\palette_generator.html:222
+#: .\main\templates\main\palette_generator.html:260
 msgid "Tritanopia"
 msgstr "Тританопия"
 
-#: .\main\templates\main\palette_generator.html:223
+#: .\main\templates\main\palette_generator.html:261
 msgid "Tritanomaly"
 msgstr "Тританомалия"
 
-#: .\main\templates\main\palette_generator.html:224
+#: .\main\templates\main\palette_generator.html:262
 msgid "Achromatopsia"
 msgstr "Ахроматопсия"
 
-#: .\main\templates\main\palette_generator.html:225
+#: .\main\templates\main\palette_generator.html:263
 msgid "Achromatomaly"
 msgstr "Ахроматомалия"
+
+#: .\main\templates\main\palette_generator.html:268
+msgid "Toggle luminance filter"
+msgstr "Переключить фильтр яркости"
+
+#: .\main\templates\main\palette_generator.html:285
+msgid "Toggle color contrast checker"
+msgstr "Средство проверки цветового контраста"
 
 #: .\main\views.py:30
 msgid "Home | SPACE"
@@ -642,14 +663,14 @@ msgstr "Статья | SPACE"
 msgid "Palette Generator | SPACE"
 msgstr "Генератор палитр | SPACE"
 
-#: .\main\views.py:289
+#: .\main\views.py:290
 msgid "Gradient Generator | SPACE"
 msgstr "Генератор градиентов | SPACE"
 
-#: .\main\views.py:303
+#: .\main\views.py:304
 msgid "Color Picker | SPACE"
 msgstr "Извлечения цвета | SPACE"
 
-#: .\main\views.py:329
+#: .\main\views.py:330
 msgid "Contrast Checker | SPACE"
 msgstr "Проверка контрастности | SPACE"

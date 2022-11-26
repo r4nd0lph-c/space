@@ -247,7 +247,7 @@
                 <button id="palette-generator-generate-button" type="button"
                         class="btn btn-light">{% trans "GENERATE" %}</button>
                 <div class="input-group" data-bs-toggle="tooltip" data-bs-placement="bottom"
-						data-bs-title="Color mode for colorblind people">
+						data-bs-title="{% trans 'Color mode for emulate color blindness' %}">
 					<span class="input-group-text">
 						<i class="bi bi-eyeglasses"></i>
 					</span>
@@ -265,7 +265,7 @@
                 </div>
                 <div>
                     <button id="palette-generator-brightness-button" type="button" class="btn btn-light" data-bs-toggle="tooltip" 
-					data-bs-placement="bottom" data-bs-title="Toggle luminance filter">
+					data-bs-placement="bottom" data-bs-title="{% trans 'Toggle luminance filter' %}">
                         <i class="bi bi-sun"></i>
                     </button>
                     <button id="palette-generator-contrast-button" type="button" class="btn btn-light"  data-bs-toggle="modal"
@@ -282,5 +282,6 @@
 {% endblock %}
 
 {% block script %}
+    <script> var TOGGLE_LABEL_CONST = "{% trans 'Toggle color contrast checker' %}"</script>
     <script src="{% static 'main/js/palette_generator.js' %}"></script>
 {% endblock %}
