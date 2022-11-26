@@ -83,7 +83,7 @@ def clustering(image):
             percent = round(pix_clt_count[i][1] / len(img_pix) * 100, 2)
 
             # изменение процента для окончания кластеризации
-            if (percent < 5.0):
+            if (percent < 4.0):
                 up_lim = num_cl - 1
                 flag = True
 
