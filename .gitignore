@@ -5,13 +5,13 @@
 additional/
 
 # media files
-space/media/*
+# space/media/*
 
 # virtual environment
 venv/
 
 # database
-space/db.sqlite3
+# space/db.sqlite3
 
 # config
-space/.env
+# space/.env
